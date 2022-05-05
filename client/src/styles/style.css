@@ -5,3 +5,22 @@
 .preto{
     color: #2d2d2d;
 }
+
+.cinza{
+    background-color: #77878B;
+}
+
+h1{
+    font-family: 'Arvo', serif;
+}
+
+@media (max-width:767px){
+    img.col-md-6{
+        display: none;
+    }
+}
+
+div.img {
+    width: auto;
+    height: auto;
+}
