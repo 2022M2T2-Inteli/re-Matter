@@ -16,60 +16,69 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="d-flex justify-content-between w-100 px-5">
-        <div>
-          <img src="./images/logo.png" alt="Projeto Revirar" />
-        </div>
-        <div
-          class="collapse navbar-collapse flex-grow-0 h-100"
-          id="navbarNavDropdown"
-        >
-          <ul class="navbar-nav w-50 align-items-end w-100 px-4 py-2">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="/client/src/images/logo.png" alt="logo" />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"> </span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+            <li class="nav-item">
+              <a
+                class="nav-link active uppercase fs-3 mt-5"
+                aria-current="page"
+                href="#"
+                >Sobre nós</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-3 mt-5" href="#">Galeria</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-3 mt-5" href="#">Depoimentos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-3 mt-5" href="#">Eventos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link fs-3 dropdown-toggle mt-5 amarelo text-center text-dark"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Doação
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item fs-3" href="#">Doação por pix</a>
+                </li>
+                <li>
+                  <a class="dropdown-item fs-3" href="#">Doação de alimentos</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                  <a class="dropdown-item fs-3" href="#">Volutariado</a>
+                </li>
+              </ul>
+
+              <hr />
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
 
@@ -112,9 +121,7 @@
             />
             <div class="carousel-caption d-none d-md-block">
               <h5>Gato numero 1</h5>
-              <p>
-                esse eh o gato numero 1
-              </p>
+              <p>esse eh o gato numero 1</p>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
@@ -125,9 +132,7 @@
             />
             <div class="carousel-caption d-none d-md-block">
               <h5>Gato numero 2</h5>
-              <p>
-                esse eh o gato numero 2
-              </p>
+              <p>esse eh o gato numero 2</p>
             </div>
           </div>
           <div class="carousel-item">
@@ -138,9 +143,7 @@
             />
             <div class="carousel-caption d-none d-md-block">
               <h5>Gato numero 3</h5>
-              <p>
-                esse eh o gato numero 3
-              </p>
+              <p>esse eh o gato numero 3</p>
             </div>
           </div>
         </div>
