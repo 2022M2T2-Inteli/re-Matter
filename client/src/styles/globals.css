@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Poppins:wght@300&display=swap');
+.amarelo{
+    background-color: #fff601;
+}
+
+.preto{
+    color: #2d2d2d;
+}
+
+.arvo{
+    font-family: 'Arvo', serif;
+}
+
+.poppins{
+    font-family: 'Poppins', sans-serif;
+}
