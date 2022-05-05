@@ -33,4 +33,7 @@ div.img {
     height: auto;
 }
 
-/*Example*/
+.imgscale{
+    height: 200px;
+    width: 200px;
+}
