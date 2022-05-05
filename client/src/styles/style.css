@@ -20,6 +20,10 @@ h1{
     }
 }
 
+blockquote{
+    align-self: center;
+}
+
 div.img {
     width: auto;
     height: auto;
