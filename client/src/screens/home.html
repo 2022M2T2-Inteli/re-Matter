@@ -1,136 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Re:Virar</title>
-    <link
-      rel="shortcut icon"
-      href="/client/src/images/logo.png"
-      type="image/x-icon"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/client/src/styles/style.css" />
-    <link rel="stylesheet" href="/client/src/styles/globals.css" />
-    <style></style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark shadow sticky-top">
-      <div class="container-fluid px-lg-5">
-        <a class="navbar-brand" href="#">
-          <img src="/client/src/images/logo.png" alt="logo" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"> </span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-            <li class="nav-item">
-              <a
-                class="nav-link active uppercase fs-3 mt-5"
-                aria-current="page"
-                href="#"
-                >Sobre nós</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-3 mt-3" href="#">Galeria</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-3 mt-3" href="#">Depoimentos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-3 mt-3" href="#">Eventos</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link fs-3 dropdown-toggle mt-5 amarelo text-center text-dark"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Doação
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item fs-3" href="#">Doação por pix</a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                  <a class="dropdown-item fs-3" href="#">Volutariado</a>
-                </li>
-              </ul>
 
-              <hr />
-            </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Re:Virar</title>
+  <link rel="shortcut icon" href="/client/src/images/logo.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/client/src/styles/style.css" />
+  <link rel="stylesheet" href="/client/src/styles/globals.css" />
+  <style></style>
+</head>
 
-            <hr class="line mb-0" />
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark bg-dark shadow-sm sticky-top">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand" href="#">
+        <img src="/client/src/images/logo.png" alt="logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"> </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active uppercase fs-3 mt-5" aria-current="page" href="#">Sobre nós</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#">Galeria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#">Depoimentos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#">Eventos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link fs-3 dropdown-toggle mt-5 amarelo text-center text-dark" href="#" id="navbarDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Doação
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item fs-3" href="#">Doação por pix</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+                <a class="dropdown-item fs-3" href="#">Volutariado</a>
+              </li>
+            </ul>
 
-            <li class="nav-item mt-0 align-middle h-auto">
-              <a class="nav-link fs-3 mt-3" href="#"
-                >Área restrita <img src="/client/src/images/lock.svg"
-              /></a>
-            </li>
+            <hr />
+          </li>
 
-            <li class="nav-item">
-              <a class="nav-link fs-3 mt-3" href="#"
-                ><img
-                  width="36px"
-                  src="/client/src/images/youtube.svg"
-                  alt="YouTube"
-                  class="mx-2" />
-                <img
-                  width="36px"
-                  src="/client/src/images/instagram.svg"
-                  alt="Instagram"
-                  class="mx-2"
-              /></a>
-            </li>
-          </ul>
-        </div>
+          <hr class="line mb-0" />
+
+          <li class="nav-item mt-0 align-middle h-auto">
+            <a class="nav-link fs-3 mt-3" href="#">Área restrita <img src="/client/src/images/lock.svg" /></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#"><img width="36px" src="/client/src/images/youtube.svg" alt="YouTube"
+                class="mx-2" />
+              <img width="36px" src="/client/src/images/instagram.svg" alt="Instagram" class="mx-2" /></a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <div class="container-fluid p-0 m-0 col-sm-12 col-md-6 mx-auto">
-      <div class="m-0 w-100 h-25">
-        <img
-          src="/client/src/images/placeholder_person.png"
-          class="img-fluid mx-auto col-12 w-100 h-100"
-        />
-      </div>
-
-      <h1 class="preto fs-5 my-3 text-start mx-2">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor in
-        repellat, repellendus assumenda porro rerum sint, maxime illo tempora
-        libero doloremque itaque ex laboriosam amet minima, nobis eius? Magnam,
-        excepturi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-        vel laudantium inventore nihil illo debitis, adipisci deserunt
-        similique, tempore possimus provident officiis facilis repellat esse
-        omnis accusamus voluptates illum vitae.
-      </h1>
+  <div class="container-fluid p-0 m-0 col-sm-12 col-md-6 mx-auto my-4">
+    <div class="m-0 w-100 h-25">
+      <img src="/client/src/images/placeholder_person.png" class="img-fluid mx-auto col-12 w-100 h-100" />
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <h1 class="preto fs-5 my-3 text-start mx-2">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor in
+      repellat, repellendus assumenda porro rerum sint, maxime illo tempora
+      libero doloremque itaque ex laboriosam amet minima, nobis eius? Magnam,
+      excepturi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+      vel laudantium inventore nihil illo debitis, adipisci deserunt
+      similique, tempore possimus provident officiis facilis repellat esse
+      omnis accusamus voluptates illum vitae.
+    </h1>
+  </div>
+  <footer class="text-center text-lg-start text-white pretoFundo mt-5">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row p-3">
+          <!-- Grid column -->
+          <div class="col-md-8 col-lg-8 col-xl-8 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              ONG Revirar
+            </h6>
+            <p>
+              ENDEREÇO: Rua Nhengaibas 356 - Vila Prudente, São Paulo, SP
+            </p>
+          </div>
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3 text-md-start">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contato</h6>
+            <p><i class="fas fa-envelope mr-3"></i> revirar@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 55 11 99999-9999</p>
+            <p><i class="fas fa-print mr-3"></i> + 55 11 99999-9999</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+      <hr class="my-3">
+      <!-- Section: Copyright -->
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-8 col-lg-8 text-center text-md-start">
+            <!-- Copyright -->
+            <div class="p-3">
+              © 2022 Copyright:
+              <a class="text-white" target = "_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Re:matter</a>
+            </div>
+            <!-- Copyright -->
+          </div>
+          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+            <!-- Youtube -->
+            <a class="btn btn-floating m-1" class="text-white" role="button">
+              <img src="/client/src/images/youtube.svg" alt="">
+            </a>
+            <!-- Instagram -->
+            <a class="btn btn-floating m-1" class="text-white" role="button">
+              <img src="/client/src/images/instagram.svg" alt="">
+            </a>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Copyright -->
+    </div>
+    <!-- Grid container -->
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
