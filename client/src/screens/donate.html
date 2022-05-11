@@ -31,16 +31,16 @@
   </div>
   <section class="copy">
     <h2>Chave pix</h2>
-    <input type="text" value="99999-9999" id="myInput" />
-    <button onclick="myFunction()">Copiar chave pix</button>
+    <input type="text" value="9999-9999" id="myInput" readonly/>
+    <button onclick="myFunction()">Copiar</button>
     <script>
       function myFunction() {
+
         var copyText = document.getElementById("myInput");
 
         copyText.select();
-        copyText.setSelectionRange(0, 99999);
-
-        navigator.clipboard.writeText(copyText.value);
+        document.execCommand('copy')
+        console.log('Copied Text');
       }
     </script>
   </section>
