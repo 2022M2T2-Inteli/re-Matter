@@ -39,3 +39,11 @@ div.img {
     height: 200px;
     width: 200px;
 }
+
+.list-item-style {
+    color: #c4c4c4;
+}
+
+.list-item-style:hover {
+    color: #fff601;
+}
