@@ -31,3 +31,56 @@
   height: 1px;
   background-color: #c4c4c4;
 }
+.main {
+  margin-top: 5rem;
+}
+
+.amarelo{
+  background-color: #fff601;
+}
+.pretoFundo{
+  background-color: #2d2d2d;
+}
+.preto{
+  color: #2d2d2d;
+}
+
+.cinza{
+  background-color: #77878B;
+}
+
+h1{
+  font-family: 'Arvo', serif;
+}
+
+@media (max-width:767px){
+  img.col-md-6{
+      display: none;
+  }
+}
+
+blockquote{
+  align-self: center;
+}
+
+div.img {
+  width: auto;
+  height: auto;
+}
+
+.imgscale{
+  height: 200px;
+  width: 200px;
+}
+
+.list-item-style {
+  color: #c4c4c4;
+}
+
+.list-item-style:hover {
+  color: #fff601;
+}
+
+#statistics {
+  background: #ebebeb;
+}
