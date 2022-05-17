@@ -1,3 +1,4 @@
+// move a pagina para uma div com id
 function movePageTo(id) {
   document.getElementById("navbarSupportedContent").classList.remove("show");
   setTimeout(function () {
