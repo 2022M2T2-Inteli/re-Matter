@@ -8,7 +8,7 @@ app.use(express.static("../client"));
 app.use(express.static("../client/src/images"));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/index.html"));
+  res.sendFile(path.join(__dirname, "../docs/index.html"));
 });
 
 app.listen(port, () => {
