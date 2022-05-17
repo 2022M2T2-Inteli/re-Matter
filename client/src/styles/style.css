@@ -47,3 +47,7 @@ div.img {
 .list-item-style:hover {
     color: #fff601;
 }
+
+#statistics {
+    background: #ebebeb;
+}
