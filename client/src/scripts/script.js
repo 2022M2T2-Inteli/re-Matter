@@ -19,7 +19,6 @@ function displayCounter(id, capNumber){
       if(!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       element.innerHTML = Math.floor(progress*(capNumber - currentNumber) + currentNumber) + " Pessoas";
-      console.log(element);
       if(progress <= 1){
           window.requestAnimationFrame(callback);
       }
