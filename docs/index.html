@@ -15,13 +15,100 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-light amarelo">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/docs/index.html">
-        <img src="/client/src/images/chevron-left.svg" alt="" width="30" height="24"
-          class="d-inline-block align-text-top">
-        Voltar
+  <nav class="navbar navbar-dark bg-dark shadow sticky-top">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand" href="#about">
+
+        <img src="/client/src/images/logo_revirar.jpg" alt="logo" style="height: 50px; border-radius: 10px"/>
       </a>
+      <button class="navbar-toggler d-flex d-lg-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active uppercase fs-3 mt-5" aria-current="page" href="#about"
+              onclick="movePageTo('about')">Sobre nós</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#" onclick="movePageTo('about')">Galeria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#depositions" onclick="movePageTo('depositions')">Eventos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 mt-3" href="#eventos" onclick="movePageTo('eventos')">Depoimentos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link fs-3 dropdown-toggle mt-5 amarelo text-center text-dark" href="/client/src/screens/donate.html" id="navbarDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Doação
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item fs-3" href="">Doação por pix</a>
+              </li>
+              <li>
+                <a class="dropdown-item fs-3" href="/client/src/screens/donate.html">Doação de alimentos</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+                <a class="dropdown-item fs-3" href="/client/src/screens/voluntariado.html">Volutariado</a>
+              </li>
+            </ul>
+
+            <hr />
+          </li>
+
+          <hr class="line mb-0" />
+
+          <li class="nav-item mt-0 align-middle h-auto">
+            <a class="nav-link fs-3 mt-3" href="/client/src/screens/area51.html">Área restrita <img
+                src="/client/src/images/lock.svg" /></a>
+          </li>
+
+          <li class="nav-item mt-3"> <a class="nav-link fs-3 mx-2" target="_blank" href="https://youtube.com"><img
+                width="36px" src="/client/src/images/youtube.svg" alt="YouTube" />
+            </a>
+            <a class="nav-link fs-4" target="_blank" href="https://instagram.com">
+              <img width="36px" src="/client/src/images/instagram.svg" alt="Instagram" class="mx-2" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-none d-lg-flex row">
+        <ul class="d-flex flex-row align-items-center m-0 text-decoration-none">
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link active uppercase fs-5 list-item-style" aria-current="page" href="#about"
+              onclick="movePageTo('about')">Sobre nós</a>
+          </li>
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link fs-5 list-item-style" href="#" onclick="movePageTo('about')">Galeria</a>
+          </li>
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link fs-5 list-item-style" href="#depositions"
+              onclick="movePageTo('depositions')">Depoimentos</a>
+          </li>
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link fs-5 list-item-style" href="#eventos" onclick="movePageTo('eventos')">Eventos</a>
+          </li>
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link fs-5 list-item-style" href="/client/src/screens/donate.html">Doação</a>
+          </li>
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link fs-5 list-item-style" href="/client/src/screens/voluntariado.html">Voluntariado</a>
+          </li>
+
+          <li class="nav-item mt-0 align-middle">
+            <a class="nav-link fs-5 list-item-style" onclick="movePageTo('doação')"
+              href="/client/src/screens/area51.html">Área restrita</a>
+          </li>
+
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -158,7 +245,7 @@
     <!-- Donate -->
     <div class="col-sm-12 col-md-10 col-lg-8 mx-auto w-100 mt-5 mb-2" id="doação">
       <h2 class="arvo text-center fs-1 mt-4">Se interessou pelo projeto?</h2>
-      <a href="/client/src/screens/donate.html" target="_blank" class="text-decoration-none">
+      <a href="/client/src/screens/donate.html" class="text-decoration-none">
         <div class="d-flex col-12 col-md-8 mx-auto align-items-center my-2 px-5">
           <div class="amarelo w-100 py-5">
             <div class="py-5">
