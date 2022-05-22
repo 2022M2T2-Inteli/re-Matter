@@ -11,6 +11,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../docs/index.html"));
 });
 
+app.get("/doacao", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/src/screens/donate.html"));
+});
+
 app.listen(port, () => {
   console.log(`App running on http://127.0.0.1:${port}/`);
 });
