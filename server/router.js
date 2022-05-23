@@ -3,7 +3,7 @@ const path = require("path");
 
 // DataBanch
 const sqlite3 = require("sqlite3").verbose();
-const DBPATH = "forms.db";
+const DBPATH = "database.db";
 
 const router = express.Router();
 
