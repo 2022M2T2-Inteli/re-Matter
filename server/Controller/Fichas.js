@@ -8,9 +8,11 @@ export async function createTable(){
                 name TEXT, 
                 birthDate INTEGER 
                 local TEXT,
-                beingAttended BOOL,
+                beingAttended BIT,
                 homelessTime INTEGER (homelessTime between 0 and 5),
-                educator TEXT
+                educator TEXT,
+                livingPlace TEXT,
+                reasons TEXT
             )
         `)
     })
