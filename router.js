@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
     rows.forEach((row) => {
       output.push(row);
     });
-    // res.json(output);
+    res.json(output);
   });
 
   res.sendFile(path.join(__dirname, "../docs/index.html"));
@@ -31,19 +31,6 @@ router.get("/", (req, res) => {
 /*
  * TESTE
  */
-router.get("/teste", (req, res) => {
-  res.statusCode = 200;
-  var db = new sqlite3.Database(DBPATH);
-  var sql =
-    'INSERT INTO pessoas(nome, local, atendimento, tempo, motivos, ajuda, educador, data) VALUES("TESTE", "RUA ABC, XYZ", 1, "1 ano", "asdfghjklkjhgfddfghjk", 1, "XING XONG HU", "20/05/2022")';
-
-  db.run(sql, [], (err, row) => {
-    if (err) {
-      throw err;
-    }
-    res.json(row);
-  });
-});
 
 /*
  * Voluntariado
