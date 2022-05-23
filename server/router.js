@@ -49,29 +49,29 @@ router.get("/teste", (req, res) => {
  * Voluntariado
  */
 router.get("/voluntariado", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/screens/voluntariado.html"));
+  res.sendFile(path.join(__dirname, "../docs/src/screens/voluntariado.html"));
 });
 
 /*
  * Doacao
  */
 router.get("/doacao", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/screens/donate.html"));
+  res.sendFile(path.join(__dirname, "../docs/src/screens/donate.html"));
 });
 
 /*
  * Area restrita
  */
 router.get("/area-restrita", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/screens/area51.html"));
+  res.sendFile(path.join(__dirname, "../docs/src/screens/area51.html"));
 });
 
 router.get("/area-restrita/:id", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/screens/adm.html"));
+  res.sendFile(path.join(__dirname, "../docs/src/screens/adm.html"));
 });
 
 router.get("/area-restrita/doacoes", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/screens/itemlist.html"));
+  res.sendFile(path.join(__dirname, "../docs/src/screens/itemlist.html"));
 });
 
 router.get("/area-restrita/mapa", (req, res) => {
@@ -80,13 +80,13 @@ router.get("/area-restrita/mapa", (req, res) => {
 
 router.get("/area-restrita/fichas", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../client/src/screens/fichasExistentes.html")
+    path.join(__dirname, "../docs/src/screens/fichasExistentes.html")
   );
 });
 router.get("/area-restrita/fichas/:id", (req, res) => {});
 
 router.get("/area-restrita/fichas/nova", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/src/screens/newForm.html"));
+  res.sendFile(path.join(__dirname, "../docs/src/screens/newForm.html"));
 });
 
 router.get("/area-restrita/fichas/:id/edit", (req, res) => {});
