@@ -1,6 +1,6 @@
 import express from "express";
-import { openDb } from "./configDB.js";
-import { createRecordDatabase } from "./Controller/Ficha.js";
+import { openDb, createDatabase } from "./configDB.js";
+
 
 import { router } from "./Routes/router.js";
 import { recordsRouter } from "./Routes/records.routes.js";
@@ -13,12 +13,13 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-createRecordDatabase();
+createDatabase();
 openDb();
 
 app.use("/", router);
 app.use("/area-restrita/", recordsRouter);
 
+//Inica o servidor 
 app.listen(PORT, () =>
   console.log(`Server running on port http://127.0.0.1:${PORT}`)
 );

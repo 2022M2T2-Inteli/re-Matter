@@ -1,12 +1,6 @@
 import { openDb } from "../configDB.js";
 
-export async function createRecordDatabase() {
-  openDb().then((db) => {
-    db.exec(
-      "CREATE TABLE IF NOT EXISTS Fichas( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,birthDate TEXT, educator TEXT, place TEXT)"
-    );
-  });
-}
+
 
 export async function insertRecord(record) {
   openDb().then((db) => {
