@@ -5,6 +5,7 @@ import {
   selectRecords,
   insertRecord,
   deleteRecord,
+  updateRecord
 } from "../Controller/Ficha.js";
 
 export const recordsRouter = express.Router();
