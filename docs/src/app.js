@@ -1,19 +1,19 @@
 import express from "express";
-import { openDb } from "./configDB.js";
-import { createRecordDatabase } from "./Controller/Ficha.js";
+import { createDatabase, openDb } from "./configDB.js";
 
 import { router } from "./Routes/router.js";
+
 import { recordsRouter } from "./Routes/records.routes.js";
 
 const app = express();
 
-app.use(express.static("../../"));
+app.use(express.static("../"));
 app.use(express.static("../../docs"));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-createRecordDatabase();
+createDatabase();
 openDb();
 
 app.use("/", router);

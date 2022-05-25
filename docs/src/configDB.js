@@ -7,3 +7,19 @@ export async function openDb() {
     driver: sqlite3.Database,
   });
 }
+
+export async function createDatabase() {
+  openDb().then((db) => {
+    db.exec(
+      `CREATE TABLE IF NOT EXISTS Atendido(
+        id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        name TEXT, 
+        nickname TEXT,
+        birthDate TEXT, 
+        educator TEXT,
+        date TEXT,
+        place TEXT
+      )`
+    );
+  });
+}

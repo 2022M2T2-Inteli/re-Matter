@@ -5,6 +5,7 @@ import {
   selectRecords,
   insertRecord,
   deleteRecord,
+  updateRecord,
 } from "../Controller/Ficha.js";
 
 export const recordsRouter = express.Router();
@@ -33,7 +34,7 @@ recordsRouter.put("/area-restrita/ficha/:id", (req, res) => {
       msg: "Voce precisa informar um id",
     });
   } else {
-    insertRecord(req.body);
+    updateRecord (req.body);
     res.json({
       statusCode: 200,
     });
