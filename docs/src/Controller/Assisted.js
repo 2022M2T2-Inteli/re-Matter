@@ -5,12 +5,12 @@ export async function insertAssisted(record) {
     db.run(
       "INSERT INTO Assisted (name, nickname, place, time, approachDate, reason) VALUES (?,?,?,?,?,?)",
       [
-        record.name,
+        record.name || "Não informado",
         record.nickname,
         record.place,
         record.time,
         record.approachDate,
-        record.reason,
+        record.reason || "Não informado",
       ]
     );
   });
