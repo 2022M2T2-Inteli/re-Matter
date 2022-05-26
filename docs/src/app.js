@@ -1,9 +1,8 @@
 import express from "express";
-import { openDb, createDatabase } from "./configDB.js";
+import { openDb, createDatabase, _initializeUsers } from "./configDB.js";
 
-import { router } from "./Routes/router.js";
-
-import { recordsRouter } from "./Routes/records.routes.js";
+import { router } from "./Routes/routes.js";
+import { apiRouter } from "./Routes/api.routes.js";
 
 const app = express();
 
@@ -11,13 +10,15 @@ app.use(express.static("../"));
 app.use(express.static("../../docs"));
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6969;
 
 createDatabase();
+// _initializeUsers();
+
 openDb();
 
 app.use("/", router);
-app.use("/area-restrita/", recordsRouter);
+app.use("/api", apiRouter);
 
 //Inica o servidor
 app.listen(PORT, () =>

@@ -3,7 +3,7 @@ import { open } from "sqlite";
 
 export async function openDb() {
   return open({
-    filename: "./fichas.db",
+    filename: "./data/database.db",
     driver: sqlite3.Database,
   });
 }
@@ -13,47 +13,71 @@ export async function createDatabase() {
     //Cria uma tabela dos atendidos se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Assisted( 
-        id INT PRIMARY KEY,
+        assistedId INT PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         nickname TEXT NOT NULL,
         place TEXT NOT NULL,
         time DATE NOT NULL,
         approachDate DATE NOT NULL,
-        reason TEXT,
-        idResponsible TEXT NOT NULL)
-        FOREIGN KEY(idResponsible) REFERENCES Admin(idAdmin)`
+        reason TEXT
+      )`
     );
     //Cria uma tabela dos serviços se não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Service( 
-        idAssisted INT,
+        assistedId INT PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
-        time DATE NOT NULL,
-        FOREIGN KEY(idAssisted) REFERENCES Assisted(id)`
+        time DATE NOT NULL
+      )`
     );
     // Cria uma tabela dos administradores se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Admin( 
-        idAdmin INT PRIMARY KEY NOT NULL,
+        adminId INT PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         email INT NOT NULL,
-        number INT NOT NULL`
+        phoneNumber INT NOT NULL
+      )`
     );
     // Cria uma tabela dos colaboradores se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Collaborator( 
-        idCollaborator INT NOT NULL,
+        collaboratorId INT PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         type TEXT NOT NULL,
         date DATE NOT NULL,
         donation TEXT NOT NULL,
-        status TEXT NOT NULL`
+        status TEXT NOT NULL
+      )`
     );
     // Cria uma tabela para os logins e senhas
     db.exec(
-      `CREATE TABLE IF NOT EXISTS PRUAP( 
+      `CREATE TABLE IF NOT EXISTS Pruap( 
         login TEXT NOT NULL,
-        password TEXT NOT NULL`
+        password TEXT NOT NULL
+      )`
     );
   });
 }
+
+export const _initializeUsers = async () => {
+  const user = {
+    username: "soraya.montanheiro",
+    password: "soraya123",
+    email: "soraya.montanheiro@email.com",
+    phoneNumber: "123456789",
+  };
+
+  openDb().then((db) => {
+    db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
+      user.username,
+      user.password,
+    ]);
+
+    db.run("INSERT INTO Admin (name, email, phoneNumber) VALUES (?,?,?)", [
+      user.username,
+      user.email,
+      user.phoneNumber,
+    ]);
+  });
+};
