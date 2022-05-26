@@ -3,14 +3,15 @@ import { openDb } from "../configDB.js";
 export async function insertAssisted(item) {
   openDb().then((db) => {
     db.run(
-      "INSERT INTO Assisted (name, nickname, place, time, approachDate, reason) VALUES (?,?,?,?,?,?)",
+      "INSERT INTO Assisted (assistedId, name, nickname, place, time, approachDate, reason, responsibleId) VALUES (?,?,?,?,?,?)",
       [
-        item.name || "Não informado",
+        item.name,
         item.nickname,
         item.place,
         item.time,
         item.approachDate,
-        item.reason || "Não informado",
+        item.reason,
+        item.responsibleId,
       ]
     );
   });

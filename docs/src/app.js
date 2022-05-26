@@ -1,16 +1,26 @@
 import express from "express";
 import { openDb, createDatabase, _initializeUsers } from "./configDB.js";
 
-import { router } from "./Routes/routes.js";
-// import { apiRouter } from "./Routes/api.routes.js";
+const TOKEN = process.env.TOKEN || "0987654321";
 
 import {
+  deleteAssisted,
   getAssisted,
   getAssisteds,
   insertAssisted,
-  deleteAssisted,
   updateAssisted,
-} from "../Controller/Assisted.js";
+} from "./Controller/Assisted.js";
+
+import { getCollaborators } from "./Controller/Collaborator.js";
+
+import {
+  deleteService,
+  getServices,
+  insertService,
+  updateService,
+} from "./Controller/Service.js";
+
+import { router } from "./Routes/routes.js";
 
 const app = express();
 
@@ -31,7 +41,7 @@ app
   .route("/api/assisted")
   // returns all users
   .get(async (req, res) => {
-    let assisted = await getAssisted;
+    let assisted = await getAssisteds();
     res.send(assisted);
   })
   // inserts user
@@ -111,7 +121,48 @@ app
     }
   });
 
-app.route("/api/collaborators");
+// "/api/collaborators"
+app
+  .route("/api/collaborators")
+  .get(async (req, res) => {
+    let collaborators = await getCollaborators();
+    res.send(collaborators);
+  })
+  .post(async (req, res) => {
+    insertCollaborator(req.body);
+    res.json({
+      statusCode: 200,
+    });
+  });
+
+// "/api/collaborators/:id"
+app
+  .route("/api/collaborators/:id")
+  .put(async (req, res) => {
+    if (req.body && !req.params.id) {
+      res.json({
+        statusCode: 400,
+        msg: "Voce precisa informar um id.",
+      });
+    } else {
+      updateCollaborator(req.body);
+      res.json({
+        statusCode: 200,
+      });
+    }
+  })
+  .delete(async (req, res) => {
+    let collaborator = await deleteCollaborator(req.params.id);
+    res.json(collaborator);
+  });
+
+// "/api/TOKEN/admin/"
+app.route(`/api/${TOKEN}/admin`).get(async (req, res) => {
+  res.json({
+    statusCode: 200,
+    msg: "OK",
+  });
+});
 
 //Inica o servidor
 app.listen(PORT, () =>
