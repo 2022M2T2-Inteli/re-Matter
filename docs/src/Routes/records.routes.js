@@ -1,47 +1,48 @@
 import express from "express";
 
 import {
-  selectRecord,
-  selectRecords,
-  insertRecord,
-  deleteRecord,
-  updateRecord
+  getAssisted,
+  getAssisteds,
+  insertAssisted,
+  deleteAssisted,
+  updateAssisted,
+  getAssisted
 } from "../Controller/Ficha.js";
 
-export const recordsRouter = express.Router();
+export const assistedRouter = express.Router();
 
-recordsRouter.get("/area-restrita/fichas", async (req, res) => {
-  let records = await selectRecords();
-  res.json(records);
+assistedRouter.get("/area-restrita/fichas", async (req, res) => {
+  let assisteds = await getAssisteds();
+  res.json(assisteds);
 });
 
-recordsRouter.get("/area-restrita/ficha/:id", async (req, res) => {
-  let record = await selectRecord(req.params.id);
-  res.json(record);
+assistedRouter.get("/area-restrita/assisted/:id", async (req, res) => {
+  let assisted = await getAssisted(req.params.id);
+  res.json(assisted);
 });
 
-recordsRouter.post("/area-restrita/ficha", (req, res) => {
-  insertRecord(req.body);
+assistedRouter.post("/area-restrita/ficha", (req, res) => {
+  insertAssisted(req.body);
   res.json({
     statusCode: 200,
   });
 });
 
-recordsRouter.put("/area-restrita/ficha/:id", (req, res) => {
+assistedRouter.put("/area-restrita/ficha/:id", (req, res) => {
   if (req.body && !req.body.id) {
     res.json({
       statusCode: 400,
       msg: "Voce precisa informar um id",
     });
   } else {
-    updateRecord (req.body);
+    updateAssisted (req.body);
     res.json({
       statusCode: 200,
     });
   }
 });
 
-recordsRouter.delete("/area-restrita/ficha/:id", async (req, res) => {
-  let record = await deleteRecord(req.params.id);
+assistedRouter.delete("/area-restrita/ficha/:id", async (req, res) => {
+  let record = await deleteAssisted(req.params.id);
   res.json(record);
 });

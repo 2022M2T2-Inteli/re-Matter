@@ -1,40 +1,42 @@
 import { openDb } from "../configDB.js";
 
-export async function insertRecord(record) {
+export async function insertAssisted(item) {
   openDb().then((db) => {
     db.run(
-      "INSERT INTO Fichas (name, birthDate, educator, place) VALUES (?,?,?,?)",
-      [record.name, record.birthDate, record.educator, record.place]
+      "INSERT INTO Assisted (name, nickname, place, time, approach, reason, responsibleId) VALUES (?,?,?,?,?,?,?)",
+      [item.name,item.nickname, item.place, item.time, item.approach, item.reason, item.responsibleId]
     );
   });
 }
 
-export async function updateRecord(record) {
+export async function updateAssisted(body, id) {
   openDb().then((db) => {
     db.run(
-      "UPDATE Pessoa SET name=?, birthDate=?, educator=?, place=?,  WHERE id=? ",
-      [record.name, record.birthDate, record.educator, record.place, record.id]
+      "UPDATE Assisted SET name=?, nickname=?, place=?, time=?, approach=?, reason=?, responsibleId=?,  WHERE id=? ",
+      [body.name, body.nickname, body.place, body.time, body.approach, body.reason, body.responsibleId, id]
     );
   });
 }
 
-export async function selectRecords() {
+export async function getAssisteds() {
   return openDb().then(async (db) => {
-    const res = await db.all("SELECT * FROM Fichas");
+    const res = await db.all("SELECT * FROM Assisted");
     return res;
   });
 }
 
-export async function selectRecord(id) {
+export async function getAssisted(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("SELECT * FROM Fichas WHERE id=?", [id]);
+    const res = await db.get("SELECT * FROM Assisted WHERE id=?", [id]);
     return res;
   });
 }
 
-export async function deleteRecord(id) {
+export async function deleteAssisted(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("DELETE FROM Fichas WHERE id=?", [id]);
+    const res = await db.get("DELETE FROM Assisted WHERE id=?", [id]);
     return res;
   });
 }
+
+
