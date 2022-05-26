@@ -13,19 +13,20 @@ export async function createDatabase() {
     //Cria uma tabela dos atendidos se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Assisted( 
-        assistedId INT PRIMARY KEY AUTOINCREMENT,
+        assistedId INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         nickname TEXT NOT NULL,
         place TEXT NOT NULL,
         time DATE NOT NULL,
         approachDate DATE NOT NULL,
-        reason TEXT
+        reason TEXT,
+        responsibleId INTEGER NOT NULL
       )`
     );
     //Cria uma tabela dos serviços se não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Service( 
-        assistedId INT PRIMARY KEY AUTOINCREMENT,
+        assistedId INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
         time DATE NOT NULL
       )`
@@ -33,16 +34,16 @@ export async function createDatabase() {
     // Cria uma tabela dos administradores se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Admin( 
-        adminId INT PRIMARY KEY AUTOINCREMENT,
+        adminId INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        email INT NOT NULL,
-        phoneNumber INT NOT NULL
+        email INTEGER NOT NULL,
+        phoneNumber INTEGER NOT NULL
       )`
     );
     // Cria uma tabela dos colaboradores se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Collaborator( 
-        collaboratorId INT PRIMARY KEY AUTOINCREMENT,
+        collaboratorId INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         type TEXT NOT NULL,
         date DATE NOT NULL,
@@ -69,12 +70,12 @@ export const _initializeUsers = async () => {
   };
 
   openDb().then((db) => {
-    db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
+    db.run("INSERT INTEGERO Pruap (login, password) VALUES (?,?)", [
       user.username,
       user.password,
     ]);
 
-    db.run("INSERT INTO Admin (name, email, phoneNumber) VALUES (?,?,?)", [
+    db.run("INSERT INTEGERO Admin (name, email, phoneNumber) VALUES (?,?,?)", [
       user.username,
       user.email,
       user.phoneNumber,

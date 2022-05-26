@@ -7,6 +7,7 @@ import {
   deleteAssisted,
   updateAssisted,
 } from "../Controller/Assisted.js";
+
 import { 
   deleteService, 
   getServices, 
@@ -15,10 +16,6 @@ import {
 } from "../Controller/Service.js";
 
 export const apiRouter = express.Router();
-
-apiRouter.get("/api", (req, res) => {
-  res.send("API");
-});
 
 /*
  *  Assisted endpoints ( Return all, return individual, insert, update, delete )
