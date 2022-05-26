@@ -42,14 +42,14 @@ export async function selectAssisteds() {
 
 export async function selectAssisted(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("SELECT * FROM Assisted WHERE id=?", [id]);
+    const res = await db.get("SELECT * FROM Assisted WHERE assistedId=?", [id]);
     return res;
   });
 }
 
 export async function deleteAssisted(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("DELETE * FROM Assisted WHERE id=?", [id]);
+    const res = await db.get("DELETE * FROM Assisted WHERE assistedId=?", [id]);
     return res;
   });
 }
