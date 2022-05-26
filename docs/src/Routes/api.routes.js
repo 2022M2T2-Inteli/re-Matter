@@ -7,6 +7,7 @@ import {
   insertAssisted,
   deleteAssisted,
   updateAssisted,
+  deleteEverything,
 } from "../Controller/Assisted.js";
 
 export const apiRouter = express.Router();
