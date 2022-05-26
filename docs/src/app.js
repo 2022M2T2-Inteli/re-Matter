@@ -5,8 +5,8 @@ import { router } from "./Routes/routes.js";
 // import { apiRouter } from "./Routes/api.routes.js";
 
 import {
-  selectAssisted,
-  selectAssisteds,
+  getAssisted,
+  getAssisteds,
   insertAssisted,
   deleteAssisted,
   updateAssisted,
@@ -31,7 +31,7 @@ app
   .route("/api/assisted")
   // returns all users
   .get(async (req, res) => {
-    let assisted = await selectAssisteds();
+    let assisted = await getAssisted;
     res.send(assisted);
   })
   // inserts user
@@ -54,7 +54,7 @@ app
 app
   .route("/api/assisted/:id")
   .get(async (req, res) => {
-    let assisted = await selectAssisted(req.params.id);
+    let assisted = await getAssisted(req.params.id);
     res.json(assisted);
   })
   .put(async (req, res) => {
@@ -69,7 +69,49 @@ app
         statusCode: 200,
       });
     }
+  })
+  .delete(async (req, res) => {
+    let assisted = await deleteAssisted(req.params.id);
+    res.json(assisted);
   });
+
+// "/api/service"
+
+app
+  .route("/api/service")
+  .get(async (req, res) => {
+    let service = await getServices();
+    res.send(service);
+  })
+  .post(async (req, res) => {
+    insertService(req.body);
+    res.json({
+      statusCode: 200,
+    });
+  });
+
+//"/api/service/:id"
+app
+  .route("/api/service/:id")
+  .delete(async (req, res) => {
+    let service = await deleteService();
+    res.json(service);
+  })
+  .put(async (req, res) => {
+    if (req.body && !req.params.id) {
+      res.json({
+        statusCode: 400,
+        msg: "Voce precisa informar um assistedId.",
+      });
+    } else {
+      updateService(req.body);
+      res.json({
+        statusCode: 200,
+      });
+    }
+  });
+
+app.route("/api/collaborators");
 
 //Inica o servidor
 app.listen(PORT, () =>

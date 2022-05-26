@@ -33,14 +33,14 @@ export async function updateAssisted(item) {
   });
 }
 
-export async function selectAssisteds() {
+export async function getAssisteds() {
   return openDb().then(async (db) => {
     const res = await db.all("SELECT * FROM Assisted");
     return res;
   });
 }
 
-export async function selectAssisted(id) {
+export async function getAssisted(id) {
   return openDb().then(async (db) => {
     const res = await db.get("SELECT * FROM Assisted WHERE assistedId=?", [id]);
     return res;

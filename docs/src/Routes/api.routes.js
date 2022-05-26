@@ -1,19 +1,27 @@
 import express from "express";
 
 import {
-  selectAssisted,
-  selectAssisteds,
+  getAssisted,
+  getAssisteds,
   insertAssisted,
-  deleteAssisted,
   updateAssisted,
+  deleteAssisted,
 } from "../Controller/Assisted.js";
 
-import { 
-  deleteService, 
-  getServices, 
-  insertService, 
-  updateService 
+import {
+  getServices,
+  insertService,
+  updateService,
+  deleteService,
 } from "../Controller/Service.js";
+
+import {
+  getCollaborators,
+  getCollaborator,
+  insertCollaborator,
+  updateCollaborator,
+  deleteCollaborator
+} from "../Controller/Collaborator.js"
 
 export const apiRouter = express.Router();
 
@@ -21,12 +29,12 @@ export const apiRouter = express.Router();
  *  Assisted endpoints ( Return all, return individual, insert, update, delete )
  */
 apiRouter.get("/api/assisted", async (req, res) => {
-  let assisted = await selectAssisteds();
+  let assisted = await getAssisteds();
   res.send(assisted);
 });
 
 apiRouter.get("/api/assisted/:id", async (req, res) => {
-  let assisted = await selectAssisted(req.params.id);
+  let assisted = await getAssisted(req.params.id);
   res.json(assisted);
 });
 
@@ -76,7 +84,7 @@ apiRouter.delete("/api/service/:id", async (req, res) => {
   res.json(service);
 });
 
-apiRouter.put("/api.service/:id", async (req, res) => {
+apiRouter.put("/api/service/:id", async (req, res) => {
   if (req.body && !req.params.id) {
     res.json({
       statusCode: 400,
@@ -93,4 +101,7 @@ apiRouter.put("/api.service/:id", async (req, res) => {
 /*
  * Collaborator endpoints ( Return all, insert, update, delete )
  */
-apiRouter.get("/api/collaborators", async (req, res) => {});
+apiRouter.get("/api/collaborators", async (req, res) => {
+  let collaborators = await getCollaborators();
+  res.send(collaborators);
+});
