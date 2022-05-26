@@ -7,7 +7,6 @@ import {
   insertAssisted,
   deleteAssisted,
   updateAssisted,
-  deleteEverything,
 } from "../Controller/Assisted.js";
 import { 
   deleteService, 
