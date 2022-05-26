@@ -15,3 +15,7 @@ router.get("/doacao", (req, res) => {
 router.get("/voluntariado", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/voluntariado.html"));
 });
+
+router.get("/area-restrita", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../docs/Views/area-restrita.html"));
+});
