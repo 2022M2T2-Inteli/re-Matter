@@ -7,11 +7,18 @@ export async function getServices() {
     });
 }
 
-    export async function insertService(item) {
+export async function insertService(item) {
         openDb().then((db) => {
           db.run(
-            "INSERT INTO Service (name, nickname, place, time, approach, reason, responsibleId) VALUES (?,?,?,?,?,?,?)",
-            [item.name,item.nickname, item.place, item.time, item.approach, item.reason, item.responsibleId]
+            "INSERT INTO Service (type, time) VALUES (?,?)",
+            [item.type, item.time]
           );
+        });
+      }
+
+export async function deleteService(assistedId) {
+    return openDb().then(async (db) => {
+          const res = await db.get("DELETE FROM Service WHERE assistedId=?", [assistedId]);
+          return res;
         });
       }
