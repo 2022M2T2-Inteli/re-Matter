@@ -7,7 +7,7 @@ import {
   deleteAssisted,
   updateAssisted,
   getAssisted
-} from "../Controller/Ficha.js";
+} from "../Controller/Assited.js";
 
 export const assistedRouter = express.Router();
 
