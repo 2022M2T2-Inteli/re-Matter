@@ -10,7 +10,7 @@ app.use(express.static("../"));
 app.use(express.static("../../docs"));
 app.use(express.json());
 
-const PORT = process.env.PORT || 6969;
+const PORT = 5555;
 
 createDatabase();
 // _initializeUsers();

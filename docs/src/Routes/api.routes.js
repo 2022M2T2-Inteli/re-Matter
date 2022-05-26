@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 
 import {
   selectAssisted,
@@ -7,11 +6,20 @@ import {
   insertAssisted,
   deleteAssisted,
   updateAssisted,
-  deleteEverything,
 } from "../Controller/Assisted.js";
-import { deleteService, getServices, insertService, updateService } from "../Controller/Service.js";
+
+import {
+  deleteService,
+  getServices,
+  insertService,
+  updateService,
+} from "../Controller/Service.js";
 
 export const apiRouter = express.Router();
+
+apiRouter.get("/api", (req, res) => {
+  res.send("API");
+});
 
 /*
  *  Assisted endpoints ( Return all, return individual, insert, update, delete )
@@ -84,7 +92,8 @@ apiRouter.put("/api.service/:id", async (req, res) => {
       statusCode: 200,
     });
   }
-})
+});
+
 /*
  * Collaborator endpoints ( Return all, insert, update, delete )
  */
