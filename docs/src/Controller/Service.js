@@ -22,3 +22,15 @@ export async function deleteService(assistedId) {
           return res;
         });
       }
+
+export async function updateService(item) {
+    openDb().then((db) => {
+        db.run(
+          "UPDATE Assisted SET type = ?, time = ? WHERE assistedId = ?",
+          [
+            item.type,
+            item.time
+          ]
+        );
+      });
+}
