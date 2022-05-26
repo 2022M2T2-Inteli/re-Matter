@@ -114,7 +114,7 @@ app
         msg: "Voce precisa informar um assistedId.",
       });
     } else {
-      updateService(req.body);
+      updateService(req.body, req.params.id);
       res.json({
         statusCode: 200,
       });
@@ -123,7 +123,7 @@ app
 
 // "/api/collaborators"
 app
-  .route("/api/collaborators")
+  .route("/api/collaborator")
   .get(async (req, res) => {
     let collaborators = await getCollaborators();
     res.send(collaborators);
@@ -137,7 +137,7 @@ app
 
 // "/api/collaborators/:id"
 app
-  .route("/api/collaborators/:id")
+  .route("/api/collaborator/:id")
   .put(async (req, res) => {
     if (req.body && !req.params.id) {
       res.json({

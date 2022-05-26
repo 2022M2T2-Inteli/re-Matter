@@ -26,9 +26,10 @@ export async function createDatabase() {
     //Cria uma tabela dos serviços se não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Service( 
-        assistedId INTEGER PRIMARY KEY AUTOINCREMENT,
+        serviceId INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
-        time DATE NOT NULL
+        time DATE NOT NULL,
+        assistedID INTEGER NOT NULL
       )`
     );
     // Cria uma tabela dos administradores se ela não existir
