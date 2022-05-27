@@ -28,6 +28,11 @@ app.use(express.static("../"));
 app.use(express.static("../../docs"));
 app.use(express.json());
 
+
+import bodyParser from "body-parser";
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 const PORT = 5555;
 
 createDatabase();
