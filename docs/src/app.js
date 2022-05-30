@@ -3,6 +3,7 @@ import { openDb, createDatabase, _initializeUsers } from "./configDB.js";
 
 const TOKEN = process.env.TOKEN || "0987654321";
 
+
 import {
   deleteAssisted,
   getAssisted,
@@ -27,6 +28,8 @@ const app = express();
 app.use(express.static("../"));
 app.use(express.static("../../docs"));
 app.use(express.json());
+app.set("views", "../Views");
+app.set("view engine", "ejs");
 
 
 import bodyParser from "body-parser";
@@ -46,16 +49,26 @@ app
   .route("/api/assisted")
   // returns all users
   .get(async (req, res) => {
-    let assisted = await getAssisteds();
-    res.send(assisted);
+    let assisted = await getAssisteds().then((assisted) => {
+      res.render("assisted", {
+        action: "list",
+        sampleData: assisted
+      });
+    });
   })
   // inserts user
   .post(async (req, res) => {
     insertAssisted(req.body)
-      .then(() => {
-        res.json({
-          statusCode: 200,
+      .then(async () => {
+        let assisted = await getAssisteds().then((assisted) => {
+          res.render("assisted.ejs", {
+            action: "list",
+            sampleData: assisted
+          });
         });
+        /*res.json({
+          statusCode: 200,
+        });*/
       })
       .catch((err) => {
         res.json({

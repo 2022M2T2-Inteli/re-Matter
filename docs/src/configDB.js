@@ -71,12 +71,12 @@ export const _initializeUsers = async () => {
   };
 
   openDb().then((db) => {
-    db.run("INSERT INTEGERO Pruap (login, password) VALUES (?,?)", [
+    db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
       user.username,
       user.password,
     ]);
 
-    db.run("INSERT INTEGERO Admin (name, email, phoneNumber) VALUES (?,?,?)", [
+    db.run("INSERT INTO Admin (name, email, phoneNumber) VALUES (?,?,?)", [
       user.username,
       user.email,
       user.phoneNumber,
