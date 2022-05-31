@@ -60,15 +60,7 @@ app
   .post(async (req, res) => {
     insertAssisted(req.body)
       .then(async () => {
-        let assisted = await getAssisteds().then((assisted) => {
-          res.render("assisted.ejs", {
-            action: "list",
-            sampleData: assisted
-          });
-        });
-        /*res.json({
-          statusCode: 200,
-        });*/
+        res.redirect("/api/assisted");
       })
       .catch((err) => {
         res.json({
