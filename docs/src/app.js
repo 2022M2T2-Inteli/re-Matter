@@ -27,6 +27,7 @@ const app = express();
 
 app.use(express.static("../"));
 app.use(express.static("../../docs"));
+app.use(express.static("../../docs/Views/styles"));
 app.use(express.json());
 app.set("views", "../Views");
 app.set("view engine", "ejs");
