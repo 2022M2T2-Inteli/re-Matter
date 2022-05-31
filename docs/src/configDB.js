@@ -37,6 +37,7 @@ export async function createDatabase() {
       `CREATE TABLE IF NOT EXISTS Admin( 
         adminId INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
+        username TEXT NOT NULL,
         email INTEGER NOT NULL,
         phoneNumber INTEGER NOT NULL
       )`
