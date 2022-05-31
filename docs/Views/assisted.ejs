@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-3 mb-3">Assistidos</h1>
+
+      <% if(action == 'add') { %> <% } else { %>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col">Fichas</div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tr>
+                <th>id</th>
+                <th>Nome</th>
+                <th>Apelido</th>
+                <th>Lugar da abordagem</th>
+                <th>Tempo na rua</th>
+                <th>Data da Abordagem</th>
+                <th>Razão</th>
+                <th>Responsável</th>
+              </tr>
+              <% if(sampleData.length > 0) {
+              sampleData.forEach(function(data){ %>
+              <tr>
+                <td><%= data.assistedId %></td>
+                <td><%= data.name %></td>
+                <td><%= data.nickname %></td>
+                <td><%= data.place %></td>
+                <td><%= data.time %></td>
+                <td><%= data.approachDate %></td>
+                <td><%= data.reason %></td>
+                <td><%= data.responsibleId %></td>
+              </tr>
+              <% }); } else { %>
+              <tr>
+                <td colspan="5">No Data Found</td>
+              </tr>
+              <% } %>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <% } %>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
