@@ -3,14 +3,14 @@ import { openDb } from "../configDB.js";
 export async function insertCollaborator(item) {
   openDb().then((db) => {
     db.run(
-      "INSERT INTO Collaborator (name, nickname, place, time, approachDate, reason) VALUES (?,?,?,?,?,?)",
+      "INSERT INTO Collaborator (name, type, date, donation, status, contact) VALUES (?,?,?,?,?,?)",
       [
-        item.name || "Não informado",
-        item.nickname,
-        item.place,
-        item.time,
-        item.approachDate,
-        item.reason || "Não informado",
+        item.name,
+        item.type || "Voluntário",
+        item.date || today(),
+        item.donation,
+        item.status || "Pendente",
+        item.contact || "Não informado"
       ]
     );
   });
@@ -19,15 +19,15 @@ export async function insertCollaborator(item) {
 export async function updateCollaborator(item) {
   openDb().then((db) => {
     db.run(
-      "UPDATE Collaborator SET name = ?, nickname = ?, place = ?, time = ?, approachDate = ?, reason = ? WHERE CollaboratorId = ?",
+      "UPDATE Collaborator SET name = ?, type = ?, date = ?, donation = ?, status = ?, contact = ? WHERE collaboratorId = ?",
       [
         item.name,
-        item.nickname,
-        item.place,
-        item.time,
-        item.approachDate,
-        item.reason,
-        item.CollaboratorId,
+        item.type,
+        item.date,
+        item.donation,
+        item.status,
+        item.contact,
+        item.collaboratorId
       ]
     );
   });
@@ -52,4 +52,18 @@ export async function deleteCollaborator(id) {
     const res = await db.get("DELETE * FROM Collaborator WHERE CollaboratorId=?", [id]);
     return res;
   });
+}
+
+function today(){
+  let today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  today = dd + '/' + mm + '/' + yyyy;
+
+  return today;
 }

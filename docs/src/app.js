@@ -12,7 +12,13 @@ import {
   updateAssisted,
 } from "./Controller/Assisted.js";
 
-import { getCollaborators } from "./Controller/Collaborator.js";
+import { 
+  getCollaborators,
+  getCollaborator,
+  insertCollaborator,
+  updateCollaborator,
+  deleteCollaborator, 
+} from "./Controller/Collaborator.js";
 
 import {
   deleteService,
@@ -135,14 +141,14 @@ app
 app
   .route("/api/collaborator")
   .get(async (req, res) => {
-    let collaborators = await getCollaborators();
-    res.send(collaborators);
+    let collaborators = await getCollaborators().then((collaborators) =>{
+      console.log(collaborators);
+      res.send(collaborators);
+    });
   })
   .post(async (req, res) => {
     insertCollaborator(req.body);
-    res.json({
-      statusCode: 200,
-    });
+    res.redirect("/api/collaborator");
   });
 
 // "/api/collaborators/:id"

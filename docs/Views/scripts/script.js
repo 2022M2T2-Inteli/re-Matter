@@ -26,6 +26,20 @@ function displayCounter(id, capNumber){
   window.requestAnimationFrame(callback);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const inputs = Array.from(
+    document.querySelectorAll('input[name=contact]')
+  );
+
+  const inputListener = e => {
+    inputs
+      .filter(i => i !== e.target)
+      .forEach(i => (i.required = !e.target.value.length));
+  };
+
+  inputs.forEach(i => i.addEventListener('input', inputListener));
+});
+
 window.addEventListener('scroll', function() {
   var element = document.querySelector('#helped-people');
 	var position = element.getBoundingClientRect();
