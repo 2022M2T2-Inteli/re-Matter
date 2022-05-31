@@ -17,7 +17,7 @@ export async function insertAssisted(item) {
   });
 }
 
-export async function updateAssisted(item) {
+export async function updateAssisted(item, assistedId) {
   openDb().then((db) => {
     db.run(
       "UPDATE Assisted SET name = ?, nickname = ?, place = ?, time = ?, approachDate = ?, reason = ? WHERE assistedId = ?",
@@ -28,7 +28,7 @@ export async function updateAssisted(item) {
         item.time,
         item.approachDate,
         item.reason,
-        item.assistedId,
+        assistedId
       ]
     );
   });
@@ -50,7 +50,7 @@ export async function getAssisted(id) {
 
 export async function deleteAssisted(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("DELETE * FROM Assisted WHERE assistedId=?", [id]);
+    const res = await db.get("DELETE FROM Assisted WHERE assistedId=?", [id]);
     return res;
   });
 }

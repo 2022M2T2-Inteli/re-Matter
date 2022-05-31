@@ -16,7 +16,7 @@ export async function insertCollaborator(item) {
   });
 }
 
-export async function updateCollaborator(item) {
+export async function updateCollaborator(item, collaboratorId) {
   openDb().then((db) => {
     db.run(
       "UPDATE Collaborator SET name = ?, type = ?, date = ?, donation = ?, status = ?, contact = ? WHERE collaboratorId = ?",
@@ -42,14 +42,20 @@ export async function getCollaborators() {
 
 export async function getCollaborator(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("SELECT * FROM Collaborator WHERE CollaboratorId=?", [id]);
+    const res = await db.get(
+      "SELECT * FROM Collaborator WHERE collaboratorId=?",
+      [id]
+    );
     return res;
   });
 }
 
 export async function deleteCollaborator(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("DELETE * FROM Collaborator WHERE CollaboratorId=?", [id]);
+    const res = await db.get(
+      "DELETE FROM Collaborator WHERE collaboratorId=?",
+      [id]
+    );
     return res;
   });
 }

@@ -9,7 +9,7 @@ export async function getServices() {
 
 export async function insertService(item) {
   openDb().then((db) => {
-    db.run("INSERT INTO Service (type, time, assistedId) VALUES (?,?)", [
+    db.run("INSERT INTO Service (type, time, assistedId) VALUES (?,?,?)", [
       item.type,
       item.time,
       item.assistedId,
@@ -17,21 +17,21 @@ export async function insertService(item) {
   });
 }
 
-export async function deleteService(serviceID) {
+export async function deleteService(serviceId) {
   return openDb().then(async (db) => {
     const res = await db.get("DELETE FROM Service WHERE serviceId=?", [
-      serviceID,
+      serviceId,
     ]);
     return res;
   });
 }
 
-export async function updateService(item, serviceID) {
+export async function updateService(item, serviceId) {
   openDb().then((db) => {
-    db.run("UPDATE Assisted SET type = ?, time = ? WHERE serviceId = ?", [
+    db.run("UPDATE Service SET type = ?, time = ? WHERE serviceId = ?", [
       item.type,
       item.time,
-      serviceID,
+      serviceId,
     ]);
   });
 }
