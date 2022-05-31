@@ -84,3 +84,9 @@ div.img {
 #statistics {
   background: #ebebeb;
 }
+
+.activities {
+  text-align: center;
+  margin: auto;
+  margin-top: 1cm;
+}
