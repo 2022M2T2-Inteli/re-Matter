@@ -12,7 +12,12 @@ import {
   updateAssisted,
 } from "./Controller/Assisted.js";
 
-import { getCollaborators } from "./Controller/Collaborator.js";
+import {
+  deleteCollaborator,
+  getCollaborators,
+  insertCollaborator,
+  updateCollaborator,
+} from "./Controller/Collaborator.js";
 
 import {
   deleteService,
@@ -32,8 +37,8 @@ app.use(express.json());
 app.set("views", "../Views");
 app.set("view engine", "ejs");
 
-
 import bodyParser from "body-parser";
+import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -74,10 +79,6 @@ app
 // /api/assisted/:id
 app
   .route("/api/assisted/:id")
-  .get(async (req, res) => {
-    let assisted = await getAssisted(req.params.id);
-    res.json(assisted);
-  })
   .put(async (req, res) => {
     if (req.body && !req.params.id) {
       res.json({
@@ -85,19 +86,21 @@ app
         msg: "Voce precisa informar um id.",
       });
     } else {
-      updateAssisted(req.body);
+      updateAssisted(req.body, req.params.id);
       res.json({
         statusCode: 200,
       });
     }
   })
   .delete(async (req, res) => {
-    let assisted = await deleteAssisted(req.params.id);
-    res.json(assisted);
+    deleteAssisted(req.params.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.params.id} deletado de assistidos com sucesso.`,
+    });
   });
 
 // "/api/service"
-
 app
   .route("/api/service")
   .get(async (req, res) => {
@@ -114,10 +117,6 @@ app
 //"/api/service/:id"
 app
   .route("/api/service/:id")
-  .delete(async (req, res) => {
-    let service = await deleteService();
-    res.json(service);
-  })
   .put(async (req, res) => {
     if (req.body && !req.params.id) {
       res.json({
@@ -130,6 +129,13 @@ app
         statusCode: 200,
       });
     }
+  })
+  .delete(async (req, res) => {
+    await deleteService(req.params.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.params.id} deletado de serviço com sucesso.`,
+    });
   });
 
 // "/api/collaborators"
@@ -163,17 +169,40 @@ app
     }
   })
   .delete(async (req, res) => {
-    let collaborator = await deleteCollaborator(req.params.id);
-    res.json(collaborator);
+    await deleteCollaborator(req.params.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.params.id} deletado de colaboradores com sucesso.`,
+    });
   });
 
 // "/api/TOKEN/admin/"
-app.route(`/api/${TOKEN}/admin`).get(async (req, res) => {
-  res.json({
-    statusCode: 200,
-    msg: "OK",
+app
+  .route(`/api/${TOKEN}/admin`)
+  .get(async (req, res) => {
+    const admins = await getAdmins();
+    res.send(admins);
+  })
+  .post(async (req, res) => {
+    if (req.body && !req.body.name) {
+      res.json({
+        statusCode: 400,
+        msg: "Voce precisa informar um nome.",
+      });
+    } else {
+      insertAdmin(req.body);
+      res.json({
+        statusCode: 200,
+      });
+    }
+  })
+  .delete(async (req, res) => {
+    await deleteAdmin(req.body.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.body.id} deletado de admins com sucesso.`,
+    });
   });
-});
 
 //Inica o servidor
 app.listen(PORT, () =>

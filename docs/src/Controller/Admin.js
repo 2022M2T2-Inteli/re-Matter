@@ -3,7 +3,7 @@ import { openDb } from "../configDB.js";
 export async function insertAdmin(item) {
   openDb().then((db) => {
     db.run(
-      "INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?)",
+      "INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?,?)",
       [item.name, item.username, item.email, item.phoneNumber]
     );
 
@@ -23,7 +23,7 @@ export async function getAdmins() {
 
 export async function deleteAdmin(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("DELETE * FROM Admin WHERE adminId=?", [id]);
+    const res = await db.get("DELETE FROM Admin WHERE adminId=?", [id]);
     return res;
   });
 }

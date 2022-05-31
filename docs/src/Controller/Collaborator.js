@@ -3,31 +3,23 @@ import { openDb } from "../configDB.js";
 export async function insertCollaborator(item) {
   openDb().then((db) => {
     db.run(
-      "INSERT INTO Collaborator (name, nickname, place, time, approachDate, reason) VALUES (?,?,?,?,?,?)",
-      [
-        item.name || "Não informado",
-        item.nickname,
-        item.place,
-        item.time,
-        item.approachDate,
-        item.reason || "Não informado",
-      ]
+      "INSERT INTO Collaborator (name, type, date, donation, status) VALUES (?,?,?,?,?)",
+      [item.name, item.type, item.date, item.donation, item.status]
     );
   });
 }
 
-export async function updateCollaborator(item) {
+export async function updateCollaborator(item, collaboratorId) {
   openDb().then((db) => {
     db.run(
-      "UPDATE Collaborator SET name = ?, nickname = ?, place = ?, time = ?, approachDate = ?, reason = ? WHERE CollaboratorId = ?",
+      "UPDATE Collaborator SET name = ?, type = ?, date = ?, donation = ?, status = ? WHERE collaboratorId = ?",
       [
         item.name,
-        item.nickname,
-        item.place,
-        item.time,
-        item.approachDate,
-        item.reason,
-        item.CollaboratorId,
+        item.type,
+        item.date,
+        item.donation,
+        item.status,
+        collaboratorId,
       ]
     );
   });
@@ -42,14 +34,20 @@ export async function getCollaborators() {
 
 export async function getCollaborator(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("SELECT * FROM Collaborator WHERE CollaboratorId=?", [id]);
+    const res = await db.get(
+      "SELECT * FROM Collaborator WHERE collaboratorId=?",
+      [id]
+    );
     return res;
   });
 }
 
 export async function deleteCollaborator(id) {
   return openDb().then(async (db) => {
-    const res = await db.get("DELETE * FROM Collaborator WHERE CollaboratorId=?", [id]);
+    const res = await db.get(
+      "DELETE FROM Collaborator WHERE collaboratorId=?",
+      [id]
+    );
     return res;
   });
 }
