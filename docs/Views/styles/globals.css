@@ -9,7 +9,7 @@
   color: #2d2d2d;
 }
 
-.fundoBranco{
+.fundoBranco {
   background-color: #c4c4c4;
 }
 
@@ -35,31 +35,31 @@
   margin-top: 5rem;
 }
 
-.amarelo{
+.amarelo {
   background-color: #fff601;
 }
-.pretoFundo{
+.pretoFundo {
   background-color: #2d2d2d;
 }
-.preto{
+.preto {
   color: #2d2d2d;
 }
 
-.cinza{
-  background-color: #77878B;
+.cinza {
+  background-color: #77878b;
 }
 
-h1{
-  font-family: 'Arvo', serif;
+h1 {
+  font-family: "Arvo", serif;
 }
 
-@media (max-width:767px){
-  img.col-md-6{
-      display: none;
+@media (max-width: 767px) {
+  img.col-md-6 {
+    display: none;
   }
 }
 
-blockquote{
+blockquote {
   align-self: center;
 }
 
@@ -68,7 +68,7 @@ div.img {
   height: auto;
 }
 
-.imgscale{
+.imgscale {
   height: 200px;
   width: 200px;
 }
