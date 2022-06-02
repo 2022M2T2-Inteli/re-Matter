@@ -50,6 +50,7 @@ export async function createDatabase() {
         type TEXT NOT NULL,
         date DATE NOT NULL,
         donation TEXT NOT NULL,
+        contact TEXT NOT NULL,
         status TEXT NOT NULL
       )`
     );

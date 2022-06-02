@@ -12,11 +12,12 @@ import {
   updateAssisted,
 } from "./Controller/Assisted.js";
 
-import {
-  deleteCollaborator,
+import { 
   getCollaborators,
+  getCollaborator,
   insertCollaborator,
   updateCollaborator,
+  deleteCollaborator, 
 } from "./Controller/Collaborator.js";
 
 import {
@@ -34,6 +35,7 @@ const app = express();
 
 app.use(express.static("../"));
 app.use(express.static("../../docs"));
+app.use(express.static("../../docs/Views/styles/globals.css"));
 app.use(express.json());
 app.set("views", "../Views");
 app.set("view engine", "ejs");
@@ -141,14 +143,14 @@ app
 app
   .route("/api/collaborator")
   .get(async (req, res) => {
-    let collaborators = await getCollaborators();
-    res.send(collaborators);
+    let collaborators = await getCollaborators().then((collaborators) =>{
+      console.log(collaborators);
+      res.send(collaborators);
+    });
   })
   .post(async (req, res) => {
     insertCollaborator(req.body);
-    res.json({
-      statusCode: 200,
-    });
+    res.redirect("/api/collaborator");
   });
 
 // "/api/collaborators/:id"
