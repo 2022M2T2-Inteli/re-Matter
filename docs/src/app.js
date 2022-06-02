@@ -1,8 +1,8 @@
 import express from "express";
+import bodyParser from "body-parser";
 import { openDb, createDatabase, _initializeUsers } from "./configDB.js";
 
 const TOKEN = process.env.TOKEN || "0987654321";
-
 
 import {
   deleteAssisted,
@@ -26,6 +26,8 @@ import {
   updateService,
 } from "./Controller/Service.js";
 
+import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
+
 import { router } from "./Routes/routes.js";
 
 const app = express();
@@ -36,8 +38,6 @@ app.use(express.json());
 app.set("views", "../Views");
 app.set("view engine", "ejs");
 
-import bodyParser from "body-parser";
-import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -57,7 +57,7 @@ app
     let assisted = await getAssisteds().then((assisted) => {
       res.render("assisted", {
         action: "list",
-        sampleData: assisted
+        sampleData: assisted,
       });
     });
   })
