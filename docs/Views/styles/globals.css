@@ -73,11 +73,11 @@ div.img {
   width: 200px;
 }
 
-.list-item-style {
+#navbar-item {
   color: #c4c4c4;
 }
 
-.list-item-style:hover {
+#navbar-item:hover {
   color: #fff601;
 }
 

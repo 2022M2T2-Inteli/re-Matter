@@ -12,12 +12,12 @@ import {
   updateAssisted,
 } from "./Controller/Assisted.js";
 
-import { 
+import {
   getCollaborators,
   getCollaborator,
   insertCollaborator,
   updateCollaborator,
-  deleteCollaborator, 
+  deleteCollaborator,
 } from "./Controller/Collaborator.js";
 
 import {
@@ -56,12 +56,14 @@ app
   .route("/api/assisted")
   // returns all users
   .get(async (req, res) => {
-    let assisted = await getAssisteds().then((assisted) => {
-      res.render("assisted", {
-        action: "list",
-        sampleData: assisted,
-      });
-    });
+    // let assisted = await getAssisteds().then((assisted) => {
+    //   res.render("assisted", {
+    //     action: "list",
+    //     sampleData: assisted,
+    //   });
+    // });
+    let assisted = await getAssisteds();
+    res.json(assisted);
   })
   // inserts user
   .post(async (req, res) => {
@@ -143,7 +145,7 @@ app
 app
   .route("/api/collaborator")
   .get(async (req, res) => {
-    let collaborators = await getCollaborators().then((collaborators) =>{
+    let collaborators = await getCollaborators().then((collaborators) => {
       console.log(collaborators);
       res.send(collaborators);
     });
