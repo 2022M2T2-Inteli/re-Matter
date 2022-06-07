@@ -25,38 +25,43 @@
   </nav>
 
   <div class="container-fluid">
+    <div class="col-12 col-md-10 my-4 mx-auto justify-content-center align-items-center d-flex p-2 flex-column">
+      <div class="pb-2">
+        <p class="arvo fs-1 text-center my-2">
+          Listas existentes
+        </p>
+      </div>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Launch static backdrop modal
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-          </div>
+      <div class="col-12 col-md-6">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">
+            @
+          </span>
+          <input id="myInput" type="text" onkeyup="myFunction();" class="form-control" placeholder="Nome do assistido"
+            aria-label="Nome do assistido" aria-describedby="basic-addon1">
         </div>
       </div>
+
     </div>
 
-    <div>
-      <p class="arvo fs-1 text-center my-2">
-        Listas existentes
-      </p>
-    </div>
-    <div class="col-12 col-md-8 mx-auto fs-3 d-flex align-items-center justify-content-center" id="resultado">
+
+    <div class="col-12 col-md-8 mx-auto fs-3 d-flex align-items-center justify-content-center">
+
+      <table class="table" style="max-width: 90vw;" id="myTable">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Apelido</th>
+            <th>Abordagem</th>
+            <th>Razão</th>
+          </tr>
+        </thead>
+
+        <tbody id="resultado">
+        </tbody>
+
+      </table>
     </div>
   </div>
   </div>
