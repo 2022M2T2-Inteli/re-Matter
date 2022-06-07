@@ -13,12 +13,24 @@ const getAssisted = () => {
       for (let i = 0; i < assisteds.length; i++) {
         const assisted = assisteds[i];
         document.getElementById("resultado").innerHTML += `
-          <p>
-            <span>${assisted.name}</span>
-            <span>${assisted.place}</span>
-          </p>
-          <br/>
-          `;
+        <tr>
+          <td>
+          ${assisted.assistedId}
+          </td>
+          <td>
+          ${assisted.name}
+          </td>
+          <td>
+          ${assisted.nickname}
+          </td>
+          <td>
+            ${assisted.approachDate}
+          </td>
+          <td>
+            ${assisted.reason}
+          </td>
+        </tr>
+        `;
       }
 
       return response.data;
@@ -27,3 +39,23 @@ const getAssisted = () => {
 };
 
 getAssisted();
+
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
