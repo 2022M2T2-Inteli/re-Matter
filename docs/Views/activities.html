@@ -26,9 +26,24 @@
         <h1>
         Gerenciamento atividades
         </h1>
-        <p>
-          Filtrar data
-        </p>
+        <br><br>
+        <input type="text" id="assistido" placeholder="nome do assistido">
+        <br><br><br>
+        <select id="service"> -->
+          <option value="atv"> Atividade </option>
+          <option value="bath" > Banho </option>
+          <option value="clothes"> Roupa </option>
+          <option value="towel"> Toalha  </option>
+          <option value="ubs"> Ubs </option>
+          <option value="cras" > Cras </option>
+          <option value="poupa_tempo"> PoupaTempo </option>
+          <option value="transport" > Vale Transporte </option>
+        </select>
+        <button id="addac" func="addactivity">
+          Adicionar atividade
+        </button>
+        <br>
+        <input type="text" id="obs" placeholder="observações">
     </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
