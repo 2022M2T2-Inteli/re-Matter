@@ -47,3 +47,7 @@ router.get("/area-restrita/fichas/nova", (req, res) => {
 router.get("/area-restrita/fichas/abordagem", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/teste.ejs"));
 });
+
+router.get("/area-restrita/doacoes", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../docs/Views/donations.html"));
+});
