@@ -2,32 +2,34 @@ const url = "http://127.0.0.1:5555";
 
 const getServices = () => {
     axios
-    .get(url + "/area-restrita/atividades")
+    .get(url + "/api/service")
     .then((response) => {
+
+        console.log(response.data)
       const services = [];
       response.data.forEach((service) => {
         console.log(service);
-        assisteds.push(service);
+        services.push(service);
       });
 
       for (let i = 0; i < services.length; i++) {
-        const services = services[i];
+        const service = services[i];
         document.getElementById("resultado").innerHTML += `
         <tr>
           <td>
-          ${services.type}
+          ${service.type}
           </td>
           <td>
-          ${services.time}
+          ${service.time}
           </td>
           <td>
-          ${services.observation}
+          ${service.observation}
           </td>
           <td>
-            ${services.assisted}
+            ${service.assistedId}
           </td>
           <td>
-            ${services.towelId}
+            ${service.towelId}
           </td>
         </tr>
         `;
@@ -37,3 +39,5 @@ const getServices = () => {
     })
     .catch((e) => console.error(e));
 }
+
+getServices();

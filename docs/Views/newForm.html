@@ -30,22 +30,25 @@
       <div class="container-fluid my-2">
         <div class="container col-sm-11 col-md-8 align-items-center mb-4" id="name">
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2">
-            <label for="name">Nome Completo:</label>
-            <input name="name" type="text" placeholder="Digite aqui" class="col-md-5 col-sm-12 mx-auto w-100" />
+            <label for="name" class="fw-bolder fs-5">Nome Completo:</label>
+            <input name="name" type="text" placeholder="Digite aqui"
+              class="col-md-5 col-sm-12 mx-auto w-100 form-control" id="completename" />
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="nickname">
-            <label class="my-1" for="nickname">Como gosta de ser chamado/ como é conhecido:</label>
-            <input name="nickname" type="text" placeholder="Digite aqui" class="w-100" />
+            <label for="nickname" class="my-1 fw-bolder fs-5">Como gosta de ser chamado/ como é
+              conhecido:</label>
+            <input name="nickname" type="text" placeholder="Digite aqui" class="w-100 form-control" id="nickname" />
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="where">
-            <label class="my-1" for="where">Local da abordagem social:</label>
-            <input name="place" type="text" placeholder="Digite aqui" class="w-100" />
+            <label for="place" class="my-1 fw-bolder fs-5">Local da abordagem social:</label>
+            <input name="place" type="text" placeholder="Digite aqui" class="w-100 form-control" id="place" />
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" role="group" id="attendance">
-            <label for="attendance">Está sendo atendido em Albergue ou Casa de Passagem nesse momento?</label>
+            <label for="attendance" class="fw-bolder fs-5">Está sendo atendido em Albergue ou Casa de Passagem nesse
+              momento?</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="attendance" id="attendanceYes">
               <label class="form-check-label" for="attendanceYes">
@@ -53,7 +56,7 @@
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="attendance" id="AttendanceNo">
+              <input class="form-check-input" type="radio" name="attendance" id="attendanceNo">
               <label class="form-check-label" for="attendandeNo">
                 Não
               </label>
@@ -61,119 +64,37 @@
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" role="group" id="time">
-            <label for="time">Há quanto tempo vive na rua?</label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="time" id="timeOption1" value="Até seis meses">
-              <label class="form-check-label" for="timeOption1">
-                Até seis meses
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="time" id="timeOption2"
-                value="Entre seis meses e um ano">
-              <label class="form-check-label" for="timeOption2">
-                Entre seis meses e um ano
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="time" id="timeOption3" value="Entre um e dois anos">
-              <label class="form-check-label" for="timeOption3">
-                Entre um e dois anos
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="time" id="timeOption4" value="Entre dois e cinco anos">
-              <label class="form-check-label" for="timeOption4">
-                Entre dois e cinco anos
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="time" id="timeOption5" value="Entre cinco e dez anos">
-              <label class="form-check-label" for="timeOption5">
-                Entre cinco e dez anos
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="time" id="timeOption6" value="Há mais de dez anos">
-              <label class="form-check-label" for="timeOption6">
-                Há mais de dez anos
-              </label>
-            </div>
+            <label for="time" class="fw-bolder fs-5">Há quanto tempo vive na rua?</label>
+            <select name="time" class="form-select" aria-label="Default select example" id="timeInStreet">
+              <option value="1">Até seis meses</option>
+              <option value="2">Entre seis meses e um ano</option>
+              <option value="3">Entre um e dois anos</option>
+              <option value="4">Entre dois e cinco anos</option>
+              <option value="5">Entre cinco e dez anos</option>
+              <option value="6">Há mais de dez anos</option>
+            </select>
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="reason">
-            <label for="reason">Quais os principais motivos pelos quais passou a morar na rua / albergue /
+            <label for="reason" class="fw-bolder fs-5">Quais os principais motivos pelos quais passou a morar na rua /
+              albergue /
               outro?</label>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption1" value="Perda de moradia">
-              <label class="form-check-label" for="reasonOption1">
-                Perda de moradia
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption2"
-                value="Ameaça / Violência">
-              <label class="form-check-label" for="reasonOption2">
-                Ameaça / Violência
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption3"
-                value="Problemas com familiares / companheiro(a)">
-              <label class="form-check-label" for="reasonOption3">
-                Problemas com familiares / companheiro(a)
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption4"
-                value="Alcoolismo / Drogas">
-              <label class="form-check-label" for="reasonOption4">
-                Alcoolismo / Drogas
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption5" value="Desemprego">
-              <label class="form-check-label" for="reasonOption5">
-                Desemprego
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption6" value="Trabalho">
-              <label class="form-check-label" for="reasonOption6">
-                Trabalho
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption7"
-                value="Tratamento de saúde">
-              <label class="form-check-label" for="reasonOption7">
-                Tratamento de saúde
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption8"
-                value="Preferência / Opção própria">
-              <label class="form-check-label" for="reasonOption8">
-                Preferência / Opção própria
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="reasonOption9"
-                value="Não sabe / Não lembra">
-              <label class="form-check-label" for="reasonOption9">
-                Não sabe / Não lembra
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="reason" id="timeOption6" value="Outro">
-              <label class="form-check-label" for="reasonOption10">
-                Outro
-              </label>
-            </div>
+            <select name="reason" id="reason" class="form-select" aria-label="Default select example">
+              <option value="1">Perda de moradia</option>
+              <option value="2">Ameaça / Violência</option>
+              <option value="3">Problemas com familiares / companheiro(a)</option>
+              <option value="4">Alcoolismo / Drogas</option>
+              <option value="5">Desemprego</option>
+              <option value="6">Trabalho</option>
+              <option value="7">Tratamento de saúde</option>
+              <option value="8">Preferência / Opção própria</option>
+              <option value="9">Não sabe / Não lembra</option>
+              <option value="10">Outros</option>
+            </select>
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="help">
-            <label for="help">Pretende ser atendido no Projeto Revirar?</label>
+            <label for="help" class="fw-bolder fs-5">Pretende ser atendido no Projeto Revirar?</label>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="help" id="helpNo">
               <label class="form-check-label" for="helpNo">
@@ -185,28 +106,29 @@
               <label class="form-check-label" for="helpYes">
                 Sim
               </label>
-              <input id="hiddenWhen" type="text" placeholder="Quando?" class="col-md-5 col-sm-12 mx-auto w-100" />
+              <input id="hiddenWhen" type="text" placeholder="Quando?"
+                class="col-md-5 col-sm-12 mx-auto w-100 form-control" />
             </div>
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="observation">
-            <label for="name">Observação:</label>
-            <input type="text" placeholder="Digite aqui" class="w-100" />
+            <label for="name" class="fw-bolder fs-5">Observação:</label>
+            <input type="text" placeholder="Digite aqui" class="w-100 form-control" />
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="social-educator">
-            <label for="social-educator">Educador social:</label>
-            <input name="responsibleId" type="number" placeholder="Digite aqui" class="w-100" />
+            <label for="social-educator" class="fw-bolder fs-5">Educador social:</label>
+            <input name="responsibleId" type="number" placeholder="Digite aqui" class="w-100 form-control" />
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="date">
-            <label for="date">Data da abordagem:</label>
-            <input name="approachDate" type="date" placeholder="DD/MM/AAAA" class="w-100" />
+            <label for="date" class="fw-bolder fs-5">Data da abordagem:</label>
+            <input name="approachDate" type="date" placeholder="DD/MM/AAAA" class="w-100 form-control" />
           </div>
 
           <div class="container text-center">
-            <button type="submit" class="col-11 col-sm-6 btn btn-dark">
-              Confirmar e adicionar ao mapa
+            <button type="submit" class="col-11 col-sm-6 btn btn-dark mt-2">
+              Confirmar e adicionar assistido
             </button>
           </div>
         </div>
