@@ -7,7 +7,7 @@ const getServices = () => {
       const services = [];
       response.data.forEach((service) => {
         console.log(service);
-        assisteds.push(service);
+        services.push(service);
       });
 
       for (let i = 0; i < services.length; i++) {
@@ -37,3 +37,4 @@ const getServices = () => {
     })
     .catch((e) => console.error(e));
 }
+getServices();
