@@ -9,9 +9,11 @@ export async function getServices() {
 
 export async function insertService(item) {
   openDb().then((db) => {
-    db.run("INSERT INTO Service (type, time, assistedId) VALUES (?,?,?)", [
+    db.run("INSERT INTO Service (type, time, towelId, observation, assistedId) VALUES (?,?,?,?,?)", [
       item.type,
-      item.time,
+      item.time ? item.time : today(),
+      item.towelId || "-",
+      item.observation,
       item.assistedID,
     ]);
   });
@@ -34,4 +36,18 @@ export async function updateService(item, serviceId) {
       serviceId,
     ]);
   });
+}
+
+function today(){
+  let today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  today = dd + '/' + mm + '/' + yyyy;
+
+  return today;
 }

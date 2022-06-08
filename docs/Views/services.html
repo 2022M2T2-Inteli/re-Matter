@@ -29,34 +29,37 @@
         <h1 class="text-center fs-1 arvo my-2">
           Gerenciamento atividades
         </h1>
-        <br><br>
-        <input type="text" id="assistido" placeholder="nome do assistido">
-        <br><br><br>
-        <select id="service"> -->
-          <option value="atv"> Atividade </option>
-          <option value="bath"> Banho </option>
-          <option value="clothes"> Roupa </option>
-          <option value="towel"> Toalha </option>
-          <option value="ubs"> Ubs </option>
-          <option value="cras"> Cras </option>
-          <option value="poupa_tempo"> PoupaTempo </option>
-          <option value="transport"> Vale Transporte </option>
-        </select>
-        <button id="addac" func="addactivity">
-          Adicionar atividade
-        </button>
-        <br>
-        <input type="text" id="obs" placeholder="observações">
-        </section>
+
+        <div class="container col-sm-11 col-md-8 align-items-center mb-4" id="serviceInputs">
+
+          <input type="text" name="assistedID" id="assistido" placeholder="nome do assistido" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+
+          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2"> -->
+            <option value="atv"> Atividade </option>
+            <option value="bath"> Banho </option>
+            <option value="clothes"> Roupa </option>
+            <option value="towel"> Toalha </option>
+            <option value="ubs"> Ubs </option>
+            <option value="cras"> Cras </option>
+            <option value="poupa_tempo"> PoupaTempo </option>
+            <option value="transport"> Vale Transporte </option>
+          </select>
+          <input name="observation" type="text" id="obs" placeholder="observações" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
+          <input name="towelId" type="number" placeholder="Número da toalha" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
+          <button id="addac" type="submit" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2 btn btn-dark mt-2">
+            Adicionar atividade
+          </button>
+        </div>
+      </form>
 
         <table class="table" style="max-width: 90vw;" id="myTable">
           <thead>
             <tr>
-              <th>id</th>
-              <th>Nome</th>
-              <th>Apelido</th>
-              <th>Abordagem</th>
-              <th>Razão</th>
+              <th>Serviço</th>
+              <th>Data</th>
+              <th>N° da Toalha</th>
+              <th>Observação</th>
+              <th>Nome do Assistido</th>
             </tr>
           </thead>
 
@@ -64,30 +67,6 @@
           </tbody>
 
         </table>
-
-        <div class="container col-sm-11 col-md-8 align-items-center mb-4" id="name">
-          <input type="text" name="assistedID" id="assistido" placeholder="nome do assistido"
-            class="col-md-5 col-sm-12 mx-auto w-100 form-control">
-        </div>
-        <br><br><br>
-        <select name="type" id="service" class="container col-sm-11 col-md-8 align-items-center mb-4"> -->
-          <option value="atv"> Atividade </option>
-          <option value="bath"> Banho </option>
-          <option value="clothes"> Roupa </option>
-          <option value="towel"> Toalha </option>
-          <option value="ubs"> Ubs </option>
-          <option value="cras"> Cras </option>
-          <option value="poupa_tempo"> PoupaTempo </option>
-          <option value="transport"> Vale Transporte </option>
-        </select>
-        <input type="text" id="obs" placeholder="observações"
-          class="container col-sm-11 col-md-8 align-items-center mb-4">
-        <input name="time" placeholder="DD/MM/AAAA" class="container col-sm-11 col-md-8 align-items-center mb-4" />
-        <button id="addac" type="submit" class="container col-sm-11 col-md-8 align-items-center mb-4">
-          Adicionar atividade
-        </button>
-        <br>
-    </form>
   </div>
   </div>
 

@@ -23,13 +23,13 @@ const getServices = () => {
           ${service.time}
           </td>
           <td>
+          ${service.towelId}
+          </td>
+          <td>
           ${service.observation}
           </td>
           <td>
-            ${service.assistedId}
-          </td>
-          <td>
-            ${service.towelId}
+          ${service.assistedID}
           </td>
         </tr>
         `;
