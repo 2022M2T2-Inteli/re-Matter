@@ -12,7 +12,7 @@ export async function insertService(item) {
     db.run("INSERT INTO Service (type, time, assistedId) VALUES (?,?,?)", [
       item.type,
       item.time,
-      item.assistedId,
+      item.assistedID,
     ]);
   });
 }

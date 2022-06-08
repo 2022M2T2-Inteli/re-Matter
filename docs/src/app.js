@@ -116,6 +116,7 @@ app
     res.send(service);
   })
   .post(async (req, res) => {
+    console.log(req.body);
     insertService(req.body);
     res.json({
       statusCode: 200,
