@@ -118,7 +118,8 @@
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="social-educator">
             <label for="social-educator" class="fw-bolder fs-5">Educador social:</label>
-            <input name="responsibleId" type="number" placeholder="Digite aqui" class="w-100 form-control" />
+            <select name="responsibleId" placeholder="Digite aqui" class="w-100 form-select" id="responsibles">
+            </select>
           </div>
 
           <div class="mx-auto col-sm-8 col-md-10 col-lg-8 my-2" id="date">
@@ -135,6 +136,9 @@
       </div>
     </form>
   </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../../Views/scripts/newForm.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

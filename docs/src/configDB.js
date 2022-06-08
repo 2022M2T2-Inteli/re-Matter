@@ -18,6 +18,7 @@ export async function createDatabase() {
         nickname TEXT NOT NULL,
         place TEXT NOT NULL,
         time TEXT NOT NULL,
+        beingAttended BOOLEAN NOT NULL,
         observation TEXT,
         approachDate DATE NOT NULL,
         reason TEXT,
@@ -38,10 +39,10 @@ export async function createDatabase() {
     // Cria uma tabela dos administradores se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Admin( 
-        adminId INTEGER PRIMARY KEY AUTOINCREMENT,
+        adminId INTEGER 
         name TEXT NOT NULL,
         username TEXT NOT NULL,
-        email INTEGER NOT NULL,
+        email TEXT NOT NULL,
         phoneNumber INTEGER NOT NULL
       )`
     );

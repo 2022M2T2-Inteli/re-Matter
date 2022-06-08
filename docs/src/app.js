@@ -82,6 +82,11 @@ app
 // /api/assisted/:id
 app
   .route("/api/assisted/:id")
+  .get(async (req, res) => {
+    let id = req.params.id;
+    let assisted = await getAssisted(id);
+    res.json(assisted);
+  })
   .put(async (req, res) => {
     if (req.body && !req.params.id) {
       res.json({

@@ -24,19 +24,21 @@ router.get("/area-restrita", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/area-restrita.html"));
 });
 
-// Test Routes
-
 router.get("/area-restrita/adm", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/adm.html"));
 });
 
 router.get("/area-restrita/fichas", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../docs/Views/fichasExistentes.html"))
-})
+  res.sendFile(path.join(__dirname, "../../docs/Views/fichasExistentes.html"));
+});
+
+router.get("/area-restrita/ficha/:id", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../docs/Views/ficha.html"));
+});
 
 router.get("/area-restrita/atividades", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../docs/Views/services.html"))
-})
+  res.sendFile(path.join(__dirname, "../../docs/Views/services.html"));
+});
 
 router.get("/area-restrita/fichas/nova", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/newForm.html"));
