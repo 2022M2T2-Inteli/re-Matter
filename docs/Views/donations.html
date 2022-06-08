@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Re:Virar</title>
+  <link rel="shortcut icon" href="../Views/images/logo.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../Views/styles/globals.css" />
+</head>
+
+<body style="min-height: 100vh;">
+  <nav class="navbar navbar-light amarelo">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/area-restrita/adm">
+        <img src="../Views/images/chevron-left-white.svg" alt="" width="30" height="24"
+          class="d-inline-block align-text-top" />
+        Voltar
+      </a>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <form action="/api/service" method="POST">
+      <div class="container-fluid my-2">
+        <h1 class="text-center fs-1 arvo my-2">
+          Gerenciamento doações
+        </h1>
+        <br><br>
+        <input type="text" id="assistido" placeholder="nome do assistido">
+        <br><br><br>
+        <button id="addac" func="addactivity">
+          Adicionar atividade
+        </button>
+        <br>
+        <input type="text" id="obs" placeholder="observações">
+        </section>
+
+        <table class="table" style="max-width: 90vw;" id="myTable">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Data</th>
+              <th>Doação</th>
+              <th>Contato</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="resultado">
+          </tbody>
+
+        </table>
+        <!-- <button id="addac" type="submit" class="container col-sm-11 col-md-8 align-items-center mb-4"> -->
+          <!-- Adicionar doardor/doação -->
+        <!-- </button> -->
+        <br>
+    </form>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../Views/scripts/donations.js"></script>
+</body>
+
+</html>
