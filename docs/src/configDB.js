@@ -17,7 +17,8 @@ export async function createDatabase() {
         name TEXT,
         nickname TEXT NOT NULL,
         place TEXT NOT NULL,
-        time DATE NOT NULL,
+        time TEXT NOT NULL,
+        observation TEXT,
         approachDate DATE NOT NULL,
         reason TEXT,
         responsibleId INTEGER NOT NULL
@@ -29,6 +30,8 @@ export async function createDatabase() {
         serviceId INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
         time DATE NOT NULL,
+        towelId INTEGER,
+        observation TEXT,
         assistedID INTEGER NOT NULL
       )`
     );

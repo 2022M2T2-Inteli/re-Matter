@@ -35,7 +35,7 @@ router.get("/area-restrita/fichas", (req, res) => {
 })
 
 router.get("/area-restrita/atividades", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../docs/Views/activities.html"))
+  res.sendFile(path.join(__dirname, "../../docs/Views/services.html"))
 })
 
 router.get("/area-restrita/fichas/nova", (req, res) => {
