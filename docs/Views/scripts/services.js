@@ -39,5 +39,4 @@ const getServices = () => {
     })
     .catch((e) => console.error(e));
 }
-
 getServices();
