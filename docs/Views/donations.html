@@ -27,39 +27,28 @@
     <form action="/api/service" method="POST">
       <div class="container-fluid my-2">
         <h1 class="text-center fs-1 arvo my-2">
-          Gerenciamento atividades
+          Gerenciamento doações
         </h1>
-
-        <div class="container col-sm-11 col-md-8 align-items-center mb-4" id="serviceInputs">
-
-          <input type="text" name="assistedID" id="assistido" placeholder="nome do assistido" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
-
-          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2"> -->
-            <option value="atv"> Atividade </option>
-            <option value="bath"> Banho </option>
-            <option value="clothes"> Roupa </option>
-            <option value="towel"> Toalha </option>
-            <option value="ubs"> Ubs </option>
-            <option value="cras"> Cras </option>
-            <option value="poupa_tempo"> PoupaTempo </option>
-            <option value="transport"> Vale Transporte </option>
-          </select>
-          <input name="observation" type="text" id="obs" placeholder="observações" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
-          <input name="towelId" type="number" placeholder="Número da toalha" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
-          <button id="addac" type="submit" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2 btn btn-dark mt-2">
-            Adicionar atividade
-          </button>
-        </div>
-      </form>
+        <br><br>
+        <input type="text" id="assistido" placeholder="nome do assistido">
+        <br><br><br>
+        <button id="addac" func="addactivity">
+          Adicionar atividade
+        </button>
+        <br>
+        <input type="text" id="obs" placeholder="observações">
+        </section>
 
         <table class="table" style="max-width: 90vw;" id="myTable">
           <thead>
             <tr>
-              <th>Serviço</th>
+              <th>id</th>
+              <th>Nome</th>
+              <th>Tipo</th>
               <th>Data</th>
-              <th>N° da Toalha</th>
-              <th>Observação</th>
-              <th>Nome do Assistido</th>
+              <th>Doação</th>
+              <th>Contato</th>
+              <th>Status</th>
             </tr>
           </thead>
 
@@ -67,6 +56,11 @@
           </tbody>
 
         </table>
+        <!-- <button id="addac" type="submit" class="container col-sm-11 col-md-8 align-items-center mb-4"> -->
+          <!-- Adicionar doardor/doação -->
+        <!-- </button> -->
+        <br>
+    </form>
   </div>
   </div>
 
@@ -74,7 +68,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="../Views/scripts/services.js"></script>
+  <script src="../Views/scripts/donations.js"></script>
 </body>
 
 </html>
