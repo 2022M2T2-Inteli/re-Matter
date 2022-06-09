@@ -50,7 +50,9 @@ const getServices = () => {
           ${service.towelId}
           </td>
           <td>
-          <button class = "btn btn-danger my-2" onclick="deleteService(${service.serviceId})"><a class="navbar-brand">
+          <button class = "btn btn-danger my-2" onclick="deleteService(${
+            service.serviceId
+          })"><a class="navbar-brand">
           <img src="../Views/images/trash-2.svg" alt="" width="24" height="24"/>
         </a></button>
           </td>
@@ -83,6 +85,15 @@ const insertService = () => {
     .catch((e) => console.error(e));
 };
 
+const deleteService = (id) => {
+  axios
+    .delete(url + "/api/service/" + id)
+    .then((res) => {
+      console.log(res);
+      getServices();
+    })
+    .catch((e) => console.error(e));
+};
 
 function check() {
   let service = document.getElementById("service");

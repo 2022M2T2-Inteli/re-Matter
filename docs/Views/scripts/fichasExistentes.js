@@ -282,7 +282,7 @@ const toggleInputs = (number) => {
     "approachDateInput",
     "placeInput",
     "timeInput",
-    "beingAttended``",
+    "beingAttended",
   ];
 
   let inputs = ids.map((id) => document.getElementById(id + number));
