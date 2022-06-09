@@ -56,7 +56,7 @@ const insertDonation = () => {
   let date = document.getElementById("donationDate");
   let donation = document.getElementById("donation");
   let contact = document.getElementById("contact");
-  let status = document.getElementById("contact");
+  let status = document.getElementById("status");
 
   axios.post(url + "/api/collaborator", {
     name: name.value,
