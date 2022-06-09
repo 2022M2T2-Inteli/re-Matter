@@ -32,9 +32,11 @@
 
         <div class="container col-sm-11 col-md-8 align-items-center mb-4" id="serviceInputs">
 
-          <input type="text" name="assistedID" id="assistido" placeholder="nome do assistido" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+          <input type="text" name="assistedID" id="assistido" placeholder="Nome do assistido"
+            class="col-md-5 col-sm-12 mx-auto w-100 form-control">
 
-          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2" onchange="check()">
+          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2"
+            onchange="check()">
             <option value="atv"> Atividade </option>
             <option value="bath"> Banho </option>
             <option value="clothes"> Roupa </option>
@@ -43,28 +45,36 @@
             <option value="poupa_tempo"> PoupaTempo </option>
             <option value="transport"> Vale Transporte </option>
           </select>
-          <input name="observation" type="text" id="obs" placeholder="observações" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
-          <button onclick = "insertService()" id="addac" type="submit" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2 btn btn-dark mt-2">
+
+          <input class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2" disabled="true" id="towelInput"
+            type="number" min="0" placeholder="Número da toalha" />
+
+          <input name="observation" type="text" id="obs" placeholder="Observações"
+            class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2" />
+
+
+          <button onclick="insertService()" id="addac" type="submit"
+            class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2 btn btn-dark mt-2">
             Adicionar atividade
           </button>
         </div>
-      </form>
+    </form>
 
-        <table class="table" style="max-width: 90vw;" id="myTable">
-          <thead>
-            <tr>
-              <th>Serviço</th>
-              <th>Data</th>
-              <th>Observação</th>
-              <th>Nome do Assistido</th>
-              <th>N° da Toalha</th>
-            </tr>
-          </thead>
+    <table class="table" style="max-width: 90vw;" id="myTable">
+      <thead>
+        <tr>
+          <th>Serviço</th>
+          <th>Data</th>
+          <th>Observação</th>
+          <th>Nome do Assistido</th>
+          <th>N° da Toalha</th>
+        </tr>
+      </thead>
 
-          <tbody id="resultado">
-          </tbody>
+      <tbody id="resultado">
+      </tbody>
 
-        </table>
+    </table>
   </div>
   </div>
 

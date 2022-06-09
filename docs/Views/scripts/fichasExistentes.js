@@ -19,6 +19,7 @@ const getAssisteds = () => {
 getAssisteds();
 
 const renderAssisted = (list) => {
+  const table = document.getElementById("resultado");
   const getResponsibleName = (id, assistedId) => {
     axios
       .get(url + `/api/${TOKEN}/admin`)
@@ -31,12 +32,14 @@ const renderAssisted = (list) => {
       .catch((e) => console.error(e));
   };
 
+  table.innerHTML = "";
+
   list.length > 0
     ? list.map((assisted) => {
         const { responsibleId, assistedId } = assisted;
         getResponsibleName(responsibleId, assistedId);
 
-        document.getElementById("resultado").innerHTML += `
+        table.innerHTML += `
     
     ${modal(assisted)}
 
@@ -115,8 +118,8 @@ const modal = (assisted) => {
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
                       <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${
-                        name == "" || name == null ? "" : name
-                      }" disabled='true'>
+    name == "" || name == null ? "" : name
+  }" disabled='true'>
                     </div>
                     </div>
                 </div>
@@ -216,6 +219,7 @@ const updateUser = (id) => {
     let place = document.getElementById("placeInput" + id).value;
     let time = document.getElementById("timeInput" + id).value;
     let beingAttended = true;
+    
     axios
       .put(url + "/api/assisted/" + id, {
         name: name,
@@ -223,7 +227,7 @@ const updateUser = (id) => {
         place: place,
         time: time,
         approachDate: approachDate,
-        beingAttended: beingAttended
+        beingAttended: beingAttended,
       })
       .then((response) => {
         console.table(response);
@@ -278,7 +282,7 @@ const toggleInputs = (number) => {
     "approachDateInput",
     "placeInput",
     "timeInput",
-    "beingAttended",
+    "beingAttended``",
   ];
 
   let inputs = ids.map((id) => document.getElementById(id + number));

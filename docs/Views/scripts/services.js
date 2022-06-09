@@ -1,15 +1,15 @@
 const url = "http://127.0.0.1:5555";
 
-document.getElementsByTagName("form")[0].addEventListener('submit', e => e.preventDefault())
+document
+  .getElementsByTagName("form")[0]
+  .addEventListener("submit", (e) => e.preventDefault());
 
 const getServices = () => {
   axios
     .get(url + "/api/service")
     .then((response) => {
-      console.log(response.data);
       const services = [];
       response.data.forEach((service) => {
-        console.log(service);
         services.push(service);
         document.getElementById("resultado").innerHTML = "";
       });
@@ -65,56 +65,33 @@ const getServices = () => {
 getServices();
 
 const insertService = () => {
-  var name = document.getElementById("assistido");
-  var service = document.getElementById("service");
-  var obs = document.getElementById("obs");
-  //var towel = document.getElementById("towelId");
-  
+  var name = document.getElementById("assistido").value;
+  var service = document.getElementById("service").value;
+  var obs = document.getElementById("obs").value;
+  var towel = document.getElementById("towelInput").value;
+
   axios
     .post(url + "/api/service", {
-      assistedID: name.value,
-      type: service.value,
-      observation: obs.value,
-      //towelId: towel.value
-    }).then(res => {
-      console.log(res)
-      getServices()
+      assistedID: name,
+      type: service,
+      observation: obs,
+      towelId: towel !== "" ? towel : "-",
     })
-    .catch(err => console.error(err))
-
-}
-
-
-const deleteService = (id) => {
-  axios
-    .delete(url + "/api/service/" + id)
-    .then((response) => {
-      console.table(response);
-      //window.location.reload();
+    .then((res) => {
       getServices();
     })
     .catch((e) => console.error(e));
-}
+};
 
 
 function check() {
-  let value = document.getElementById("service").value;
-  if (value != "bath") {
-    if (document.getElementById("towelInput") != null) {
-      document.getElementById("towelInput").remove();
-    }
-  }
-  let inputTowel = document.createElement("input");
-  let button = document.getElementById("addac");
-  console.log(button);
-  inputTowel.className = "col-md-5 col-sm-12 mx-auto w-100 form-control my-2";
-  inputTowel.name = "towelId";
-  inputTowel.placeholder = "Número da toalha";
-  inputTowel.type = "number";
-  inputTowel.id = "towelInput"
-  if (value == "bath") {
-    if (document.getElementById("towelInput") == null) {
-      document.getElementById("serviceInputs").insertBefore(inputTowel, button);
-    }
+  let service = document.getElementById("service");
+  let towelId = document.getElementById("towelInput");
+
+  if (service.value == "bath") {
+    towelId.disabled = false;
+  } else {
+    towelId.disabled = true;
+    towelId.value = "";
   }
 }
