@@ -40,3 +40,25 @@ const getServices = () => {
     .catch((e) => console.error(e));
 }
 getServices();
+
+function check(){
+  let value = document.getElementById("service").value;
+  if(value != "bath"){
+    if(document.getElementById("towelInput") != null){
+      document.getElementById("towelInput").remove();
+    }
+  }
+  let inputTowel = document.createElement("input");
+  let button = document.getElementById("addac");
+  console.log(button);
+  inputTowel.className = "col-md-5 col-sm-12 mx-auto w-100 form-control my-2";
+  inputTowel.name = "towelId";
+  inputTowel.placeholder="Número da toalha";
+  inputTowel.type = "number";
+  inputTowel.id = "towelInput"
+  if(value == "bath"){
+    if(document.getElementById("towelInput") == null){
+      document.getElementById("serviceInputs").insertBefore(inputTowel, button);
+    }
+  }
+}

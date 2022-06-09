@@ -120,9 +120,10 @@ app
   .post(async (req, res) => {
     console.log(req.body);
     insertService(req.body);
-    res.json({
-      statusCode: 200,
-    });
+    //res.json({
+    //  statusCode: 200,
+    //});
+    res.redirect("/area-restrita/atividades");
   });
 
 //"/api/service/:id"
