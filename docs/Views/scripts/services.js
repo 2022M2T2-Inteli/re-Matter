@@ -16,8 +16,8 @@ const getServices = () => {
 
       for (let i = 0; i < services.length; i++) {
         const service = services[i];
-        document.getElementById("resultado").innerHTML += `
-        <tr>
+        document.getElementById("resultado").innerHTML += ` 
+        <tr id="${service.serviceId}">
           <td>
           ${
             service.type == "atv"
@@ -49,6 +49,11 @@ const getServices = () => {
           <td>
           ${service.towelId}
           </td>
+          <td>
+          <button class = "btn btn-danger my-2" onclick="deleteService(${service.serviceId})"><a class="navbar-brand">
+          <img src="../Views/images/trash-2.svg" alt="" width="24" height="24"/>
+        </a></button>
+          </td>
         </tr>
         `;
       }
@@ -75,8 +80,9 @@ const insertService = () => {
     .then((res) => {
       getServices();
     })
-    .catch((err) => console.error(err));
+    .catch((e) => console.error(e));
 };
+
 
 function check() {
   let service = document.getElementById("service");

@@ -40,6 +40,11 @@ const getCollaborators = () => {
             <td>
             ${donation.status}
         </td>
+          <td>
+            <button onclick="deleteCollaborator(${donation.collaboratorId})">
+              Delete
+            </button>
+          </td>
         </tr>
         `;
       }
@@ -72,3 +77,17 @@ const insertDonation = () => {
     console.error(e)
   })
 }
+
+const deleteCollaborator = (id) => {
+  if (confirm("Deseja mesmo deletar este colaborador?")) {
+    axios
+      .delete(url + "/api/collaborator/" + id)
+      .then((response) => {
+        console.table(response);
+        window.location.reload();
+      })
+      .catch((e) => console.error(e));
+  } else {
+    return;
+  }
+};
