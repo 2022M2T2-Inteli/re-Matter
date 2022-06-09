@@ -60,9 +60,6 @@ const insertService = () =>{
 
 }
 
-getServices();
-
-getServices();
 
 function check(){
   let value = document.getElementById("service").value;
