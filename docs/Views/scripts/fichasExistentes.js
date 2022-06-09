@@ -31,7 +31,7 @@ const renderAssisted = (list) => {
       .catch((e) => console.error(e));
   };
 
-  list.length < 0
+  list.length > 0
     ? list.map((assisted) => {
         const { responsibleId, assistedId } = assisted;
         getResponsibleName(responsibleId, assistedId);
