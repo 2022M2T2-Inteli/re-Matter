@@ -31,7 +31,7 @@ const renderAssisted = (list) => {
       .catch((e) => console.error(e));
   };
 
-  list.length > 0
+  list.length < 0
     ? list.map((assisted) => {
         const { responsibleId, assistedId } = assisted;
         getResponsibleName(responsibleId, assistedId);
@@ -43,7 +43,10 @@ const renderAssisted = (list) => {
       assisted.assistedId
     }" id="tableRow">
       <td class='fs-6'>
-        ${assisted.assistedId}
+        ${
+          assisted.assistedId ||
+          '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
+        }
       </td>
       <td class='fs-6'>
         ${assisted.name || "Não informado..."}
@@ -56,15 +59,24 @@ const renderAssisted = (list) => {
     `;
       })
     : (document.getElementById("resultado").innerHTML = `
-      <tr>
-        <td>
-          <img src="../../Views/images/loading.svg" alt="" width="20" height="20" />
-        </td>
-        <td class='fs-4'>Nenhum assistido encontrado</td>
-        <td></td>
-        <td></td>
-      </tr>
-      `);
+    <tr>
+      <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+      <td class='fs-6 align-middle'>Nenhum assistido encontrado</td>
+      <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+      <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    </tr>
+    `);
+};
+
+const renderLoading = () => {
+  document.getElementById("resultado").innerHTML = `
+    <tr>
+      <td></td>
+      <td class='fs-4'>Carregando... <img src="../../Views/images/loading.gif" alt="" width="32" height="32" /></td>
+      <td></td>
+      <td></td>
+    </tr>
+    `;
 };
 
 const modal = (assisted) => {
