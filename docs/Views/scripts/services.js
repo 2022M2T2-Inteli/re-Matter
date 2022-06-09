@@ -17,7 +17,16 @@ const getServices = () => {
         document.getElementById("resultado").innerHTML += `
         <tr>
           <td>
-          ${service.type}
+          ${switch (service.type) {
+            case "bath":
+              return "Banho";
+            case "shower":
+              return "Ducha";
+            case "towel":
+              return "Toalha";
+            case "other":
+              return "Outro";
+          }}
           </td>
           <td>
           ${service.time}
