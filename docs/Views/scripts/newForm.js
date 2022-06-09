@@ -1,17 +1,22 @@
 const url = "http://127.0.0.1:5555";
-const TOKEN = process.env.TOKEN || "0987654321";
+const TOKEN = "0987654321";
+
+document.getElementsByTagName("form")[0].addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 let responsiblesSelect = document.getElementById("responsibles");
 
 let completeName = document.getElementById("completename");
 let nickname = document.getElementById("nickname");
+let approachDate = document.getElementById("approachDate");
 let approachPlace = document.getElementById("place");
 
-let attendanceYes = document.getElementById("attendanceYes");
-let attendanceNo = document.getElementById("attendanceNo");
+let beingAttended = document.getElementById("beingAttended");
 
 let timeSelect = document.getElementById("timeInStreet");
 let reason = document.getElementById("reason");
+let observation = document.getElementById("observation");
 
 const getResponsibles = () => {
   axios
@@ -20,12 +25,11 @@ const getResponsibles = () => {
       const responsibles = [];
       response.data.forEach((responsible) => {
         responsibles.push({
-          id: responsible.id,
+          id: responsible.adminId,
           name: responsible.name,
           username: responsible.username,
         });
       });
-      console.log(responsibles);
 
       renderResponsibles(responsibles);
 
@@ -38,6 +42,7 @@ getResponsibles();
 
 const renderResponsibles = (list) => {
   list.map((responsible) => {
+    console.log(responsible);
     responsiblesSelect.innerHTML += `
     <option value="${responsible.id}">${responsible.name} | ${responsible.username}</option>
     `;
@@ -46,17 +51,28 @@ const renderResponsibles = (list) => {
 
 const insertAssisted = () => {
   let assisted = {
-    name: completeName.value,
+    name: completeName.value || "",
     nickname: nickname.value,
     place: approachPlace.value,
-    attendance: attendanceYes.checked ? "yes" : "no",
+    time: timeSelect.value,
+    approachDate: new Date(approachDate.value).toLocaleDateString(),
+    beingAttended: beingAttended.value === "1" ? true : false,
+    observation: observation.value || "",
+    reason: reason.value || "Não especificado",
+    responsibleId: parseInt(responsiblesSelect.value),
+    createdAt: new Date(Date.now()).toLocaleDateString(),
   };
 
-  axios
-    .post(url + "/api/assisted", assisted)
-    .then((response) => {
-      console.log(response);
-      window.location.href = "/fichas-existentes";
-    })
-    .catch((e) => console.error(e));
+  try {
+    axios
+      .post(url + "/api/assisted", assisted)
+      .then((response) => {
+        console.table(response.data);
+        alert("Assistido cadastrado com sucesso!");
+      })
+      .catch((e) => console.error(e));
+  } catch (error) {
+    console.error(error);
+    alert("Preencha todos os campos!");
+  }
 };

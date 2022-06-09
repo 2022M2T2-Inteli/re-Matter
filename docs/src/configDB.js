@@ -22,6 +22,7 @@ export async function createDatabase() {
         observation TEXT,
         approachDate DATE NOT NULL,
         reason TEXT,
+        createdAt TEXT NOT NULL,
         responsibleId INTEGER NOT NULL
       )`
     );
