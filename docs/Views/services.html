@@ -24,7 +24,7 @@
   </nav>
 
   <div class="container-fluid">
-    <form action="/api/service" method="POST">
+    <form>
       <div class="container-fluid my-2">
         <h1 class="text-center fs-1 arvo my-2">
           Gerenciamento atividades
@@ -34,19 +34,18 @@
 
           <input type="text" name="assistedID" id="assistido" placeholder="nome do assistido" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
 
-          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2"> -->
+          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2" onchange="check()">
             <option value="atv"> Atividade </option>
             <option value="bath"> Banho </option>
             <option value="clothes"> Roupa </option>
-            <option value="towel"> Toalha </option>
             <option value="ubs"> Ubs </option>
             <option value="cras"> Cras </option>
             <option value="poupa_tempo"> PoupaTempo </option>
             <option value="transport"> Vale Transporte </option>
           </select>
           <input name="observation" type="text" id="obs" placeholder="observações" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
-          <input name="towelId" type="number" placeholder="Número da toalha" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
-          <button id="addac" type="submit" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2 btn btn-dark mt-2">
+          <input name="towelId" type="number" id="towelId" placeholder="Número da toalha" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
+          <button onclick = "insertService()" id="addac" type="submit" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2 btn btn-dark mt-2">
             Adicionar atividade
           </button>
         </div>
