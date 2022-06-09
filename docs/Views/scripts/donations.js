@@ -1,20 +1,23 @@
+  
 const url = "http://127.0.0.1:5555";
 
-const getServices = () => {
-    axios
-        .get(url + "/api/collaborator")
-        .then((response) => {
+document.getElementsByTagName("form")[0].addEventListener("submit", e => e.preventDefault())
 
-            console.log(response.data)
-            const donations = [];
-            response.data.forEach((donation) => {
-                console.log(donation);
-                donations.push(donation);
-            });
+const getCollaborators = () => {
+  axios
+    .get(url + "/api/collaborator")
+    .then((response) => {
 
-            for (let i = 0; i < donations.length; i++) {
-                let donation = donations[i];
-                document.getElementById("resultado").innerHTML += `
+      console.log(response.data)
+      const donations = [];
+      response.data.forEach((donation) => {
+        console.log(donation);
+        donations.push(donation);
+      });
+
+      for (let i = 0; i < donations.length; i++) {
+        let donation = donations[i];
+        document.getElementById("resultado").innerHTML += `
         <tr>
           <td>
           ${donation.collaboratorId}
@@ -39,10 +42,33 @@ const getServices = () => {
         </td>
         </tr>
         `;
-            }
+      }
 
-            return response.data;
-        })
-        .catch((e) => console.error(e));
+      return response.data;
+    })
+    .catch((e) => console.error(e));
 }
-getServices();
+getCollaborators();
+
+const insertDonation = () => {
+  let name = document.getElementById("donator");
+  let type = document.getElementById("type");
+  let date = document.getElementById("donationDate");
+  let donation = document.getElementById("donation");
+  let contact = document.getElementById("contact");
+  let status = document.getElementById("contact");
+
+  axios.post(url + "/api/collaborator", {
+    name: name.value,
+    type: type.value,
+    date: date.value,
+    donation: donation.value,
+    status: status.value,
+    contact: contact.value
+  }).then((i) => {
+    console.log(i)
+    window.location.reload()
+  }).catch(e => {
+    console.error(e)
+  })
+}
