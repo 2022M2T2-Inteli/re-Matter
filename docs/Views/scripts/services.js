@@ -97,10 +97,6 @@ const deleteService = (id) => {
 }
 
 
-
-
-
-
 function check() {
   let value = document.getElementById("service").value;
   if (value != "bath") {
