@@ -90,3 +90,8 @@ div.img {
   margin: auto;
   margin-top: 1cm;
 }
+
+#tableRow:hover {
+  background-color: #e7e7e7;
+  cursor: pointer;
+}
