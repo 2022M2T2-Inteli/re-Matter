@@ -23,14 +23,14 @@ export async function insertAssisted(item) {
 export async function updateAssisted(item, assistedId) {
   openDb().then((db) => {
     db.run(
-      "UPDATE Assisted SET name = ?, nickname = ?, place = ?, time = ?, approachDate = ?, reason = ? WHERE assistedId = ?",
+      "UPDATE Assisted SET name = ?, nickname = ?, place = ?, time = ?, approachDate = ?, beingAttended = ? WHERE assistedId = ?",
       [
         item.name,
         item.nickname,
         item.place,
         item.time,
         item.approachDate,
-        item.reason,
+        item.beingAttended,
         assistedId,
       ]
     );

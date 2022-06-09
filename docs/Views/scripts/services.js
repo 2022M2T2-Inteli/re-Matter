@@ -11,7 +11,7 @@ const getServices = () => {
       response.data.forEach((service) => {
         console.log(service);
         services.push(service);
-        document.getElementById("resultado").innerHTML = ""
+        document.getElementById("resultado").innerHTML = "";
       });
 
       for (let i = 0; i < services.length; i++) {
@@ -19,7 +19,23 @@ const getServices = () => {
         document.getElementById("resultado").innerHTML += ` 
         <tr id="${service.serviceId}">
           <td>
-          ${service.type}
+          ${
+            service.type == "atv"
+              ? "Atividade"
+              : service.type == "bath"
+              ? "Banho"
+              : service.type == "clothes"
+              ? "Roupa"
+              : service.type == "ubs"
+              ? "UBS"
+              : service.type == "cras"
+              ? "CRAS"
+              : service.type == "poupa_tempo"
+              ? "Poupa tempo"
+              : service.type == "transport"
+              ? "Transporte"
+              : "Outro"
+          }
           </td>
           <td>
           ${service.time}
@@ -45,7 +61,7 @@ const getServices = () => {
       return response.data;
     })
     .catch((e) => console.error(e));
-}
+};
 getServices();
 
 const insertService = () => {
