@@ -9,7 +9,7 @@ const getServices = () => {
       response.data.forEach((service) => {
         console.log(service);
         services.push(service);
-        document.getElementById("resultado").innerHTML = ""
+        document.getElementById("resultado").innerHTML = "";
       });
 
       for (let i = 0; i < services.length; i++) {
@@ -17,16 +17,23 @@ const getServices = () => {
         document.getElementById("resultado").innerHTML += `
         <tr>
           <td>
-          ${switch (service.type) {
-            case "bath":
-              return "Banho";
-            case "shower":
-              return "Ducha";
-            case "towel":
-              return "Toalha";
-            case "other":
-              return "Outro";
-          }}
+          ${
+            service.type == "atv"
+              ? "Atividade"
+              : service.type == "bath"
+              ? "Banho"
+              : service.type == "clothes"
+              ? "Roupa"
+              : service.type == "ubs"
+              ? "UBS"
+              : service.type == "cras"
+              ? "CRAS"
+              : service.type == "poupa_tempo"
+              ? "Poupa tempo"
+              : service.type == "transport"
+              ? "Transporte"
+              : "Outro"
+          }
           </td>
           <td>
           ${service.time}
@@ -47,11 +54,11 @@ const getServices = () => {
       return response.data;
     })
     .catch((e) => console.error(e));
-}
+};
 getServices();
 
-const insertService = () =>{
-  var name = document.getElementById("assistido").value;  
+const insertService = () => {
+  var name = document.getElementById("assistido").value;
   var service = document.getElementById("service").value;
   var obs = document.getElementById("obs").value;
   var towel = document.getElementById("towelId").value;
@@ -60,20 +67,19 @@ const insertService = () =>{
       assistedID: name,
       type: service,
       observation: obs,
-      towelId: towel
-    }).then(res => {
-      res.send(200)
-      getServices()
-  })
-  .catch(err => console.error(err))
+      towelId: towel,
+    })
+    .then((res) => {
+      res.send(200);
+      getServices();
+    })
+    .catch((err) => console.error(err));
+};
 
-}
-
-
-function check(){
+function check() {
   let value = document.getElementById("service").value;
-  if(value != "bath"){
-    if(document.getElementById("towelInput") != null){
+  if (value != "bath") {
+    if (document.getElementById("towelInput") != null) {
       document.getElementById("towelInput").remove();
     }
   }
@@ -82,11 +88,11 @@ function check(){
   console.log(button);
   inputTowel.className = "col-md-5 col-sm-12 mx-auto w-100 form-control my-2";
   inputTowel.name = "towelId";
-  inputTowel.placeholder="Número da toalha";
+  inputTowel.placeholder = "Número da toalha";
   inputTowel.type = "number";
-  inputTowel.id = "towelInput"
-  if(value == "bath"){
-    if(document.getElementById("towelInput") == null){
+  inputTowel.id = "towelInput";
+  if (value == "bath") {
+    if (document.getElementById("towelInput") == null) {
       document.getElementById("serviceInputs").insertBefore(inputTowel, button);
     }
   }

@@ -35,6 +35,7 @@ const renderAssisted = (list) => {
     ? list.map((assisted) => {
         const { responsibleId, assistedId } = assisted;
         getResponsibleName(responsibleId, assistedId);
+
         document.getElementById("resultado").innerHTML += `
     
     ${modal(assisted)}
