@@ -101,7 +101,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Nome</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" placeholder="Não informado..." value="${
+                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${
                         name == "" || name == null ? "" : name
                       }" disabled='true'>
                     </div>
@@ -113,7 +113,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Apelido / nome fornecido</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="text" class="form-control" id="nicknameInput" aria-describedby="emailHelp" placeholder="Apelido / Nome fornecido" value=${nickname} disabled='true'>
+                      <input type="text" class="form-control" id="nicknameInput${assistedId}" aria-describedby="emailHelp" placeholder="Apelido / Nome fornecido" value=${nickname} disabled='true'>
                     </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Data de abordagem</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="date" class="form-control" id="approachDateInput" aria-describedby="emailHelp" placeholder="Data de abordagem" value=${approachDate} disabled='true'>
+                      <input type="date" class="form-control" id="approachDateInput${assistedId}" aria-describedby="emailHelp" placeholder="Data de abordagem" value=${approachDate} disabled='true'>
                     </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Local de abordagem</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="text" class="form-control" id="placeInput" aria-describedby="emailHelp" placeholder="Local de abordagem" value=${place} disabled='true'>
+                      <input type="text" class="form-control" id="placeInput${assistedId}" aria-describedby="emailHelp" placeholder="Local de abordagem" value=${place} disabled='true'>
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Tempo em situação de rua</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="date" class="form-control" id="timeInput" aria-describedby="emailHelp" placeholder="Tempo em situação de rua" value=${time} disabled='true'>
+                      <input type="date" class="form-control" id="timeInput${assistedId}" aria-describedby="emailHelp" placeholder="Tempo em situação de rua" value=${time} disabled='true'>
                     </div>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Está sendo atendido</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                    <select name="beingAttended" id="beingAttended" class="form-select" aria-label="Default select example" disabled="true">
+                    <select name="beingAttended" id="beingAttended${assistedId}" class="form-select" aria-label="Default select example" disabled="true">
                       <option
                         value="1"
                         selected="${beingAttended === 1 ? "selected" : ""}"
@@ -170,7 +170,7 @@ const modal = (assisted) => {
           </div>
 
           <div class='col-12 my-4 d-flex justify-content-center align-items-center'>
-          <button type="button" class="col-4 btn btn-warning d-flex flex-row justify-content-around align-items-center" onclick="toggleInputs();">
+          <button type="button" class="col-4 btn btn-warning d-flex flex-row justify-content-around align-items-center" onclick="toggleInputs(${assistedId});">
             Habilitar edição 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" class="bi bi-pencil ml-2" viewBox="0 0 16 16">
             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -195,7 +195,30 @@ const modal = (assisted) => {
 };
 
 const updateUser = (id) => {
-  alert(id);
+  if (confirm("Deseja mesmo atualizar os dados?")) {
+    let name = document.getElementById("nameInput" + id).value;
+    let nickname = document.getElementById("nicknameInput" + id).value;
+    let approachDate = document.getElementById("approachDateInput" + id).value;
+    let place = document.getElementById("placeInput" + id).value;
+    let time = document.getElementById("timeInput" + id).value;
+    let beingAttended = true;
+    axios
+      .put(url + "/api/assisted/" + id, {
+        name: name,
+        nickname: nickname,
+        place: place,
+        time: time,
+        approachDate: approachDate,
+        beingAttended: beingAttended
+      })
+      .then((response) => {
+        console.table(response);
+        window.location.reload();
+      })
+      .catch((e) => console.error(e));
+  } else {
+    return;
+  }
 };
 
 const deleteUser = (id) => {
@@ -234,7 +257,7 @@ function searchFilter() {
   }
 }
 
-const toggleInputs = () => {
+const toggleInputs = (number) => {
   let ids = [
     "nameInput",
     "nicknameInput",
@@ -244,7 +267,7 @@ const toggleInputs = () => {
     "beingAttended",
   ];
 
-  let inputs = ids.map((id) => document.getElementById(id));
+  let inputs = ids.map((id) => document.getElementById(id + number));
   inputs.map((input) => {
     input.disabled = !input.disabled;
   });
