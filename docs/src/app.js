@@ -1,5 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
+import path from "path";
+const __dirname = path.resolve();
 import { openDb, createDatabase, _initializeUsers } from "./configDB.js";
 
 const TOKEN = process.env.TOKEN || "0987654321";
@@ -212,6 +214,11 @@ app
       msg: `${req.body.id} deletado de admins com sucesso.`,
     });
   });
+
+// 404
+// router.all("*", (req, res) => {
+//   res.status(404).sendFile(path.join(__dirname, "../../docs/Views/404.html"));
+// });
 
 //Inica o servidor
 app.listen(PORT, () =>

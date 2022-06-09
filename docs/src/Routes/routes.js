@@ -4,10 +4,6 @@ import path from "path";
 export const router = express.Router();
 const __dirname = path.resolve();
 
-// router.all("*", (req, res) => {
-//   res.status(404).sendFile(path.join(__dirname, "../../docs/Views/404.html"));
-// });
-
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/index.html"));
 });
@@ -47,3 +43,4 @@ router.get("/area-restrita/fichas/nova", (req, res) => {
 router.get("/area-restrita/fichas/abordagem", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/teste.ejs"));
 });
+

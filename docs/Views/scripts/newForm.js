@@ -1,5 +1,5 @@
 const url = "http://127.0.0.1:5555";
-const TOKEN = "0987654321";
+const TOKEN = process.env.TOKEN || "0987654321";
 
 let responsiblesSelect = document.getElementById("responsibles");
 
