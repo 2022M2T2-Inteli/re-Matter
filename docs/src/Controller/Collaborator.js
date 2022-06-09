@@ -5,12 +5,12 @@ export async function insertCollaborator(item) {
     db.run(
       "INSERT INTO Collaborator (name, type, date, donation, status, contact) VALUES (?,?,?,?,?,?)",
       [
-        item.name,
-        item.type || "Voluntário",
-        item.date || today(),
-        item.donation,
-        item.status || "Pendente",
-        item.contact || "Não informado"
+        item.name || " ",
+        item.type || " ",
+        item.date || " ",
+        item.donation || " ",
+        item.status || " ",
+        item.contact || " "
       ]
     );
   });
