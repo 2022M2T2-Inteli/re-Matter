@@ -1,11 +1,10 @@
 const url = "http://127.0.0.1:5555";
 
 const getServices = () => {
-    axios
+  axios
     .get(url + "/api/service")
     .then((response) => {
-
-        console.log(response.data)
+      console.log(response.data);
       const services = [];
       response.data.forEach((service) => {
         console.log(service);
@@ -23,13 +22,13 @@ const getServices = () => {
           ${service.time}
           </td>
           <td>
-          ${service.towelId}
-          </td>
-          <td>
           ${service.observation}
           </td>
           <td>
           ${service.assistedID}
+          </td>
+          <td>
+          ${service.towelId}
           </td>
         </tr>
         `;
@@ -38,5 +37,5 @@ const getServices = () => {
       return response.data;
     })
     .catch((e) => console.error(e));
-}
+};
 getServices();

@@ -26,10 +26,13 @@
 
   <div class="container-fluid">
     <div class="col-12 col-md-10 my-4 mx-auto justify-content-center align-items-center d-flex p-2 flex-column">
-      <div class="pb-2">
-        <p class="arvo fs-1 text-center my-2">
+      <div class="mb-2 d-flex flex-row justify-content-evenly col-12 col-md-6 col-lg-4">
+        <p class="arvo fs-2 text-center my-2 col-10">
           Listas existentes
         </p>
+        <button type="button" class="btn btn-secondary my-2" onclick="getAssisteds();" id="refreshList">
+          <img src="../../Views/images/refresh-ccw.svg" alt="" width="20" height="20" />
+        </button>
       </div>
 
       <div class="col-12 col-md-6">
@@ -38,7 +41,7 @@
             @
           </span>
           <input id="searchInput" type="text" onkeyup="searchFilter();" class="form-control"
-            placeholder="Nome do assistido" aria-label="Nome do assistido" aria-describedby="basic-addon1">
+            placeholder="Apelido do assistido" aria-label="Apelido do assistido" aria-describedby="basic-addon1">
         </div>
       </div>
 
@@ -49,11 +52,10 @@
       <table class="table col-10" id="myTable">
         <thead>
           <tr>
-            <th class="fs-5">id</th>
-            <th class="fs-5">Nome</th>
-            <th class="fs-5">Apelido</th>
-            <th class="fs-5">Abordagem</th>
-            <th class="fs-5">Razão</th>
+            <th class="fs-6">#</th>
+            <th class="fs-6">Nome</th>
+            <th class="fs-6">Apelido</th>
+            <th class="fs-6">Responsável</th>
           </tr>
         </thead>
 
