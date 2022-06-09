@@ -24,50 +24,68 @@
   </nav>
 
   <div class="container-fluid">
-    <form action="/api/service" method="POST">
+    <form>
       <div class="container-fluid my-2">
         <h1 class="text-center fs-1 arvo my-2">
           Gerenciamento doações
         </h1>
         <br><br>
-        <input type="text" id="assistido" placeholder="nome do assistido">
-        <br><br><br>
-        <button id="addac" func="addactivity">
-          Adicionar atividade
-        </button>
-        <br>
-        <input type="text" id="obs" placeholder="observações">
-        </section>
+        <div class="container col-sm-11 col-md-8 align-items-center mb-4">
+          <!--  -->
+          <input type="text" name="donatorId" id="donator" placeholder="nome do doador"
+            class="col-md-5 col-sm-12 mx-auto w-100 form-control">
 
-        <table class="table" style="max-width: 90vw;" id="myTable">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Nome</th>
-              <th>Tipo</th>
-              <th>Data</th>
-              <th>Doação</th>
-              <th>Contato</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+          <select name="type" id="type" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
+            <option value="Financeiro"> Financeiro </option>
+            <option value="Insumo"> Insumo </option>
+            <option value="Voluntario"> Voluntariado </option>
+          </select>
 
-          <tbody id="resultado">
-          </tbody>
+          <input id="donationDate" type="date" placeholder="DD/MM/AAAA" class="w-100 form-control" required
+            min="2000-01-01" max="2099-09-13" />
 
-        </table>
-        <!-- <button id="addac" type="submit" class="container col-sm-11 col-md-8 align-items-center mb-4"> -->
-          <!-- Adicionar doardor/doação -->
-        <!-- </button> -->
-        <br>
+          <input type="text" id="donation" placeholder="Doação" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+
+          <input type="text" id="contact" placeholder="Contato" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+
+          <select name="type" id="status" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2">
+            <option value="Ativo"> Ativo </option>
+            <option value="Pontual"> Pontual </option>
+            <option value="Pendente"> Pendente </option>
+            <option value="Inativo"> Inativo </option>
+          </select>
+          <button id="addDonation" type="submit" onclick="insertDonation();">Adicionar doador</button>
+        </div>
     </form>
+
+    <table class="table" style="max-width: 90vw;" id="myTable">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Data</th>
+          <th>Doação</th>
+          <th>Contato</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody id="resultado">
+      </tbody>
+
+    </table>
+    <!-- <button id="addac" type="submit" class="container col-sm-11 col-md-8 align-items-center mb-4"> -->
+    <!-- Adicionar doardor/doação -->
+    <!-- </button> -->
+    <br>
   </div>
   </div>
 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="../Views/scripts/donations.js"></script>
 </body>
 
