@@ -7,7 +7,7 @@ const getCollaborators = () => {
   axios
     .get(url + "/api/collaborator")
     .then((response) => {
-
+      document.getElementById("resultado").innerHTML = "";	
       console.log(response.data)
       const donations = [];
       response.data.forEach((donation) => {
@@ -82,7 +82,8 @@ const insertDonation = () => {
     contact: contact.value
   }).then((i) => {
     console.log(i)
-    window.location.reload()
+    getCollaborators()
+    //window.location.reload()
   }).catch(e => {
     console.error(e)
   })
@@ -94,7 +95,8 @@ const deleteCollaborator = (id) => {
       .delete(url + "/api/collaborator/" + id)
       .then((response) => {
         console.table(response);
-        window.location.reload();
+        //window.location.reload();
+        getCollaborators()
       })
       .catch((e) => console.error(e));
   } else {
