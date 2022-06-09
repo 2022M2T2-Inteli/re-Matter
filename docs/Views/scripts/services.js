@@ -1,5 +1,7 @@
 const url = "http://127.0.0.1:5555";
 
+document.getElementsByTagName("form")[0].addEventListener('submit', e => e.preventDefault())
+
 const getServices = () => {
   axios
     .get(url + "/api/service")
@@ -14,8 +16,8 @@ const getServices = () => {
 
       for (let i = 0; i < services.length; i++) {
         const service = services[i];
-        document.getElementById("resultado").innerHTML += `
-        <tr>
+        document.getElementById("resultado").innerHTML += ` 
+        <tr id="${service.serviceId}">
           <td>
           ${service.type}
           </td>
@@ -31,6 +33,11 @@ const getServices = () => {
           <td>
           ${service.towelId}
           </td>
+          <td>
+          <button class = "btn btn-danger my-2" onclick="deleteService(${service.serviceId})"><a class="navbar-brand">
+          <img src="../Views/images/trash-2.svg" alt="" width="24" height="24"/>
+        </a></button>
+          </td>
         </tr>
         `;
       }
@@ -41,30 +48,47 @@ const getServices = () => {
 }
 getServices();
 
-const insertService = () =>{
-  var name = document.getElementById("assistido").value;  
-  var service = document.getElementById("service").value;
-  var obs = document.getElementById("obs").value;
-  var towel = document.getElementById("towelId").value;
+const insertService = () => {
+  var name = document.getElementById("assistido");
+  var service = document.getElementById("service");
+  var obs = document.getElementById("obs");
+  //var towel = document.getElementById("towelId");
+  
   axios
     .post(url + "/api/service", {
-      assistedID: name,
-      type: service,
-      observation: obs,
-      towelId: towel
+      assistedID: name.value,
+      type: service.value,
+      observation: obs.value,
+      //towelId: towel.value
     }).then(res => {
-      res.send(200)
+      console.log(res)
       getServices()
-  })
-  .catch(err => console.error(err))
+    })
+    .catch(err => console.error(err))
 
 }
 
 
-function check(){
+const deleteService = (id) => {
+  axios
+    .delete(url + "/api/service/" + id)
+    .then((response) => {
+      console.table(response);
+      //window.location.reload();
+      getServices();
+    })
+    .catch((e) => console.error(e));
+}
+
+
+
+
+
+
+function check() {
   let value = document.getElementById("service").value;
-  if(value != "bath"){
-    if(document.getElementById("towelInput") != null){
+  if (value != "bath") {
+    if (document.getElementById("towelInput") != null) {
       document.getElementById("towelInput").remove();
     }
   }
@@ -73,11 +97,11 @@ function check(){
   console.log(button);
   inputTowel.className = "col-md-5 col-sm-12 mx-auto w-100 form-control my-2";
   inputTowel.name = "towelId";
-  inputTowel.placeholder="Número da toalha";
+  inputTowel.placeholder = "Número da toalha";
   inputTowel.type = "number";
   inputTowel.id = "towelInput"
-  if(value == "bath"){
-    if(document.getElementById("towelInput") == null){
+  if (value == "bath") {
+    if (document.getElementById("towelInput") == null) {
       document.getElementById("serviceInputs").insertBefore(inputTowel, button);
     }
   }
