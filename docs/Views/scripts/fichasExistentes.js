@@ -31,7 +31,7 @@ const renderAssisted = (list) => {
       .catch((e) => console.error(e));
   };
 
-  list.length < 0
+  list.length > 0
     ? list.map((assisted) => {
         const { responsibleId, assistedId } = assisted;
         getResponsibleName(responsibleId, assistedId);
@@ -169,6 +169,7 @@ const modal = (assisted) => {
                       <option
                         value="1"
                         selected="${beingAttended === 1 ? "selected" : ""}"
+                      >Sim</option>
                       <option 
                         selected=${beingAttended === 0 ? "selected" : ""}
                         value="0"
