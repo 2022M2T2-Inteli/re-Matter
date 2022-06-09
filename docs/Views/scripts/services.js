@@ -10,6 +10,7 @@ const getServices = () => {
       response.data.forEach((service) => {
         console.log(service);
         services.push(service);
+        document.getElementById("resultado").innerHTML = ""
       });
 
       for (let i = 0; i < services.length; i++) {
@@ -40,3 +41,22 @@ const getServices = () => {
     .catch((e) => console.error(e));
 }
 getServices();
+
+const insertService = () =>{
+  var name = document.getElementById("assistido").value;  
+  var service = document.getElementById("service").value;
+  var obs = document.getElementById("obs").value;
+  var towel = document.getElementById("towelId").value;
+  axios
+    .post(url + "/api/service", {
+      assistedID: name,
+      type: service,
+      observation: obs,
+      towelId: towel
+    }).then(res => {
+      res.send(200)
+      getServices()
+  })
+  .catch(err => console.error(err))
+
+}
