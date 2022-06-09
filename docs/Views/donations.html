@@ -30,14 +30,24 @@
           Gerenciamento doações
         </h1>
         <br><br>
-        <input type="text" id="assistido" placeholder="nome do assistido">
-        <br><br><br>
-        <button id="addac" func="addactivity">
-          Adicionar atividade
-        </button>
-        <br>
-        <input type="text" id="obs" placeholder="observações">
-        </section>
+        <div class="container col-sm-11 col-md-8 align-items-center mb-4">
+          <input type="text" name="assistedID" id="assistido" placeholder="nome do doador" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+          <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2" onchange="change()">
+            <option value="finan"> Financeiro </option>
+            <option value="insumo"> Insumo </option>
+            <option value="volunta"> Voluntariado </option>
+          </select>
+            <input id="approachDate" type="date" placeholder="DD/MM/AAAA" class="w-100 form-control" required 
+              min="2000-01-01" max="2099-09-13" />
+            <input type="text" name="assistedID" id="assistido" placeholder="Doação" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+            <input type="text" name="assistedID" id="assistido" placeholder="Contato" class="col-md-5 col-sm-12 mx-auto w-100 form-control">
+            <select name="type" id="service" class="col-md-5 col-sm-12 mx-auto w-100 form-control my-2" onchange="change()">
+              <option value="finan"> Ativo </option>
+              <option value="insumo"> Pontual </option>
+              <option value="volunta"> Pendente </option>
+              <option value="volunta"> Inativo </option>
+            </select>
+        </div>
 
         <table class="table" style="max-width: 90vw;" id="myTable">
           <thead>
