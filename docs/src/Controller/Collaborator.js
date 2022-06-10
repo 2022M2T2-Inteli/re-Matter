@@ -5,12 +5,12 @@ export async function insertCollaborator(item) {
     db.run(
       "INSERT INTO Collaborator (name, type, date, donation, status, contact) VALUES (?,?,?,?,?,?)",
       [
-        item.name || " ",
-        item.type || " ",
-        item.date || " ",
+        item.name || "Anônimo",
+        item.type || "Voluntário",
+        item.date || today(),
         item.donation || " ",
-        item.status || " ",
-        item.contact || " ",
+        item.status || "Pendente",
+        item.contact || "Sem contato",
       ]
     );
   });
@@ -69,7 +69,7 @@ function today() {
   if (dd < 10) dd = "0" + dd;
   if (mm < 10) mm = "0" + mm;
 
-  today = dd + "/" + mm + "/" + yyyy;
+  today = yyyy + "-" + mm + "-" + dd;
 
   return today;
 }

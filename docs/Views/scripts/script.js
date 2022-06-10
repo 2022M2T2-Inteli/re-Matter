@@ -1,3 +1,4 @@
+const url = "http://127.0.0.1:5555";
 let helpedPeople = false;
 let volunteer = false;
 
@@ -61,3 +62,34 @@ window.addEventListener('scroll', function() {
         helpedPeople = true;
 	}
 });
+
+const insertCollaborator = () => {
+  var name = document.getElementById("nameInput");
+  var donation = document.getElementById("donationInput");
+  var contact = document.getElementById("contactInput");
+
+  let collaborator = {
+    name: name.value || "Anônimo",
+    type: "Voluntário",
+    donation: donation.value,
+    date: new Date(Date.now()).toLocaleDateString(),
+    contact: contact.value || "Sem contato",
+    status: "Pendente",
+  };
+
+  if (donation.value !== "" || donation.value !== null) {
+    axios
+      .post(url + "/api/collaborator", collaborator)
+      .then((res) => {
+        alert("Seu formulário foi enviado com sucesso! Obrigado!");
+
+        name.value = "";
+        donation.value = "";
+        date.value = "";
+        contact.value = "";
+      })
+      .catch((e) => console.error(e));
+  } else {
+    alert("Preencha o campo de doação!");
+  }
+};
