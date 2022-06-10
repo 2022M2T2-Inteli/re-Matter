@@ -10,13 +10,13 @@ export async function insertCollaborator(item) {
         item.date || " ",
         item.donation || " ",
         item.status || " ",
-        item.contact || " "
+        item.contact || " ",
       ]
     );
   });
 }
 
-export async function updateCollaborator(item, collaboratorId) {
+export async function updateCollaborator(item) {
   openDb().then((db) => {
     db.run(
       "UPDATE Collaborator SET name = ?, type = ?, date = ?, donation = ?, status = ?, contact = ? WHERE collaboratorId = ?",
@@ -27,7 +27,7 @@ export async function updateCollaborator(item, collaboratorId) {
         item.donation,
         item.status,
         item.contact,
-        item.collaboratorId
+        item.collaboratorId,
       ]
     );
   });
@@ -60,16 +60,16 @@ export async function deleteCollaborator(id) {
   });
 }
 
-function today(){
+function today() {
   let today = new Date();
   const yyyy = today.getFullYear();
   let mm = today.getMonth() + 1; // Months start at 0!
   let dd = today.getDate();
 
-  if (dd < 10) dd = '0' + dd;
-  if (mm < 10) mm = '0' + mm;
+  if (dd < 10) dd = "0" + dd;
+  if (mm < 10) mm = "0" + mm;
 
-  today = dd + '/' + mm + '/' + yyyy;
+  today = dd + "/" + mm + "/" + yyyy;
 
   return today;
 }

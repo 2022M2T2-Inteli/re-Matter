@@ -103,7 +103,7 @@ const modal = (assisted) => {
         <div class="modal-content">
           <div class="modal-header">
             <p class="modal-title fs-3" id="exampleModalLabel">
-              #${collabora} ${nickname} 
+              #${assistedId} ${nickname} 
             </p>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -159,7 +159,7 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Tempo em situação de rua</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="date" class="form-control" id="timeInput${assistedId}" aria-describedby="emailHelp" placeholder="Tempo em situação de rua" value=${time} disabled='true'>
+                      <input type="date" class="form-control" id="timeInput${assistedId}" aria-describedby="emailHelp" placeholder="Tempo em situação de rua" value=${time} disabled>
                     </div>
                   </div>
                 </div>
@@ -187,21 +187,26 @@ const modal = (assisted) => {
           </div>
 
           <div class='col-12 my-4 d-flex justify-content-center align-items-center'>
-          <button type="button" class="col-4 btn btn-warning d-flex flex-row justify-content-around align-items-center" onclick="toggleInputs(${assistedId});">
-            Habilitar edição 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" class="bi bi-pencil ml-2" viewBox="0 0 16 16">
-            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-            </svg>
-          </button>
+            <button type="button" class="col-5 btn btn-warning d-flex flex-row justify-content-around align-items-center" onclick="toggleInputs(${assistedId});">
+              <span id="btnText${assistedId}" class="fs-6">Habilitar edição </span>
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" class="bi bi-pencil ml-2" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-warning mx-auto" onclick="updateUser(${assistedId});">Atualizar</button>
+            <button type="button" class="btn btn-warning mx-auto" onclick="updateUser(${assistedId});" disabled='true' id="updateButton${assistedId}">Atualizar</button>
 
-            <button type="button" class="btn btn-danger d-flex align-items-center justify-content-between" data-dismiss="modal" onclick="deleteUser(${assistedId})">
-              Deletar 
-              <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
-            </button>
+            <button type="button" class="btn btn-danger d-flex align-items-center justify-content-between"
+            data-bs-dismiss="modal"
+          onclick="deleteUser(${assistedId})">
+            Deletar 
+            <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
+          </button>
+
             
             <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Fechar</button>
           </div>
@@ -219,7 +224,7 @@ const updateUser = (id) => {
     let place = document.getElementById("placeInput" + id).value;
     let time = document.getElementById("timeInput" + id).value;
     let beingAttended = true;
-    
+
     axios
       .put(url + "/api/assisted/" + id, {
         name: name,
@@ -243,9 +248,8 @@ const deleteUser = (id) => {
   if (confirm("Deseja mesmo deletar este usuário?")) {
     axios
       .delete(url + "/api/assisted/" + id)
-      .then((response) => {
-        console.table(response);
-        window.location.reload();
+      .then((res) => {
+        getAssisted();
       })
       .catch((e) => console.error(e));
   } else {
@@ -283,10 +287,15 @@ const toggleInputs = (number) => {
     "placeInput",
     "timeInput",
     "beingAttended",
+    "updateButton",
   ];
+  let buttonText = document.getElementById("btnText" + number);
 
   let inputs = ids.map((id) => document.getElementById(id + number));
   inputs.map((input) => {
     input.disabled = !input.disabled;
+    buttonText.innerText = input.disabled
+      ? "Habilitar edição"
+      : "Desabilitar edição";
   });
 };

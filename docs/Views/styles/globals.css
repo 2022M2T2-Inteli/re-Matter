@@ -91,7 +91,7 @@ div.img {
   margin-top: 1cm;
 }
 
-#tableRow:hover {
+tbody > tr:hover {
   background-color: #e7e7e7;
   cursor: pointer;
 }

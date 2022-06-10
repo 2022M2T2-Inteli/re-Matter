@@ -42,7 +42,6 @@ getResponsibles();
 
 const renderResponsibles = (list) => {
   list.map((responsible) => {
-    console.log(responsible);
     responsiblesSelect.innerHTML += `
     <option value="${responsible.id}">${responsible.name} | ${responsible.username}</option>
     `;
@@ -67,7 +66,6 @@ const insertAssisted = () => {
     axios
       .post(url + "/api/assisted", assisted)
       .then((response) => {
-        console.table(response.data);
         alert("Assistido cadastrado com sucesso!");
       })
       .catch((e) => console.error(e));
