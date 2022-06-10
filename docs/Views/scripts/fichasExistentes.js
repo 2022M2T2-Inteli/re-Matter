@@ -103,7 +103,7 @@ const modal = (assisted) => {
         <div class="modal-content">
           <div class="modal-header">
             <p class="modal-title fs-3" id="exampleModalLabel">
-              #${assistedId} ${nickname} 
+              #${collabora} ${nickname} 
             </p>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -282,7 +282,7 @@ const toggleInputs = (number) => {
     "approachDateInput",
     "placeInput",
     "timeInput",
-    "beingAttended``",
+    "beingAttended",
   ];
 
   let inputs = ids.map((id) => document.getElementById(id + number));
