@@ -215,13 +215,10 @@ app
       msg: `${req.body.id} deletado de admins com sucesso.`,
     });
   });
+  
 
-// 404
-// router.all("*", (req, res) => {
-//   res.status(404).sendFile(path.join(__dirname, "../../docs/Views/404.html"));
-// });
-
+  
 //Inica o servidor
 app.listen(PORT, () =>
-  console.log(`Server running on port http://127.0.0.1:${PORT}`)
+  console.log(`Server running on port http://localhost:${PORT}`)
 );

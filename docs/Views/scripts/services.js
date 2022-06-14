@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:5555";
+const url = "http://localhost:5555";
 
 document
   .getElementsByTagName("form")[0]

@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:5555";
+const url = "http://localhost:5555";
 param = window.location.href.split("/")[5];
 
 let assistedName = document.getElementById("assistedName");
