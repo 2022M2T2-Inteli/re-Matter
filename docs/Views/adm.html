@@ -49,6 +49,20 @@
         <button class="col-11 col-md-6 col-lg-6 btn btn-dark mb-4">
           <p class="fs-3 m-0" onclick="location.href = '/'">Sair</p>
         </button>
+
+        <button class="col-11 col-md-6 col-lg-6 btn btn-dark mb-4" onclick = "darkmode()">Darkmode</button>
+        <button class="col-11 col-md-6 col-lg-6 btn btn-dark mb-4" onclick = "lightmode()">Lightmode</button>
+
+        <script>
+          function darkmode() {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+          }
+          function lightmode() {
+            document.body.style.backgroundColor = "white";
+            document.body.style.color = "black";
+          }
+        </script>
       </div>
     </div>
   </div>
