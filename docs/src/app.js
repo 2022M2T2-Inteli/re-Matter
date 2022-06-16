@@ -31,6 +31,8 @@ import {
 
 import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
 
+import { insertPlaces, getPlaces, deletePlaces } from "./Controller/Maps.js";
+
 import { router } from "./Routes/routes.js";
 
 const app = express();
@@ -216,7 +218,44 @@ app
     });
   });
   
+// "api/maps"
 
+app
+  .route("/api/maps")
+  .get(async (req, res) => {
+    let markers = await getPlaces().then((markers) => {
+      //console.log(markers);
+      res.send(markers);
+    });
+  })
+  .post(async (req, res) => {
+    console.log(req.body);
+    insertPlaces(req.body);
+    res.redirect("/api/maps");
+  });
+
+  app
+  .route("/api/maps/:id")
+  .put(async (req, res) => {
+    if (req.body && !req.params.id) {
+      res.json({
+        statusCode: 400,
+        msg: "Voce precisa informar um id.",
+      });
+    } else {
+      updateCollaborator(req.body);
+      res.json({
+        statusCode: 200,
+      });
+    }
+  })
+  .delete(async (req, res) => {
+    await deletePlaces(req.params.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.params.id} deletado do mapa com sucesso.`,
+    });
+  });
   
 //Inica o servidor
 app.listen(PORT, () =>

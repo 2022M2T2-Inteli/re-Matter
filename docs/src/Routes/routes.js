@@ -47,3 +47,7 @@ router.get("/area-restrita/fichas/abordagem", (req, res) => {
 router.get("/area-restrita/doacoes", (req, res) => {
   res.sendFile(path.join(__dirname, "../../docs/Views/donations.html"));
 });
+
+router.get("/area-restrita/mapa", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../docs/Views/maps.html"));
+});
