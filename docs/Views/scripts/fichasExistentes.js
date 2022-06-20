@@ -21,8 +21,9 @@ const getAssisteds = () => {
       for (let info in assisteds) {
 
         relatory += `
-        info : ${JSON.stringify(assisteds[info])};
-  `
+        info : 
+        ${JSON.stringify(assisteds[info])};
+        `
       }
 
       console.log(assisteds.find(assisted => assisted.createdAt == "6/9/2022"))
