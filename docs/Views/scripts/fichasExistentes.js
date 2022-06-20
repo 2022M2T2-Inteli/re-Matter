@@ -21,8 +21,13 @@ const getAssisteds = () => {
       for (let info in assisteds) {
 
         relatory += `
-        info : 
-        ${JSON.stringify(assisteds[info])};
+          Nome: ${assisteds[info].name}
+          Nome social: ${assisteds[info].nickname}
+          Data de chegada: ${assisteds[info].approachDate}
+          Local: ${assisteds[info].place}
+          Tempo na rua: ${assisteds[info].time}
+          Responsável: ${assisteds[info].responsibleId}
+          \n
         `
       }
 
@@ -30,9 +35,13 @@ const getAssisteds = () => {
       console.log(relatory)
       return relatory;
     }
-    var doc = new jsPDF()
+    var doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'cm',
+      format: 'A4'
+    })
 
-      doc.text(generateRelatory(), 10, 10)
+      doc.text(generateRelatory(), 1, 1)  
       doc.save('relatorio.pdf')
     
       return assisteds;
