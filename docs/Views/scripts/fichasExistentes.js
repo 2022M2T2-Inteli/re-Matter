@@ -12,6 +12,17 @@ const getAssisteds = () => {
 
       renderAssisted(assisteds);
 
+      let relatory = "";
+
+      for (let info in assisteds) {
+
+        relatory += `
+        info : ${JSON.stringify(assisteds[info])};
+  `
+      }
+
+      console.log(relatory)
+
       return assisteds;
     })
     .catch((e) => console.error(e));
@@ -36,20 +47,18 @@ const renderAssisted = (list) => {
 
   list.length > 0
     ? list.map((assisted) => {
-        const { responsibleId, assistedId } = assisted;
-        getResponsibleName(responsibleId, assistedId);
+      const { responsibleId, assistedId } = assisted;
+      getResponsibleName(responsibleId, assistedId);
 
-        table.innerHTML += `
+      table.innerHTML += `
     
     ${modal(assisted)}
 
-    <tr class="mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal${
-      assisted.assistedId
-    }" id="tableRow">
+    <tr class="mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal${assisted.assistedId
+        }" id="tableRow">
       <td class='fs-6'>
-        ${
-          assisted.assistedId ||
-          '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
+        ${assisted.assistedId ||
+        '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
         }
       </td>
       <td class='fs-6'>
@@ -61,7 +70,7 @@ const renderAssisted = (list) => {
       <td class='fs-6' id="responsibleName${assisted.assistedId}"></td>
     </tr>
     `;
-      })
+    })
     : (document.getElementById("resultado").innerHTML = `
     <tr>
       <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
@@ -117,9 +126,8 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Nome</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${
-    name == "" || name == null ? "" : name
-  }" disabled='true'>
+                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${name == "" || name == null ? "" : name
+    }" disabled='true'>
                     </div>
                     </div>
                 </div>
@@ -299,3 +307,4 @@ const toggleInputs = (number) => {
       : "Desabilitar edição";
   });
 };
+
