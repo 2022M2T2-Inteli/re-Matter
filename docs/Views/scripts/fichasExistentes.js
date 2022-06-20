@@ -1,6 +1,8 @@
 const url = "http://localhost:5555";
 const TOKEN = "0987654321";
 
+let exportedAssisted = []
+
 const getAssisteds = () => {
   axios
     .get(url + "/api/assisted")
@@ -10,10 +12,12 @@ const getAssisteds = () => {
         assisteds.push(assisted);
       });
 
+      exportedAssisted.push(...assisteds);
+
       renderAssisted(assisteds);
-
+      function generateRelatory(){
       let relatory = "";
-
+      //forma um relatorio da tabela dos assistidos
       for (let info in assisteds) {
 
         relatory += `
@@ -21,13 +25,24 @@ const getAssisteds = () => {
   `
       }
 
+      console.log(assisteds.find(assisted => assisted.createdAt == "6/9/2022"))
       console.log(relatory)
+      return relatory;
+    }
+    var doc = new jsPDF()
 
+      doc.text(generateRelatory(), 10, 10)
+      doc.save('relatorio.pdf')
+    
       return assisteds;
     })
     .catch((e) => console.error(e));
 };
 getAssisteds();
+
+exportedAssisted.map((assisted) => {
+  console.log(assisted);
+})
 
 const renderAssisted = (list) => {
   const table = document.getElementById("resultado");
