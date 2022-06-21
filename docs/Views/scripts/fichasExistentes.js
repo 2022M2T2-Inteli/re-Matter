@@ -15,11 +15,12 @@ const getAssisteds = () => {
       exportedAssisted.push(...assisteds);
 
       renderAssisted(assisteds);
+      //função que escreve o relatório de assistidos
       function generateRelatory(){
       let relatory = "";
       //forma um relatorio da tabela dos assistidos
       for (let info in assisteds) {
-
+        //adiciona ao relatorio as informações do assistido
         relatory += `
           Nome: ${assisteds[info].name}
           Nome social: ${assisteds[info].nickname}
@@ -30,17 +31,19 @@ const getAssisteds = () => {
           \n
         `
       }
-
+      //teste
       console.log(assisteds.find(assisted => assisted.createdAt == "6/9/2022"))
       console.log(relatory)
+      //retorna o relatorio
       return relatory;
     }
+    //cria um pdf
     var doc = new jsPDF({
       orientation: 'portrait',
       unit: 'cm',
       format: 'A4'
     })
-
+    //adiciona o relatorio ao pdf
       doc.text(generateRelatory(), 1, 1)  
       doc.save('relatorio.pdf')
     
