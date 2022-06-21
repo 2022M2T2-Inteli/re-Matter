@@ -16,12 +16,8 @@ const getAssisteds = () => {
 
       renderAssisted(assisteds);
       //função que escreve o relatório de assistidos
-      var button = false
       
       $("#but").click(function(){
-        button = true
-        console.log(button)
-        if (button == true) {
           console.log("entrou")
           function generateRelatory() {
             let relatory = "";
@@ -52,9 +48,7 @@ const getAssisteds = () => {
           })
           //adiciona o relatorio ao pdf
           doc.text(generateRelatory(), 1, 1)
-          doc.save('relatorio.pdf')
-          button = false
-        }
+          doc.save('relatorio.pdf')   
       })
       return assisteds;
     })
