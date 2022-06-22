@@ -1,57 +1,107 @@
-const PORT = 1234;
-const url = `http://localhost:${1234}`;
+const url = "http://localhost:1234";
 const TOKEN = "0987654321";
+
+let exportedAssisted = []
+
+//Gets the assisted table
 
 const getAssisteds = () => {
   axios
-    .get(url + `/api/assisted`)
+    .get(url + "/api/assisted")
     .then((response) => {
+
+      // Gets all the assisted in the database
+
       const assisteds = [];
       response.data.forEach((assisted) => {
         assisteds.push(assisted);
       });
 
+      exportedAssisted.push(...assisteds);
+
+      // Calls the render function to show the assisted on the screen
+
       renderAssisted(assisteds);
 
+      //Writes a relatory of the assisted in a PDF file
+      
+      $("#but").click(function(){
+          console.log("entrou")
+          function generateRelatory() {
+            let relatory = "";
+
+            //Creates a new relatory for the assisteds
+            
+            for (let info in assisteds) {
+              
+              //Add a new line for each information from the table
+              
+              relatory += `
+              Nome: ${assisteds[info].name}
+              Nome social: ${assisteds[info].nickname}
+              Data de chegada: ${assisteds[info].approachDate}
+              Local: ${assisteds[info].place}
+              Tempo na rua: ${assisteds[info].time}
+              Responsável: ${assisteds[info].responsibleId}
+              \n
+            `
+            }
+            //test
+            console.log(assisteds.find(assisted => assisted.createdAt == "6/9/2022"))
+            console.log(relatory)
+            //Returns the relatory
+            return relatory;
+          }
+          //Creates a PDF document
+          var doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'cm',
+            format: 'A4'
+          })
+          //Add the text to the PDF
+          doc.text(generateRelatory(), 1, 1)
+          doc.save('relatorio.pdf')   
+      })
       return assisteds;
     })
     .catch((e) => console.error(e));
 };
+exportedAssisted.map((assisted) => {
+  console.log(assisted);
+})
+//Executes the getAssisteds function
 getAssisteds();
 
-// Render all assisteds
+//Show the table on the screen
 const renderAssisted = (list) => {
   const table = document.getElementById("resultado");
-  const getResponsibleName = (assistedId, id) => {
+  const getResponsibleName = (id, assistedId) => {
     axios
       .get(url + `/api/${TOKEN}/admin`)
       .then((response) => {
         const adminName = response.data.find((admin) => admin.adminId == id);
 
         document.getElementById(`responsibleName${assistedId}`).innerHTML =
-          adminName != null ? adminName.name : "Não encontrado.";
+          adminName.name;
       })
       .catch((e) => console.error(e));
   };
-
+  //
   table.innerHTML = "";
 
   list.length > 0
     ? list.map((assisted) => {
-        const { responsibleId, assistedId } = assisted;
-        getResponsibleName(assistedId, responsibleId);
+      const { responsibleId, assistedId } = assisted;
+      getResponsibleName(responsibleId, assistedId);
 
-        table.innerHTML += `
+      table.innerHTML += `
     
     ${modal(assisted)}
-
-    <tr class="mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal${
-      assisted.assistedId
-    }" id="tableRow">
+    <tr class="mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal${assisted.assistedId
+        }" id="tableRow">
       <td class='fs-6'>
-        ${
-          assisted.assistedId ||
-          '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
+        ${assisted.assistedId ||
+        '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
         }
       </td>
       <td class='fs-6'>
@@ -63,7 +113,7 @@ const renderAssisted = (list) => {
       <td class='fs-6' id="responsibleName${assisted.assistedId}"></td>
     </tr>
     `;
-      })
+    })
     : (document.getElementById("resultado").innerHTML = `
     <tr>
       <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
@@ -85,6 +135,7 @@ const renderLoading = () => {
     `;
 };
 
+//Modal for the assisted
 const modal = (assisted) => {
   const {
     name,
@@ -113,19 +164,16 @@ const modal = (assisted) => {
             
             <div class="row">
               <div class="col-md-12">
-
                 <!-- Name sec -->
                 <div class="form-group mb-2">
                   <label for="exampleInputEmail1" class="fs-4">Nome</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${
-    name == "" || name == null ? "" : name
-  }" disabled='true'>
+                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${name == "" || name == null ? "" : name
+    }" disabled='true'>
                     </div>
                     </div>
                 </div>
-
                 <!-- Nickname sec -->
                 <div class="form-group mb-2">
                   <label for="exampleInputEmail1" class="fs-4">Apelido / nome fornecido</label>
@@ -135,7 +183,6 @@ const modal = (assisted) => {
                     </div>
                     </div>
                 </div>
-
                 <!-- Approach date sec -->
                 <div class="form-group mb-2">
                   <label for="exampleInputEmail1" class="fs-4">Data de abordagem</label>
@@ -145,7 +192,6 @@ const modal = (assisted) => {
                     </div>
                     </div>
                 </div>
-
                 <!-- Place sec -->
                 <div class="form-group mb-2">
                   <label for="exampleInputEmail1" class="fs-4">Local de abordagem</label>
@@ -155,7 +201,6 @@ const modal = (assisted) => {
                     </div>
                   </div>
                 </div>
-
                 <!-- Time sec -->
                 <div class="form-group mb-2">
                   <label for="exampleInputEmail1" class="fs-4">Tempo em situação de rua</label>
@@ -165,7 +210,6 @@ const modal = (assisted) => {
                     </div>
                   </div>
                 </div>
-
                 <!-- beingAttended sec -->
                 <div class="form-group mb-2">
                   <label for="exampleInputEmail1" class="fs-4">Está sendo atendido</label>
@@ -187,28 +231,23 @@ const modal = (assisted) => {
                 
               </div>              
           </div>
-
           <div class='col-12 my-4 d-flex justify-content-center align-items-center'>
             <button type="button" class="col-5 btn btn-warning d-flex flex-row justify-content-around align-items-center" onclick="toggleInputs(${assistedId});">
               <span id="btnText${assistedId}" class="fs-6">Habilitar edição </span>
-
               <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" class="bi bi-pencil ml-2" viewBox="0 0 16 16">
               <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
               </svg>
             </button>
           </div>
         </div>
-
           <div class="modal-footer">
             <button type="button" class="btn btn-warning mx-auto" onclick="updateUser(${assistedId});" disabled='true' id="updateButton${assistedId}">Atualizar</button>
-
             <button type="button" class="btn btn-danger d-flex align-items-center justify-content-between"
             data-bs-dismiss="modal"
           onclick="deleteUser(${assistedId})">
             Deletar 
             <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
           </button>
-
             
             <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Fechar</button>
           </div>
@@ -218,6 +257,7 @@ const modal = (assisted) => {
   `;
 };
 
+//Updates the information of the assisted
 const updateUser = (id) => {
   if (confirm("Deseja mesmo atualizar os dados?")) {
     let name = document.getElementById("nameInput" + id).value;
@@ -228,7 +268,7 @@ const updateUser = (id) => {
     let beingAttended = true;
 
     axios
-      .put(url + `/api/assisted/${id}`, {
+      .put(url + "/api/assisted/" + id, {
         name: name,
         nickname: nickname,
         place: place,
@@ -245,11 +285,11 @@ const updateUser = (id) => {
     return;
   }
 };
-
+//Deletes the assisted
 const deleteUser = (id) => {
   if (confirm("Deseja mesmo deletar este usuário?")) {
     axios
-      .delete(url + `/api/assisted/${id}`)
+      .delete(url + "/api/assisted/" + id)
       .then((res) => {
         getAssisteds();
       })

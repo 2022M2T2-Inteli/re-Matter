@@ -5,14 +5,21 @@ document
   .getElementsByTagName("form")[0]
   .addEventListener("submit", (e) => e.preventDefault());
 
+// Function that gets all the services provided that are in the database 
+
 const getServices = () => {
   axios
     .get(`${url}/api/service`)
     .then((response) => {
+
+      // If it succeeds, it will render the services
+
       const services = [];
       response.data.forEach((service) => {
         services.push(service);
       });
+
+      // Calls the function to render services from the data gotten from the database
 
       document.getElementById("resultado").innerHTML = "";
 
@@ -22,7 +29,10 @@ const getServices = () => {
     })
     .catch((e) => console.error(e));
 };
+
 getServices();
+
+// Function that render all the services goten from the database
 
 const renderServices = (list) => {
   const table = document.getElementById("resultado");

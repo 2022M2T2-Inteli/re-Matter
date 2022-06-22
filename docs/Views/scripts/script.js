@@ -1,9 +1,12 @@
 const PORT = 1234;
 const url = `http://localhost:${1234}`;
 
+// Flags to control the animation
 let helpedPeople = false;
 let volunteer = false;
 
+
+// Function to redirect the user for the selected section
 function movePageTo(id) {
   document.getElementById("navbarSupportedContent").classList.remove("show");
   setTimeout(function () {
@@ -13,6 +16,8 @@ function movePageTo(id) {
   }, 1);
 }
 
+
+// Function to display the counter of people helped
 function displayCounter(id, capNumber) {
   const element = document.getElementById(id);
   const duration = 2000;
@@ -97,11 +102,15 @@ window.addEventListener("scroll", function () {
   }
 });
 
+
+// Function to add new collaborator from voluntariado form
 const insertCollaborator = () => {
+  // Gets the values from the form
   var name = document.getElementById("nameInput");
   var donation = document.getElementById("donationInput");
   var contact = document.getElementById("contactInput");
 
+  // Creates a new collaborator object
   let collaborator = {
     name: name.value || "Anônimo",
     type: "Voluntário",
@@ -111,10 +120,14 @@ const insertCollaborator = () => {
     status: "Pendente",
   };
 
+  // Checks if the value input is filled, then sends the request to the server
   if (donation.value !== "" || donation.value !== null) {
     axios
       .post(`revirar.herokuapp.com/api/collaborator`, collaborator)
       .then((res) => {
+
+        // If the request is successful, the form is reseted
+        
         alert("Seu formulário foi enviado com sucesso! Obrigado!");
 
         name.value = "";
