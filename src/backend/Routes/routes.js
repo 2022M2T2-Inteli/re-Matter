@@ -9,51 +9,51 @@ router.get("/", (req, res) => {
 });
 
 router.get("/doacao", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/donate.html"));
+  res.sendFile(path.join(__dirname, "../frontend/donate.html"));
 });
 
 router.get("/voluntariado", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/voluntariado.html"));
+  res.sendFile(path.join(__dirname, "../frontend/voluntariado.html"));
 });
 
 router.get("/area-restrita", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/area-restrita.html"));
+  res.sendFile(path.join(__dirname, "../frontend/area-restrita.html"));
 });
 
 router.get("/area-restrita/adm", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/adm.html"));
+  res.sendFile(path.join(__dirname, "../frontend/adm.html"));
 });
 
 router.get("/area-restrita/fichas", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/fichasExistentes.html"));
+  res.sendFile(path.join(__dirname, "../frontend/fichasExistentes.html"));
 });
 
 router.get("/area-restrita/ficha/:id", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/ficha.html"));
+  res.sendFile(path.join(__dirname, "../frontend/ficha.html"));
 });
 
 router.get("/area-restrita/atividades", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/services.html"));
+  res.sendFile(path.join(__dirname, "../frontend/services.html"));
 });
 
 router.get("/area-restrita/eventos", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/events.html"));
+  res.sendFile(path.join(__dirname, "../frontend/events.html"));
 });
 
 router.get("/area-restrita/fichas/nova", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/newForm.html"));
+  res.sendFile(path.join(__dirname, "../frontend/newForm.html"));
 });
 
 router.get("/area-restrita/fichas/abordagem", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/teste.ejs"));
+  res.sendFile(path.join(__dirname, "../frontend/teste.ejs"));
 });
 
 router.get("/area-restrita/doacoes", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/donations.html"));
+  res.sendFile(path.join(__dirname, "../frontend/donations.html"));
 });
 
 router.get("/area-restrita/admins", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Views/admins.html"));
+  res.sendFile(path.join(__dirname, "../frontend/admins.html"));
 });
 
 router.get("/api", (req, res) => {
