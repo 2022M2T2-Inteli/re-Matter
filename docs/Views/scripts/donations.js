@@ -1,4 +1,5 @@
-const url = "http://localhost:5555";
+const PORT = 1234;
+const url = `http://localhost:${1234}`;
 
 document
   .getElementsByTagName("form")[0]
@@ -6,7 +7,7 @@ document
 
 const getCollaborators = () => {
   axios
-    .get(url + "/api/collaborator")
+    .get(`${url}/api/collaborator`)
     .then((response) => {
       const collaborators = [];
       response.data.forEach((collaborator) => {
@@ -195,7 +196,10 @@ const insertCollaborator = () => {
 
   if (donation.value !== "" || donation.value !== null) {
     axios
-      .post(url + "/api/collaborator", collaborator)
+      .post(
+        `${url}/api/collaborator`,
+        collaborator
+      )
       .then((res) => {
         getCollaborators();
         alert("Colaboração adicionada com sucesso!");
@@ -237,7 +241,10 @@ const updateCollaborator = (collaboratorId) => {
     };
 
     axios
-      .put(url + `/api/collaborator/${collaboratorId}`, updatedCollaborator)
+      .put(
+        `${url}/api/collaborator/${collaboratorId}`,
+        updatedCollaborator
+      )
       .then((response) => {
         getCollaborators();
       })
@@ -270,7 +277,7 @@ const toggleInputs = (number) => {
 
 const deleteCollaborator = (id) => {
   axios
-    .delete(url + "/api/collaborator/" + id)
+    .delete(`${url}/api/collaborator/${id}`)
     .then((res) => {
       getCollaborators();
     })

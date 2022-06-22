@@ -16,7 +16,10 @@ export async function insertAdmin(item) {
 
 export async function getAdmins() {
   return openDb().then(async (db) => {
-    const res = await db.all("SELECT * FROM Admin");
+    // get all admins from the tables Admin and Pruap
+    const res = await db.all(
+      "SELECT * FROM Admin INNER JOIN Pruap ON Admin.username = Pruap.login"
+    );
     return res;
   });
 }

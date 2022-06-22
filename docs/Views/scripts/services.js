@@ -1,4 +1,5 @@
-const url = "http://localhost:5555";
+const PORT = 1234;
+const url = `http://localhost:${1234}`;
 
 document
   .getElementsByTagName("form")[0]
@@ -6,7 +7,7 @@ document
 
 const getServices = () => {
   axios
-    .get(url + "/api/service")
+    .get(`${url}/api/service`)
     .then((response) => {
       const services = [];
       response.data.forEach((service) => {
@@ -228,17 +229,19 @@ const serviceModal = (service) => {
 
 const insertService = () => {
   var name = document.getElementById("assistido").value;
-  var service = document.getElementById("service").value;
+  var serviceType = document.getElementById("service").value;
   var obs = document.getElementById("obs").value;
   var towel = document.getElementById("towelInput").value;
 
+  let service = {
+    assistedID: name || "",
+    type: serviceType || "",
+    observation: obs || "",
+    towelId: towel !== "" ? towel : "-",
+  };
+
   axios
-    .post(url + "/api/service", {
-      assistedID: name || "",
-      type: service || "",
-      observation: obs || "",
-      towelId: towel !== "" ? towel : "-",
-    })
+    .post(`${url}/api/service`, service)
     .then((res) => {
       getServices();
       alert("Serviço adicionado com sucesso!");
@@ -250,13 +253,18 @@ const updateService = (service) => {
   if (confirm("Deseja mesmo atualizar os dados?")) {
     const { serviceId, type, towelId, observation, assistedID } = service;
 
+    let updatedService = {
+      type: type,
+      observation: observation,
+      towelId: towelId,
+      assistedID: assistedID,
+    };
+
     axios
-      .put(url + "/api/service/" + serviceId, {
-        type: type,
-        observation: observation,
-        towelId: towelId,
-        assistedID: assistedID,
-      })
+      .put(
+        `${url}/api/service/${serviceId}`,
+        updateService
+      )
       .then((response) => {
         getServices();
       })
@@ -287,7 +295,7 @@ const toggleInputs = (number) => {
 
 const deleteService = (id) => {
   axios
-    .delete(url + "/api/service/" + id)
+    .delete(`${url}/api/service/${id}`)
     .then((res) => {
       getServices();
     })
@@ -376,7 +384,7 @@ function dateFilter() {
 
 const getAssisteds = () => {
   axios
-    .get(url + "/api/assisted")
+    .get(`${url}/api/assisted`)
     .then((response) => {
       const assisteds = [];
       response.data.forEach((assisted) => {
@@ -404,7 +412,7 @@ const renderAssisted = (list) => {
 
 const getAssistedName = (assistedID, id) => {
   axios
-    .get(url + `/api/assisted/${assistedID}`)
+    .get(`${url}/api/assisted/${assistedID}`)
     .then((response) => {
       const assistedName = response.data.name || response.data.nickname;
       let value = document.getElementById(id);

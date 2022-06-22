@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-const __dirname = path.resolve();
 import { openDb, createDatabase, _initializeUsers } from "./configDB.js";
+const __dirname = path.resolve();
 
 const TOKEN = process.env.TOKEN || "0987654321";
 
@@ -29,17 +29,25 @@ import {
   updateService,
 } from "./Controller/Service.js";
 
-import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
+import { getEvents, insertEvent, updateEvent, deleteEvent } from "./Controller/Events.js";
 
-import { insertPlaces, getPlaces, deletePlaces } from "./Controller/Maps.js";
+import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
 
 import { router } from "./Routes/routes.js";
 
 const app = express();
 
 app.use(express.static("../"));
-app.use(express.static("../../docs"));
-app.use(express.static("../../docs/Views/styles/globals.css"));
+app.use(express.static("../Views"));
+app.use(express.static("../Views/styles/globals.css"));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 app.use(express.json());
 app.set("views", "../Views");
 app.set("view engine", "ejs");
@@ -47,11 +55,10 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const PORT = 5555;
+const PORT = process.env.PORT || 1234;
 
 createDatabase();
 openDb();
-// _initializeUsers();
 
 app.use("/", router);
 
@@ -60,12 +67,6 @@ app
   .route("/api/assisted")
   // returns all users
   .get(async (req, res) => {
-    // let assisted = await getAssisteds().then((assisted) => {
-    //   res.render("assisted", {
-    //     action: "list",
-    //     sampleData: assisted,
-    //   });
-    // });
     let assisted = await getAssisteds();
     res.json(assisted);
   })
@@ -120,11 +121,7 @@ app
     res.send(service);
   })
   .post(async (req, res) => {
-    console.log(req.body);
     insertService(req.body);
-    //res.json({
-    //  statusCode: 200,
-    //});
     res.redirect("/area-restrita/atividades");
   });
 
@@ -157,7 +154,6 @@ app
   .route("/api/collaborator")
   .get(async (req, res) => {
     let collaborators = await getCollaborators().then((collaborators) => {
-      console.log(collaborators);
       res.send(collaborators);
     });
   })
@@ -217,25 +213,30 @@ app
       msg: `${req.body.id} deletado de admins com sucesso.`,
     });
   });
-  
-// "api/maps"
 
+// Events
 app
-  .route("/api/maps")
+  .route("/api/events")
   .get(async (req, res) => {
-    let markers = await getPlaces().then((markers) => {
-      //console.log(markers);
-      res.send(markers);
-    });
+    let events = await getEvents();
+    res.send(events);
   })
   .post(async (req, res) => {
-    console.log(req.body);
-    insertPlaces(req.body);
-    res.redirect("/api/maps");
+    if (req.body && !req.body.title) {
+      res.json({
+        statusCode: 400,
+        msg: "Voce precisa informar um title.",
+      });
+    } else {
+      insertEvent(req.body);
+      res.json({
+        statusCode: 200,
+      });
+    }
   });
 
-  app
-  .route("/api/maps/:id")
+app
+  .route("/api/event/:id")
   .put(async (req, res) => {
     if (req.body && !req.params.id) {
       res.json({
@@ -243,20 +244,20 @@ app
         msg: "Voce precisa informar um id.",
       });
     } else {
-      updateCollaborator(req.body);
+      updateEvent(req.body, req.params.id);
       res.json({
         statusCode: 200,
       });
     }
   })
   .delete(async (req, res) => {
-    await deletePlaces(req.params.id);
+    await deleteEvent(req.params.id);
     res.json({
       statusCode: 200,
-      msg: `${req.params.id} deletado do mapa com sucesso.`,
+      msg: `${req.params.id} deletado de eventos com sucesso.`,
     });
   });
-  
+
 //Inica o servidor
 app.listen(PORT, () =>
   console.log(`Server running on port http://localhost:${PORT}`)

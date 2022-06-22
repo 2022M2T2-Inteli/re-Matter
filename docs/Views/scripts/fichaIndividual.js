@@ -1,11 +1,13 @@
-const url = "http://localhost:5555";
+const PORT = 1234;
+const url = `http://localhost:${1234}`;
+
 param = window.location.href.split("/")[5];
 
 let assistedName = document.getElementById("assistedName");
 
 const getAssisted = () => {
   axios
-    .get(url + `/api/assisted/${param}`)
+    .get(`${url}/${param}`)
     .then((response) => {
       let assisted = response.data;
       renderAssisted(assisted);
@@ -18,12 +20,13 @@ const getAssisted = () => {
 getAssisted();
 
 const renderAssisted = (assisted) => {
-  assisted.name == null ? assistedName.attributes.placeholder.value = 'Não forneceu' && assistedName.value : assistedName.value = assisted.name;
+  assisted.name == null
+    ? (assistedName.attributes.placeholder.value =
+        "Não forneceu" && assistedName.value)
+    : (assistedName.value = assisted.name);
 };
 
-const toggleInput = () => {
-  
-}
+const toggleInput = () => {};
 
 function searchFilter() {
   var input, filter, table, tr, td, i, txtValue;

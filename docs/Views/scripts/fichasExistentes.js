@@ -1,69 +1,35 @@
-const url = "http://localhost:5555";
+const PORT = 1234;
+const url = `http://localhost:${1234}`;
 const TOKEN = "0987654321";
-
-let exportedAssisted = []
 
 const getAssisteds = () => {
   axios
-    .get(url + "/api/assisted")
+    .get(url + `/api/assisted`)
     .then((response) => {
       const assisteds = [];
       response.data.forEach((assisted) => {
         assisteds.push(assisted);
       });
 
-      exportedAssisted.push(...assisteds);
-
       renderAssisted(assisteds);
-      function generateRelatory(){
-      let relatory = "";
-      //forma um relatorio da tabela dos assistidos
-      for (let info in assisteds) {
 
-        relatory += `
-          Nome: ${assisteds[info].name}
-          Nome social: ${assisteds[info].nickname}
-          Data de chegada: ${assisteds[info].approachDate}
-          Local: ${assisteds[info].place}
-          Tempo na rua: ${assisteds[info].time}
-          Responsável: ${assisteds[info].responsibleId}
-          \n
-        `
-      }
-
-      console.log(assisteds.find(assisted => assisted.createdAt == "6/9/2022"))
-      console.log(relatory)
-      return relatory;
-    }
-    var doc = new jsPDF({
-      orientation: 'portrait',
-      unit: 'cm',
-      format: 'A4'
-    })
-
-      doc.text(generateRelatory(), 1, 1)  
-      doc.save('relatorio.pdf')
-    
       return assisteds;
     })
     .catch((e) => console.error(e));
 };
 getAssisteds();
 
-exportedAssisted.map((assisted) => {
-  console.log(assisted);
-})
-
+// Render all assisteds
 const renderAssisted = (list) => {
   const table = document.getElementById("resultado");
-  const getResponsibleName = (id, assistedId) => {
+  const getResponsibleName = (assistedId, id) => {
     axios
       .get(url + `/api/${TOKEN}/admin`)
       .then((response) => {
         const adminName = response.data.find((admin) => admin.adminId == id);
 
         document.getElementById(`responsibleName${assistedId}`).innerHTML =
-          adminName.name;
+          adminName != null ? adminName.name : "Não encontrado.";
       })
       .catch((e) => console.error(e));
   };
@@ -72,18 +38,20 @@ const renderAssisted = (list) => {
 
   list.length > 0
     ? list.map((assisted) => {
-      const { responsibleId, assistedId } = assisted;
-      getResponsibleName(responsibleId, assistedId);
+        const { responsibleId, assistedId } = assisted;
+        getResponsibleName(assistedId, responsibleId);
 
-      table.innerHTML += `
+        table.innerHTML += `
     
     ${modal(assisted)}
 
-    <tr class="mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal${assisted.assistedId
-        }" id="tableRow">
+    <tr class="mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal${
+      assisted.assistedId
+    }" id="tableRow">
       <td class='fs-6'>
-        ${assisted.assistedId ||
-        '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
+        ${
+          assisted.assistedId ||
+          '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
         }
       </td>
       <td class='fs-6'>
@@ -95,7 +63,7 @@ const renderAssisted = (list) => {
       <td class='fs-6' id="responsibleName${assisted.assistedId}"></td>
     </tr>
     `;
-    })
+      })
     : (document.getElementById("resultado").innerHTML = `
     <tr>
       <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
@@ -151,8 +119,9 @@ const modal = (assisted) => {
                   <label for="exampleInputEmail1" class="fs-4">Nome</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class='col-12'>
-                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${name == "" || name == null ? "" : name
-    }" disabled='true'>
+                      <input type="text" class="form-control" id="nameInput${assistedId}" aria-describedby="emailHelp" placeholder="Não informado..." value="${
+    name == "" || name == null ? "" : name
+  }" disabled='true'>
                     </div>
                     </div>
                 </div>
@@ -259,7 +228,7 @@ const updateUser = (id) => {
     let beingAttended = true;
 
     axios
-      .put(url + "/api/assisted/" + id, {
+      .put(url + `/api/assisted/${id}`, {
         name: name,
         nickname: nickname,
         place: place,
@@ -280,9 +249,9 @@ const updateUser = (id) => {
 const deleteUser = (id) => {
   if (confirm("Deseja mesmo deletar este usuário?")) {
     axios
-      .delete(url + "/api/assisted/" + id)
+      .delete(url + `/api/assisted/${id}`)
       .then((res) => {
-        getAssisted();
+        getAssisteds();
       })
       .catch((e) => console.error(e));
   } else {
@@ -332,4 +301,3 @@ const toggleInputs = (number) => {
       : "Desabilitar edição";
   });
 };
-
