@@ -1,4 +1,6 @@
-const url = "http://localhost:5555";
+const PORT = 1234;
+const url = `http://localhost:${1234}`;
+
 const TOKEN = "0987654321";
 
 document.getElementsByTagName("form")[0].addEventListener("submit", (e) => {
@@ -20,7 +22,7 @@ let observation = document.getElementById("observation");
 
 const getResponsibles = () => {
   axios
-    .get(url + `/api/${TOKEN}/admin`)
+    .get(`https://revirar.herokuapp.com/api/${TOKEN}/admin`)
     .then((response) => {
       const responsibles = [];
       response.data.forEach((responsible) => {
@@ -64,7 +66,7 @@ const insertAssisted = () => {
 
   try {
     axios
-      .post(url + "/api/assisted", assisted)
+      .post(`https://revirar.herokuapp.com/api/assisted/${assisted}`)
       .then((response) => {
         alert("Assistido cadastrado com sucesso!");
       })

@@ -40,7 +40,7 @@ export async function createDatabase() {
     // Cria uma tabela dos administradores se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Admin( 
-        adminId INTEGER 
+        adminId INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         username TEXT NOT NULL,
         email TEXT NOT NULL,
@@ -59,17 +59,6 @@ export async function createDatabase() {
         status TEXT NOT NULL
       )`
     );
-    // Cria uma tabela de lugares se ela não existir
-    db.exec(
-      `CREATE TABLE IF NOT EXISTS Places( 
-        placeId INTEGER PRIMARY KEY AUTOINCREMENT, 
-        latitude NUMERIC NOT NULL,
-        longitude NUMERIC NOT NULL,
-        streetName TEXT,
-        assistedName TEXT,
-        circleRadius INTEGER
-      )`
-    );
     // Cria uma tabela para os logins e senhas
     db.exec(
       `CREATE TABLE IF NOT EXISTS Pruap( 
@@ -77,27 +66,52 @@ export async function createDatabase() {
         password TEXT NOT NULL
       )`
     );
+    // Cria uma tabela para os eventos
+    db.exec(
+      `CREATE TABLE IF NOT EXISTS Event(
+        eventId INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        imageUrl TEXT NOT NULL,
+        description TEXT NOT NULL,
+        date TEXT NOT NULL
+      )`
+    );
   });
 }
 
 export const _initializeUsers = async () => {
-  const user = {
-    username: "soraya.montanheiro",
-    password: "soraya123",
-    email: "soraya.montanheiro@email.com",
-    phoneNumber: "123456789",
-  };
+  const users = [
+    {
+      name: "Soraya",
+      username: "soraya.revirar",
+      password: "soraya123",
+      email: "soraya@revirar.com",
+      phoneNumber: "123456789",
+    },
+    {
+      name: "Patricia",
+      username: "patricia.revirar",
+      password: "patricia123",
+      email: "patricia@revirar.com",
+      phoneNumber: "123456789",
+    }
+  ];
 
-  openDb().then((db) => {
-    db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
-      user.username,
-      user.password,
-    ]);
+  users.map(async (user) => {
+    openDb().then((db) => {
+      db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
+        user.username,
+        user.password,
+      ]);
 
-    db.run("INSERT INTO Admin (name, email, phoneNumber) VALUES (?,?,?)", [
-      user.username,
-      user.email,
-      user.phoneNumber,
-    ]);
+      db.run("INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?,?)", [
+        user.name,
+        user.username,
+        user.email,
+        user.phoneNumber,
+      ]);
+    });
   });
 };
+
+// _initializeUsers()
