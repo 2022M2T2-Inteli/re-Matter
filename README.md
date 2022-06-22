@@ -5,6 +5,7 @@
 </p>
 
 # Nome do projeto
+## re:Matter
 
 ## Nome do grupo
 
@@ -18,7 +19,7 @@
 
 ## 📝 Descrição
 
-Curta descrição sobre o que o seu projeto faz (problema a ser resolvido e solução proposta).
+A solução é uma aplicação web que será usada por voluntários, doadores, e administradores. Terá muitas funcionalidades para todos usuários. Como lugar para fazer doações, participar de eventos, se voluntariar, e também fazer fichas para os beneficiados do projeto. Será um site simples e intuitivo, onde o usuário pode acessar as diferentes abas, para acessar as diferentes funcionalidades oferecidas no site.
 
 ## 📁 Estrutura de pastas
 
