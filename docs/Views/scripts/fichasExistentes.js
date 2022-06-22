@@ -1,11 +1,10 @@
 const PORT = 1234;
 const url = `http://localhost:${1234}`;
-
 const TOKEN = "0987654321";
 
 const getAssisteds = () => {
   axios
-    .get("https://revirar.herokuapp.com/api/assisted")
+    .get(url + `/api/assisted`)
     .then((response) => {
       const assisteds = [];
       response.data.forEach((assisted) => {
@@ -25,7 +24,7 @@ const renderAssisted = (list) => {
   const table = document.getElementById("resultado");
   const getResponsibleName = (assistedId, id) => {
     axios
-      .get(`https://revirar.herokuapp.com/api/${TOKEN}/admin`)
+      .get(url + `/api/${TOKEN}/admin`)
       .then((response) => {
         const adminName = response.data.find((admin) => admin.adminId == id);
 
@@ -229,7 +228,7 @@ const updateUser = (id) => {
     let beingAttended = true;
 
     axios
-      .put(`https://revirar.herokuapp.com/api/assisted/${id}`, {
+      .put(url + `/api/assisted/${id}`, {
         name: name,
         nickname: nickname,
         place: place,
@@ -250,7 +249,7 @@ const updateUser = (id) => {
 const deleteUser = (id) => {
   if (confirm("Deseja mesmo deletar este usuário?")) {
     axios
-      .delete(`https://revirar.herokuapp.com/api/assisted/${id}`)
+      .delete(url + `/api/assisted/${id}`)
       .then((res) => {
         getAssisteds();
       })

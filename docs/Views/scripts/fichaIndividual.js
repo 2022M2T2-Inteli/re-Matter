@@ -7,7 +7,7 @@ let assistedName = document.getElementById("assistedName");
 
 const getAssisted = () => {
   axios
-    .get(`https://revirar.herokuapp.com/${param}`)
+    .get(`${url}/${param}`)
     .then((response) => {
       let assisted = response.data;
       renderAssisted(assisted);

@@ -7,7 +7,7 @@ document
 
 const getServices = () => {
   axios
-    .get(`https://revirar.herokuapp.com/api/service`)
+    .get(`${url}/api/service`)
     .then((response) => {
       const services = [];
       response.data.forEach((service) => {
@@ -241,7 +241,7 @@ const insertService = () => {
   };
 
   axios
-    .post(`https://revirar.herokuapp.com/api/service`, service)
+    .post(`${url}/api/service`, service)
     .then((res) => {
       getServices();
       alert("Serviço adicionado com sucesso!");
@@ -262,7 +262,7 @@ const updateService = (service) => {
 
     axios
       .put(
-        `https://revirar.herokuapp.com/api/service/${serviceId}`,
+        `${url}/api/service/${serviceId}`,
         updateService
       )
       .then((response) => {
@@ -295,7 +295,7 @@ const toggleInputs = (number) => {
 
 const deleteService = (id) => {
   axios
-    .delete(`https://revirar.herokuapp.com/api/service/${id}`)
+    .delete(`${url}/api/service/${id}`)
     .then((res) => {
       getServices();
     })
@@ -384,7 +384,7 @@ function dateFilter() {
 
 const getAssisteds = () => {
   axios
-    .get(`https://revirar.herokuapp.com/api/assisted`)
+    .get(`${url}/api/assisted`)
     .then((response) => {
       const assisteds = [];
       response.data.forEach((assisted) => {
@@ -412,7 +412,7 @@ const renderAssisted = (list) => {
 
 const getAssistedName = (assistedID, id) => {
   axios
-    .get(`https://revirar.herokuapp.com/api/assisted/${assistedID}`)
+    .get(`${url}/api/assisted/${assistedID}`)
     .then((response) => {
       const assistedName = response.data.name || response.data.nickname;
       let value = document.getElementById(id);

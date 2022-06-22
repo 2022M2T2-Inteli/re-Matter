@@ -37,9 +37,9 @@ import { router } from "./Routes/routes.js";
 
 const app = express();
 
-app.use(express.static("./"));
-app.use(express.static("./Views"));
-app.use(express.static("./Views/styles/globals.css"));
+app.use(express.static("../"));
+app.use(express.static("../Views"));
+app.use(express.static("../Views/styles/globals.css"));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
   bodyParser.urlencoded({

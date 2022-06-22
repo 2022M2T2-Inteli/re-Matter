@@ -7,7 +7,7 @@ document
 
 const getCollaborators = () => {
   axios
-    .get("https://revirar.herokuapp.com/api/collaborator")
+    .get(`${url}/api/collaborator`)
     .then((response) => {
       const collaborators = [];
       response.data.forEach((collaborator) => {
@@ -197,7 +197,7 @@ const insertCollaborator = () => {
   if (donation.value !== "" || donation.value !== null) {
     axios
       .post(
-        "https://revirar.herokuapp.com/api/collaborator",
+        `${url}/api/collaborator`,
         collaborator
       )
       .then((res) => {
@@ -242,7 +242,7 @@ const updateCollaborator = (collaboratorId) => {
 
     axios
       .put(
-        `https://revirar.herokuapp.com/api/collaborator/${collaboratorId}`,
+        `${url}/api/collaborator/${collaboratorId}`,
         updatedCollaborator
       )
       .then((response) => {
@@ -277,7 +277,7 @@ const toggleInputs = (number) => {
 
 const deleteCollaborator = (id) => {
   axios
-    .delete(`https://revirar.herokuapp.com/api/collaborator/${id}`)
+    .delete(`${url}/api/collaborator/${id}`)
     .then((res) => {
       getCollaborators();
     })

@@ -22,7 +22,7 @@ let observation = document.getElementById("observation");
 
 const getResponsibles = () => {
   axios
-    .get(`https://revirar.herokuapp.com/api/${TOKEN}/admin`)
+    .get(`${url}/api/${TOKEN}/admin`)
     .then((response) => {
       const responsibles = [];
       response.data.forEach((responsible) => {
@@ -66,7 +66,7 @@ const insertAssisted = () => {
 
   try {
     axios
-      .post(`https://revirar.herokuapp.com/api/assisted/${assisted}`)
+      .post(`${url}/api/assisted/${assisted}`)
       .then((response) => {
         alert("Assistido cadastrado com sucesso!");
       })
