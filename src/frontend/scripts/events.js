@@ -75,8 +75,8 @@ const renderEvents = (list) => {
     : (table.innerHTML = `
         <tr>
           <td class='fs-6 align-middle'>Nenhum evento encontrado</td>
-          <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-          <td class="d-xs-none d-md-block"><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+          <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+          <td class="d-xs-none d-md-block"><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
         </tr>
       `);
 };
@@ -168,7 +168,7 @@ const eventModal = (event) => {
               data-bs-dismiss="modal"
             onclick="deleteEvent(${eventId})">
               Deletar 
-              <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
+              <img src="../../frontend/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
             </button>
             
             <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Fechar</button>

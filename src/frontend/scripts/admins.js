@@ -56,10 +56,10 @@ const renderAdmins = (list) => {
     : (table.innerHTML = `
   <tr>
     <td class='fs-6 align-middle'>Nenhum aministrador encontrado</td>
-    <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-    <td class="d-xs-none d-md-block"><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-    <td class="d-none d-md-table-cell"><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-    <td class="d-none d-md-table-cell"><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td class="d-xs-none d-md-block"><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td class="d-none d-md-table-cell"><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td class="d-none d-md-table-cell"><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
   </tr>
   `);
 };
@@ -153,7 +153,7 @@ const adminModal = (admin) => {
               data-bs-dismiss="modal"
             onclick="deleteAdmin(${adminId})">
               Deletar 
-              <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
+              <img src="../../frontend/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
             </button>
             
             <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Fechar</button>

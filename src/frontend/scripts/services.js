@@ -37,6 +37,9 @@ getServices();
 const renderServices = (list) => {
   const table = document.getElementById("resultado");
 
+  // Verifies the list is not empty
+  // If it is not, it will create a table row for each service
+
   list.length > 0
     ? list.map((service) => {
         const { assistedID } = service;
@@ -86,14 +89,17 @@ const renderServices = (list) => {
       })
     : (table.innerHTML = `
   <tr>
-    <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
     <td class='fs-6 align-middle'>Nenhum serviço encontrado</td>
-    <td class="d-xs-none d-md-block"><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-    <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-    <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td class="d-xs-none d-md-block"><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+    <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
   </tr>
   `);
 };
+
+
+// Creates modal for each service with editable fields and both update and delete buttons
 
 const serviceModal = (service) => {
   const { serviceId, type, time, observation, towelId, assistedID } = service;
@@ -226,7 +232,7 @@ const serviceModal = (service) => {
               data-bs-dismiss="modal"
             onclick="deleteService(${serviceId})">
               Deletar 
-              <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
+              <img src="../../frontend/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
             </button>
             
             <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Fechar</button>
@@ -237,11 +243,19 @@ const serviceModal = (service) => {
   `;
 };
 
+
+// Function to insert a new service in the database
+
 const insertService = () => {
+
+  // Get the values from the inputs
+
   var name = document.getElementById("assistido").value;
   var serviceType = document.getElementById("service").value;
   var obs = document.getElementById("obs").value;
   var towel = document.getElementById("towelInput").value;
+
+  // Creates an object with the values
 
   let service = {
     assistedID: name || "",
@@ -249,6 +263,8 @@ const insertService = () => {
     observation: obs || "",
     towelId: towel !== "" ? towel : "-",
   };
+
+  // Tries to insert the service in the database
 
   axios
     .post(`${url}/api/service`, service)
@@ -259,10 +275,18 @@ const insertService = () => {
     .catch((e) => console.error(e));
 };
 
+// Function to update a service in the database
+// It takes the service id as parameter
+
 const updateService = (service) => {
+
+  // Checks if the user wants to update the service
+
   if (confirm("Deseja mesmo atualizar os dados?")) {
     const { serviceId, type, towelId, observation, assistedID } = service;
 
+    // Creates an object with the values
+    
     let updatedService = {
       type: type,
       observation: observation,
@@ -270,12 +294,17 @@ const updateService = (service) => {
       assistedID: assistedID,
     };
 
+    // Tries to update the service in the database
+
     axios
       .put(
         `${url}/api/service/${serviceId}`,
         updateService
       )
       .then((response) => {
+
+        // If it succeeds, it gets the services again
+
         getServices();
       })
       .catch((e) => console.error(e));
@@ -283,6 +312,8 @@ const updateService = (service) => {
     return;
   }
 };
+
+// Function to toggle the inputs to enable the user to edit the service
 
 const toggleInputs = (number) => {
   let ids = [
@@ -294,6 +325,8 @@ const toggleInputs = (number) => {
   ];
   let buttonText = document.getElementById(`btnText${number}`);
 
+  // Gets all the elements of a service and toggles the inputs
+
   let inputs = ids.map((id) => document.getElementById(id + number));
   inputs.map((input) => {
     input.disabled = !input.disabled;
@@ -303,6 +336,9 @@ const toggleInputs = (number) => {
   });
 };
 
+
+// Function to delete a service from the database
+
 const deleteService = (id) => {
   axios
     .delete(`${url}/api/service/${id}`)
@@ -311,6 +347,9 @@ const deleteService = (id) => {
     })
     .catch((e) => console.error(e));
 };
+
+// Function to check if the service is "bath"
+// If it is, it creates a input to get the towel id
 
 function check() {
   let service = document.getElementById("service");
@@ -325,6 +364,8 @@ function check() {
     towelId.value = "";
   }
 }
+
+// Function to set the filter of the services
 
 function serviceFilter() {
   var input, filter, table, tr, td, i, txtValue;
@@ -348,6 +389,9 @@ function serviceFilter() {
   }
 }
 
+// Function to set the filter for the assisted
+
+
 function assistedFilter() {
   var input, filter, table, tr, td, i, txtValue;
 
@@ -369,6 +413,8 @@ function assistedFilter() {
     }
   }
 }
+
+// Function to set the filter for the date
 
 function dateFilter() {
   var input, filter, table, tr, td, i, txtValue;
@@ -392,6 +438,8 @@ function dateFilter() {
   }
 }
 
+// Function to get all the assisted from the database
+
 const getAssisteds = () => {
   axios
     .get(`${url}/api/assisted`)
@@ -410,6 +458,8 @@ const getAssisteds = () => {
 
 getAssisteds();
 
+// Function to render the assisted from the database
+
 const renderAssisted = (list) => {
   list.map((assisted) => {
     document.getElementById("assistido").innerHTML += `
@@ -419,6 +469,8 @@ const renderAssisted = (list) => {
     `;
   });
 };
+
+// Function to get assisted name by id
 
 const getAssistedName = (assistedID, id) => {
   axios

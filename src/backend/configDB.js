@@ -1,7 +1,6 @@
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
-
 // Opens the database
 
 export async function openDb() {
@@ -64,7 +63,7 @@ export async function createDatabase() {
         status TEXT NOT NULL
       )`
     );
-    
+
     // Cria uma tabela de lugares se ela não existir
     db.exec(
       `CREATE TABLE IF NOT EXISTS Places( 
@@ -119,21 +118,29 @@ export const _initializeUsers = async () => {
 
   users.map(async (user) => {
     openDb().then((db) => {
+      // insert an user if it doesn't exist
       db.run(
-        `
-        INSERT INTO Pruap (login, password) VALUES (?,?) WHERE NOT EXISTS(SELECT 1 FROM Pruap WHERE login = ${user.username})
-      `,
-        [user.username, user.password]
+        `INSERT INTO Pruap(login, password) VALUES(?, ?)`,
+        [user.username, user.password],
+        (err) => {
+          if (err) {
+            console.log(err);
+          }
+        }
       );
 
+      // insert an admin if it doesn't exist
       db.run(
-        `
-        INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?,?) WHERE NOT EXISTS(SELECT 1 FROM Admin WHERE username = ${user.username})
-      `,
-        [user.name, user.username, user.email, user.phoneNumber]
+        `INSERT INTO Admin(name, username, email, phoneNumber) VALUES(?, ?, ?, ?)`,
+        [user.name, user.username, user.email, user.phoneNumber],
+        (err) => {
+          if (err) {
+            console.log(err);
+          }
+        }
       );
     });
   });
 };
 
-_initializeUsers();
+// _initializeUsers();

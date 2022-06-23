@@ -86,7 +86,7 @@ const insertAssisted = () => {
 
   try {
     axios
-      .post(`${url}/api/assisted/${assisted}`)
+      .post(`${url}/api/assisted`, assisted)
       .then((response) => {
 
         // If it succeeds, it clears the displays a message for success

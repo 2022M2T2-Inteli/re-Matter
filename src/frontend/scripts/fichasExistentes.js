@@ -101,7 +101,7 @@ const renderAssisted = (list) => {
         }" id="tableRow">
       <td class='fs-6'>
         ${assisted.assistedId ||
-        '<img src="../../Views/images/loading.svg" alt="" width="48" height="48" />'
+        '<img src="../../frontend/images/loading.svg" alt="" width="48" height="48" />'
         }
       </td>
       <td class='fs-6'>
@@ -116,10 +116,10 @@ const renderAssisted = (list) => {
     })
     : (document.getElementById("resultado").innerHTML = `
     <tr>
-      <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+      <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
       <td class='fs-6 align-middle'>Nenhum assistido encontrado</td>
-      <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
-      <td><img src="../../Views/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+      <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
+      <td><img src="../../frontend/images/loading.gif" alt="" width="24" class="mx-auto my-0"/></td>
     </tr>
     `);
 };
@@ -128,7 +128,7 @@ const renderLoading = () => {
   document.getElementById("resultado").innerHTML = `
     <tr>
       <td></td>
-      <td class='fs-4'>Carregando... <img src="../../Views/images/loading.gif" alt="" width="32" height="32" /></td>
+      <td class='fs-4'>Carregando... <img src="../../frontend/images/loading.gif" alt="" width="32" height="32" /></td>
       <td></td>
       <td></td>
     </tr>
@@ -246,7 +246,7 @@ const modal = (assisted) => {
             data-bs-dismiss="modal"
           onclick="deleteUser(${assistedId})">
             Deletar 
-            <img src="../../Views/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
+            <img src="../../frontend/images/trash-2.svg" alt="Deletar" height="16" class="d-inline-block align-text-top" />
           </button>
             
             <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Fechar</button>
