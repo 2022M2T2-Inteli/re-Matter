@@ -1,4 +1,4 @@
-const url = "http://localhost:5555";
+const url = "http://localhost:1234";
 
 // Sets constants for the map
 // The "theMarker" is responsible for creating a new pin on the map
@@ -16,7 +16,7 @@ let information = {
 // Creates a person icon to be used on the map pre-existing markers
 
 var personFill = L.icon({
-    iconUrl: '../../Views/images/person-fill.svg',
+    iconUrl: '../../frontend/images/person-fill.svg',
 
     iconSize:     [30, 30], // size of the icon
 });

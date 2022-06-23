@@ -5,10 +5,15 @@ document
   .getElementsByTagName("form")[0]
   .addEventListener("submit", (e) => e.preventDefault());
 
+// FUnction that gets all colabortors in the database
+
 const getCollaborators = () => {
   axios
     .get(`${url}/api/collaborator`)
     .then((response) => {
+      
+      // If it succeeds, it will push all the collaborators into an array
+      
       const collaborators = [];
       response.data.forEach((collaborator) => {
         collaborators.push(collaborator);
@@ -16,16 +21,25 @@ const getCollaborators = () => {
 
       document.getElementById("resultado").innerHTML = "";
 
+      // Then it will render the collaborators
+
       renderCollaborators(collaborators);
 
       return response.data;
     })
     .catch((e) => console.error(e));
 };
+
 getCollaborators();
+
+// Function that render collaborator goten in the database
 
 const renderCollaborators = (list) => {
   const table = document.getElementById("resultado");
+
+  // Verifies if the list is empty
+  // If it is, it will render a row with a message "Nenhuma colaborador encontrado"
+  // If it isn't, it will render a row with the collaborator's data
 
   list.length > 0
     ? list.map((collaborator) => {
@@ -58,6 +72,9 @@ const renderCollaborators = (list) => {
   </tr>
   `);
 };
+
+// Function that creates individual modals for each collaboration
+// With both upadate and delete buttons, with the id as a parameter
 
 const collaboratorModal = (collaborator) => {
   const { collaboratorId, name, type, date, contact, donation } = collaborator;
@@ -177,13 +194,20 @@ const collaboratorModal = (collaborator) => {
   `;
 };
 
+// Function that inserts a new collaborator in the database
+
 const insertCollaborator = () => {
+
+  // Gets all the data from the HTML file
+
   var name = document.getElementById("collaboratorName");
   var type = document.getElementById("collaboratorType");
   var donation = document.getElementById("collaboratorDonation");
   var date = document.getElementById("collaboratorDate");
   var contact = document.getElementById("collaboratorContact");
   var status = document.getElementById("collaboratorStatus");
+
+  // Creates a new collaborator object
 
   let collaborator = {
     name: name.value || "Anônimo",
@@ -193,6 +217,9 @@ const insertCollaborator = () => {
     contact: contact.value || "Sem contato",
     status: status.value,
   };
+
+  // Verifies if the donation value is not null
+  // If it isn't null, it tries to insert the collaborator in the database
 
   if (donation.value !== "" || donation.value !== null) {
     axios
@@ -217,8 +244,17 @@ const insertCollaborator = () => {
   }
 };
 
+// Function to update a collaborator's information in the database
+
 const updateCollaborator = (collaboratorId) => {
+  
+  // Verifies if the user wants to update the collaborator's information
+  
   if (confirm("Deseja mesmo atualizar os dados?")) {
+
+    // If the user confirms, it gets all the data from the HTML file with the collaborator's ID
+    // and creates a new updateCollaborator object
+
     let name = document.getElementById("collaboratorName" + collaboratorId);
     let type = document.getElementById("collaboratorType" + collaboratorId);
     let donation = document.getElementById(
@@ -240,13 +276,19 @@ const updateCollaborator = (collaboratorId) => {
       collaboratorId: collaboratorId,
     };
 
+    // Tries to update the collaborator in the database
+
     axios
       .put(
         `${url}/api/collaborator/${collaboratorId}`,
         updatedCollaborator
       )
       .then((response) => {
+
+        // If the collaborator was updated, it gets all the collaborators from the database
+
         getCollaborators();
+
       })
       .catch((e) => console.error(e));
   } else {
@@ -254,7 +296,12 @@ const updateCollaborator = (collaboratorId) => {
   }
 };
 
+// Function to toggle the inputs to enable the user to edit the collaborator's information
+
 const toggleInputs = (number) => {
+
+  // Gets all collaborator's data and adds its id to the function's parameter
+
   let ids = [
     "collaboratorName",
     "collaboratorType",
@@ -266,6 +313,9 @@ const toggleInputs = (number) => {
   ];
   let buttonText = document.getElementById(`btnText${number}`);
 
+
+  // Then it toggles the input's status and the button's text
+
   let inputs = ids.map((id) => document.getElementById(id + number));
   inputs.map((input) => {
     input.disabled = !input.disabled;
@@ -274,6 +324,9 @@ const toggleInputs = (number) => {
       : "Desabilitar edição";
   });
 };
+
+// Function to delete a collaborator from the database
+// Gets a collaborator's id and tries to delete it from the database
 
 const deleteCollaborator = (id) => {
   axios
@@ -284,8 +337,13 @@ const deleteCollaborator = (id) => {
     .catch((e) => console.error(e));
 };
 
+
+// Function to search for a collaborator in the table of collaborators
+
 function collaboratorFilter() {
   var input, filter, table, tr, td, i, txtValue;
+
+  // Gets all the data from the HTML file
 
   input = document.getElementById("collaboratorFilterInput");
   filter = input.value.toUpperCase();
@@ -306,8 +364,12 @@ function collaboratorFilter() {
   }
 }
 
+//  Function to search a date in the table
+
 function dateFilter() {
   var input, filter, table, tr, td, i, txtValue;
+
+  // Gets all the data from the HTML file
 
   input = document.getElementById("dateFilterInput");
   filter = input.value.toUpperCase();

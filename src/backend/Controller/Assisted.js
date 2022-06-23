@@ -1,5 +1,17 @@
 import { openDb } from "../configDB.js";
 
+/*
+  In this file, you'll find the functions that will be used to manage
+  the information related to the Assisted table in the database. All the
+  functions open the database and modify data using SQL queries.
+  Funtions in this file are:
+    - insertAssisted: Inserts a new assisted in the database.
+    - updateAssisted: Updates an assisted in the database by its id.
+    - getAssisteds: Gets all the assisteds from the database.
+    - getAssisted: Gets an assisted from the database by its id.
+    - deleteAdmin: Deletes an assisted from the database by its id.
+*/
+
 export async function insertAssisted(item) {
   openDb().then((db) => {
     db.run(

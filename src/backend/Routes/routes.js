@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 
+// File that contains routes used to load HTML files
+
 export const router = express.Router();
 const __dirname = path.resolve();
 
@@ -50,6 +52,10 @@ router.get("/area-restrita/fichas/abordagem", (req, res) => {
 
 router.get("/area-restrita/doacoes", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/donations.html"));
+});
+
+router.get("/area-restrita/mapa", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/maps.html"));
 });
 
 router.get("/area-restrita/admins", (req, res) => {

@@ -1,5 +1,15 @@
 import { openDb } from "../configDB.js";
 
+/*
+  In this file, you'll find the functions that will be used to manage
+  the information related to the Admin table in the database. All the
+  functions open the database and modify data using SQL queries.
+  Funtions in this file are:
+    - insertAdmin: Inserts a new admin in the database.
+    - getAdmins: Gets all the admins from the database.
+    - deleteAdmin: Deletes a admin from the database by its id.
+*/
+
 export async function insertAdmin(item) {
   openDb().then((db) => {
     db.run(

@@ -95,3 +95,9 @@ tbody > tr:hover {
   background-color: #e7e7e7;
   cursor: pointer;
 }
+
+#map {
+  height: 500px;
+  width: 500px;
+  margin: auto;
+}

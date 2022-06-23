@@ -6,6 +6,9 @@ const __dirname = path.resolve();
 
 const TOKEN = process.env.TOKEN || "0987654321";
 
+// Section to import functions from other files
+// They are used to modify Tables in the database
+
 import {
   deleteAssisted,
   getAssisted,
@@ -33,6 +36,12 @@ import { getEvents, insertEvent, updateEvent, deleteEvent } from "./Controller/E
 
 import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
 
+import { insertPlace, getPlaces, deletePlace } from "./Controller/Maps.js";
+
+//--------------------------- End of section -----------------------------------
+
+// Expressions to laod files, parse requests, etc.
+
 import { router } from "./Routes/routes.js";
 
 const app = express();
@@ -57,8 +66,13 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 1234;
 
+
+// Creates and opens database
+
 createDatabase();
 openDb();
+
+// Routes 
 
 app.use("/", router);
 
@@ -255,6 +269,32 @@ app
     res.json({
       statusCode: 200,
       msg: `${req.params.id} deletado de eventos com sucesso.`,
+    });
+  });
+
+// "api/maps"
+
+app
+.route("/api/maps")
+.get(async (req, res) => {
+  let markers = await getPlaces().then((markers) => {
+    //console.log(markers);
+    res.send(markers);
+  });
+})
+.post(async (req, res) => {
+  console.log(req.body);
+  insertPlace(req.body);
+  res.redirect("/api/maps");
+});
+
+app
+  .route("/api/maps/:id")
+  .delete(async (req, res) => {
+    await deletePlace(req.params.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.params.id} deletado do mapa com sucesso.`,
     });
   });
 
