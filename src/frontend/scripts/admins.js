@@ -5,7 +5,7 @@ const url = `http://localhost:${1234}`;
 document
   .getElementsByTagName("form")[0]
   .addEventListener("submit", (e) => e.preventDefault());
-
+//table get admins
 const getAdmins = () => {
   axios
     .get(url + `/api/${TOKEN}/admin`)
@@ -63,7 +63,7 @@ const renderAdmins = (list) => {
   </tr>
   `);
 };
-
+//ADMIN MODAL edit
 const adminModal = (admin) => {
   const { adminId, name, login, email, phoneNumber, password, type } =
   admin;

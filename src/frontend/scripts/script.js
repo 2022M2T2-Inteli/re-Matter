@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderEvents();
 });
-
+// helped people counter
 window.addEventListener("scroll", function () {
   var element = document.querySelector("#helped-people");
   var position = element.getBoundingClientRect();
