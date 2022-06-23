@@ -136,4 +136,4 @@ export const _initializeUsers = async () => {
   });
 };
 
-_initializeUsers();
+//_initializeUsers();
