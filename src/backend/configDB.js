@@ -1,12 +1,17 @@
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
+
+// Opens the database
+
 export async function openDb() {
   return open({
     filename: "./data/database.db",
     driver: sqlite3.Database,
   });
 }
+
+// Creates All tables in the database if they don't exist
 
 export async function createDatabase() {
   openDb().then((db) => {
@@ -91,6 +96,8 @@ export async function createDatabase() {
     );
   });
 }
+
+// Initializes main users in the database
 
 export const _initializeUsers = async () => {
   const users = [

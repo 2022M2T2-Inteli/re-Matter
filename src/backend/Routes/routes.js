@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 
+// File that contains routes used to load HTML files
+
 export const router = express.Router();
 const __dirname = path.resolve();
 
