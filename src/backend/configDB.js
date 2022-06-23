@@ -94,24 +94,26 @@ export const _initializeUsers = async () => {
       password: "patricia123",
       email: "patricia@revirar.com",
       phoneNumber: "123456789",
-    }
+    },
   ];
 
   users.map(async (user) => {
     openDb().then((db) => {
-      db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
-        user.username,
-        user.password,
-      ]);
+      db.run(
+        `
+        INSERT INTO Pruap (login, password) VALUES (?,?) WHERE NOT EXISTS(SELECT 1 FROM Pruap WHERE login = ${user.username})
+      `,
+        [user.username, user.password]
+      );
 
-      db.run("INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?,?)", [
-        user.name,
-        user.username,
-        user.email,
-        user.phoneNumber,
-      ]);
+      db.run(
+        `
+        INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?,?) WHERE NOT EXISTS(SELECT 1 FROM Admin WHERE username = ${user.username})
+      `,
+        [user.name, user.username, user.email, user.phoneNumber]
+      );
     });
   });
 };
 
-// _initializeUsers()
+_initializeUsers();
