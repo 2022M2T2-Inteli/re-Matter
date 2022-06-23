@@ -1,4 +1,4 @@
-const url = "http://localhost:5555";
+const url = "http://localhost:1234";
 
 // Sets constants for the map
 // The "theMarker" is responsible for creating a new pin on the map

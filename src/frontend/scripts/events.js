@@ -23,16 +23,23 @@ image_input.addEventListener("change", function () {
   reader.readAsDataURL(this.files[0]);
 });
 
+// Function to get events from the database
+
 const getEvents = () => {
   axios
     .get(url + `/api/events`)
     .then((response) => {
+
+      // If it succeeds, it pushes the events to the array
+
       const events = [];
       response.data.forEach((event) => {
         events.push(event);
       });
 
       document.getElementById("resultado").innerHTML = "";
+
+      // Render the events
 
       renderEvents(events);
 
@@ -42,8 +49,14 @@ const getEvents = () => {
 };
 getEvents();
 
+// Function that render all the events goten in the database
+
 const renderEvents = (list) => {
   const table = document.getElementById("resultado");
+
+  // Checks if the list is empty
+  // If it isn't, it creates a row for every event
+  // If it is, it creates a row with a message
 
   list.length > 0
     ? list.map((event) => {
@@ -67,6 +80,9 @@ const renderEvents = (list) => {
         </tr>
       `);
 };
+
+
+// Creates a modal for each event
 
 const eventModal = (event) => {
   const { eventId, title, description, imageUrl, date } = event;
@@ -163,10 +179,17 @@ const eventModal = (event) => {
   `;
 };
 
+// Function to insert a event in the database
+
 const insertEvent = () => {
+
+  // Get the values from the form
+
   let title = document.getElementById("title");
   let description = document.getElementById("description");
   let date = document.getElementById("date");
+
+  // Creates a new event object
 
   let event = {
     title: title.value,
@@ -175,10 +198,15 @@ const insertEvent = () => {
     imageUrl: uploaded_image,
   };
 
+  // Checks if the event is valid and then tries to insert it in the database
+
   if (event.title !== "" || event.description !== null) {
     axios
       .post(url + `/api/events`, event)
       .then((res) => {
+
+        // If the event is inserted successfully, it gets the events from the database to render them in the page
+
         alert("Evento adicionado com sucesso!");
         getEvents();  
       })
@@ -188,11 +216,21 @@ const insertEvent = () => {
   }
 };
 
+// Function to update events in the database by an event id
+
 const updateEvent = (eventId) => {
+
+  // Checks if the user wants to update the event
+
   if (confirm("Deseja mesmo atualizar os dados?")) {
+
+    // Get the values from the form
+
     let title = document.getElementById(`eventName${eventId}`);
     let description = document.getElementById(`eventDescription${eventId}`);
     let date = document.getElementById(`eventDate${eventId}`);
+
+    // Image update in the database
 
     let updatedImage;
 
@@ -209,6 +247,8 @@ const updateEvent = (eventId) => {
       reader.readAsDataURL(this.files[0]);
     });
 
+    // Creates a new eupdatedEvent object
+
     let updatedEvent = {
       title: title.value,
       description: description.value,
@@ -216,9 +256,14 @@ const updateEvent = (eventId) => {
       date: date.value
     };
 
+    // And then tries to update the event in the database
+
     axios
       .put(url + `/api/event/${eventId}`, updatedEvent)
       .then((response) => {
+
+        // If the event is updated successfully, it gets the events from the database to render them in the page
+
         getEvents();
       })
       .catch((e) => console.error(e));
@@ -226,6 +271,8 @@ const updateEvent = (eventId) => {
     return;
   }
 };
+
+// Function to toggle the inputs to enable the user to edit the event
 
 const toggleInputs = (number) => {
   let ids = [
@@ -246,6 +293,8 @@ const toggleInputs = (number) => {
   });
 };
 
+// Function to delete an event by an event id
+
 const deleteEvent = (id) => {
   if (confirm("Deseja mesmo deletar este evento?")) {
     axios
@@ -258,6 +307,8 @@ const deleteEvent = (id) => {
     return;
   }
 };
+
+// Filter events by name
 
 function eventFilter() {
   var input, filter, table, tr, td, i, txtValue;
