@@ -1,5 +1,16 @@
 import { openDb } from "../configDB.js";
 
+/*
+  In this file, you'll find the functions that will be used to manage
+  the information related to the Event table in the database. All the
+  functions open the database and modify data using SQL queries.
+  Funtions in this file are:
+    - getEvents: Gets all the events from the database.
+    - insertEvent: Inserts an event in the database.
+    - updateEvent: Updates an event from the database by its id.
+    - deleteEvent: Deletes an event from the database by its id.
+*/
+
 export async function getEvents() {
   return openDb().then(async (db) => {
     const res = await db.all("SELECT * FROM Event");

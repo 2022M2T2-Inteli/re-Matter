@@ -33,6 +33,8 @@ import { getEvents, insertEvent, updateEvent, deleteEvent } from "./Controller/E
 
 import { deleteAdmin, getAdmins, insertAdmin } from "./Controller/Admin.js";
 
+import { insertPlace, getPlaces, deletePlace } from "./Controller/Maps.js";
+
 import { router } from "./Routes/routes.js";
 
 const app = express();
@@ -255,6 +257,32 @@ app
     res.json({
       statusCode: 200,
       msg: `${req.params.id} deletado de eventos com sucesso.`,
+    });
+  });
+
+// "api/maps"
+
+app
+.route("/api/maps")
+.get(async (req, res) => {
+  let markers = await getPlaces().then((markers) => {
+    //console.log(markers);
+    res.send(markers);
+  });
+})
+.post(async (req, res) => {
+  console.log(req.body);
+  insertPlace(req.body);
+  res.redirect("/api/maps");
+});
+
+app
+  .route("/api/maps/:id")
+  .delete(async (req, res) => {
+    await deletePlace(req.params.id);
+    res.json({
+      statusCode: 200,
+      msg: `${req.params.id} deletado do mapa com sucesso.`,
     });
   });
 

@@ -16,7 +16,7 @@ let information = {
 // Creates a person icon to be used on the map pre-existing markers
 
 var personFill = L.icon({
-    iconUrl: '../../Views/images/person-fill.svg',
+    iconUrl: '../../frontend/images/person-fill.svg',
 
     iconSize:     [30, 30], // size of the icon
 });

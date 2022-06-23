@@ -52,6 +52,10 @@ router.get("/area-restrita/doacoes", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/donations.html"));
 });
 
+router.get("/area-restrita/mapa", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/maps.html"));
+});
+
 router.get("/area-restrita/admins", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/admins.html"));
 });

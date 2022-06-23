@@ -59,6 +59,19 @@ export async function createDatabase() {
         status TEXT NOT NULL
       )`
     );
+    
+    // Cria uma tabela de lugares se ela não existir
+    db.exec(
+      `CREATE TABLE IF NOT EXISTS Places( 
+        placeId INTEGER PRIMARY KEY AUTOINCREMENT, 
+        latitude NUMERIC NOT NULL,
+        longitude NUMERIC NOT NULL,
+        streetName TEXT,
+        assistedName TEXT,
+        circleRadius INTEGER
+      )`
+    );
+
     // Cria uma tabela para os logins e senhas
     db.exec(
       `CREATE TABLE IF NOT EXISTS Pruap( 

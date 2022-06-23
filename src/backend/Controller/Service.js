@@ -1,5 +1,18 @@
 import { openDb } from "../configDB.js";
 
+/*
+  In this file, you'll find the functions that will be used to manage
+  the information related to the Service table in the database. All the
+  functions (except for 'today') open the database and modify data using SQL queries.
+  Funtions in this file are:
+    - getServices: Gets all the services from the database.
+    - insertService: Inserts a new service in the database.
+    - updateService: Updates an service in the database by its id.
+    - deleteService: Deletes an delete from the database by its id.
+
+    - today: Returns the current date in the yyyy-mm-dd format.
+*/
+
 export async function getServices() {
   return openDb().then(async (db) => {
     const res = await db.all("SELECT * FROM Service");
@@ -19,15 +32,6 @@ export async function insertService(item) {
   });
 }
 
-export async function deleteService(serviceId) {
-  return openDb().then(async (db) => {
-    const res = await db.get("DELETE FROM Service WHERE serviceId=?", [
-      serviceId,
-    ]);
-    return res;
-  });
-}
-
 export async function updateService(item, serviceId) {
   openDb().then((db) => {
     db.run("UPDATE Service SET type = ?, time = ? WHERE serviceId = ?", [
@@ -35,6 +39,15 @@ export async function updateService(item, serviceId) {
       item.time,
       serviceId,
     ]);
+  });
+}
+
+export async function deleteService(serviceId) {
+  return openDb().then(async (db) => {
+    const res = await db.get("DELETE FROM Service WHERE serviceId=?", [
+      serviceId,
+    ]);
+    return res;
   });
 }
 

@@ -1,5 +1,19 @@
 import { openDb } from "../configDB.js";
 
+/*
+  In this file, you'll find the functions that will be used to manage
+  the information related to the Collaborator table in the database. All the
+  functions (except for 'today') open the database and modify data using SQL queries.
+  Funtions in this file are:
+    - insertCollaborator: Inserts a new collaborator in the database.
+    - updateCollaborator: Updates an collaborator in the database by its id.
+    - getCollaborators: Gets all the collaborators from the database.
+    - getCollaborator: Gets an collaborator from the database by its id.
+    - deleteCollaborator: Deletes an collaborator from the database by its id.
+
+    - today: Returns the current date in the yyyy-mm-dd format.
+*/
+
 export async function insertCollaborator(item) {
   openDb().then((db) => {
     db.run(
