@@ -118,26 +118,13 @@ export const _initializeUsers = async () => {
 
   users.map(async (user) => {
     openDb().then((db) => {
-      // insert an user if it doesn't exist
+      db.run("INSERT INTO Pruap (login, password) VALUES (?,?)", [
+        user.username,
+        user.password,
+      ]);
       db.run(
-        `INSERT INTO Pruap(login, password) VALUES(?, ?)`,
-        [user.username, user.password],
-        (err) => {
-          if (err) {
-            console.log(err);
-          }
-        }
-      );
-
-      // insert an admin if it doesn't exist
-      db.run(
-        `INSERT INTO Admin(name, username, email, phoneNumber) VALUES(?, ?, ?, ?)`,
-        [user.name, user.username, user.email, user.phoneNumber],
-        (err) => {
-          if (err) {
-            console.log(err);
-          }
-        }
+        "INSERT INTO Admin (name, username, email, phoneNumber) VALUES (?,?,?,?)",
+        [user.name, user.username, user.email, user.phoneNumber]
       );
     });
   });

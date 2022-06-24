@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderEvents();
 });
-
+// helped people counter
 window.addEventListener("scroll", function () {
   var element = document.querySelector("#helped-people");
   var position = element.getBoundingClientRect();
@@ -123,7 +123,7 @@ const insertCollaborator = () => {
   // Checks if the value input is filled, then sends the request to the server
   if (donation.value !== "" || donation.value !== null) {
     axios
-      .post(`revirar.herokuapp.com/api/collaborator`, collaborator)
+      .post(`${url}/api/collaborator`, collaborator)
       .then((res) => {
 
         // If the request is successful, the form is reseted
@@ -132,7 +132,6 @@ const insertCollaborator = () => {
 
         name.value = "";
         donation.value = "";
-        date.value = "";
         contact.value = "";
       })
       .catch((e) => console.error(e));

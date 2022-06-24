@@ -1,11 +1,11 @@
 const PORT = 1234;
-const TOKEN = "0987654321"
+const TOKEN = "0987654321";
 const url = `http://localhost:${1234}`;
 
 document
   .getElementsByTagName("form")[0]
   .addEventListener("submit", (e) => e.preventDefault());
-
+//table get admins
 const getAdmins = () => {
   axios
     .get(url + `/api/${TOKEN}/admin`)
@@ -30,24 +30,17 @@ const renderAdmins = (list) => {
 
   list.length > 0
     ? list.map((admin) => {
-        const { adminId, name, username, email, phoneNumber, password } =
-          admin;
-
-        const passwordToggle = () => {
-          // substitui o valor do campo de senha por ******
-          let passwordInput = document.getElementById("adminPassword");
-          passwordInput.value == "********" ? passwordInput.value = password : passwordInput.value = "********";
-        }
-      
-        document.getElementById("togglePasswordsButton").addEventListener("click", passwordToggle);
+        const { adminId, name, username, email, phoneNumber, password } = admin;
 
         table.innerHTML += `
         <tr data-bs-toggle="modal" data-bs-target="#exampleModal${adminId}" id="tableRow">
-          <td class="fs-6">${name}</td>
-          <td class="fs-6">${username}</td>
-          <td class="fs-6">${password}</td>
-          <td class="fs-6 d-none d-md-table-cell">${email}</td>
-          <td class="fs-6">${phoneNumber}</td>
+        <td class="fs-6">${name}</td>
+        <td class="fs-6">${username}</td>
+        <td class="fs-6">
+          <span id="passwordText">${password}</span>
+        </td>
+        <td class="fs-6 d-none d-md-table-cell">${email}</td>
+        <td class="fs-6">${phoneNumber}</td>
         </tr>
         
         ${adminModal(admin)}
@@ -64,9 +57,9 @@ const renderAdmins = (list) => {
   `);
 };
 
+//ADMIN MODAL edit
 const adminModal = (admin) => {
-  const { adminId, name, login, email, phoneNumber, password, type } =
-  admin;
+  const { adminId, name, login, email, phoneNumber, password, type } = admin;
 
   return `
     <div class="modal fade" id="exampleModal${adminId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -202,13 +195,9 @@ const updateAdmin = (adminId) => {
   if (confirm("Deseja mesmo atualizar os dados?")) {
     let name = document.getElementById("adminName" + adminId);
     let type = document.getElementById("adminType" + adminId);
-    let donation = document.getElementById(
-      "adminDonation" + adminId
-    );
+    let donation = document.getElementById("adminDonation" + adminId);
     let date = document.getElementById("adminDate" + adminId);
-    let contact = document.getElementById(
-      "adminContact" + adminId
-    );
+    let contact = document.getElementById("adminContact" + adminId);
     let status = document.getElementById("adminStatus" + adminId);
 
     let updatedAdmin = {
@@ -239,7 +228,7 @@ const toggleInputs = (number) => {
     "adminDate",
     "adminContact",
     "adminPassword",
-    "updateButton"
+    "updateButton",
   ];
   let buttonText = document.getElementById(`btnText${number}`);
 
