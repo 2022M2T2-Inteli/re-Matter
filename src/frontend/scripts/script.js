@@ -83,7 +83,7 @@ window.addEventListener("scroll", function () {
   var position = element.getBoundingClientRect();
 
   if (position.top < window.innerHeight && position.bottom >= 0 && !volunteer) {
-    displayCounter("helped-people", 4206969);
+    displayCounter("helped-people", 272);
     volunteer = true;
   }
 });
@@ -97,7 +97,7 @@ window.addEventListener("scroll", function () {
     position.bottom >= 0 &&
     !helpedPeople
   ) {
-    displayCounter("volunteer", 666);
+    displayCounter("volunteer", 95);
     helpedPeople = true;
   }
 });
